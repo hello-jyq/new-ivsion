@@ -1,0 +1,433 @@
+<template>
+  <el-dialog
+    ref="dragBox"
+    class="content-dialog-box  search-light"
+    :close-on-click-modal="false"
+    custom-class="dialog-drag fixed-search-btn-box"
+    top="0"
+    title="报价"
+    :visible.sync="isShow"
+    :before-close="handleDialogClose"
+  >
+    <div style="display: flex;flex-direction: column;height: 100%;">
+      <div class="middle-box">
+        <div class="dialog-search-box middle-input">
+          <el-form ref="searchForm" :model="form" label-width="80px" label-position="left">
+            <el-row type="flex" justify="space-between">
+              <el-col :span="24">
+                <el-form-item label="报价种类" prop="quotationType" class="checkout-height-box">
+                  <el-checkbox-group v-model="form.quotationType">
+                    <el-checkbox label="合同" />
+                    <el-checkbox label="报价" />
+                    <el-checkbox label="提案" />
+                    <el-checkbox label="审议" />
+                    <el-checkbox label="做成" />
+                    <el-checkbox label="撤回" />
+                    <el-checkbox label="失效" />
+                    <el-checkbox label="跨年合同" />
+                    <el-checkbox label="社内案件" />
+                  </el-checkbox-group>
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-row type="flex" justify="space-between">
+              <el-col :span="7">
+                <el-form-item label="是否有效" prop="iseffective">
+                  <el-radio-group v-model="form.iseffective">
+                    <el-radio :label="true">
+                      有效
+                    </el-radio>
+                    <el-radio :label="false">
+                      无效
+                    </el-radio>
+                  </el-radio-group>
+                </el-form-item>
+              </el-col>
+              <el-col :span="7">
+                <el-form-item label="创建人" prop="creatName">
+                  <el-input v-model="form.creatName" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="7" />
+            </el-row>
+            <el-row type="flex" justify="space-between">
+              <el-col :span="7">
+                <el-form-item label="创建日期" prop="creatDate">
+                  <el-date-picker v-model="form.creatDate" type="date" class="search-date-box" :clearable="false" placeholder="日期选择" :popper-class="this.theme=='Light' ? 'blueDate' : ''" />
+                </el-form-item>
+              </el-col>
+              <el-col :span="7">
+                <el-form-item label="联系人" prop="contacts">
+                  <el-popover v-model="contactsPopover" placement="bottom" width="auto" trigger="click" :popper-class="this.theme=='Light' ? 'tree-poper blueTree' : 'tree-poper'">
+                    <el-tree :data="contacts" accordion @node-click="getContactsChecked" />
+                    <el-input slot="reference" v-model="form.contacts" readonly />
+                  </el-popover>
+                </el-form-item>
+              </el-col>
+              <el-col :span="7">
+                <el-form-item label="报价金额" prop="quotationMoney">
+                  <el-input v-model="form.quotationMoney" type="number"  align="right" class="align-right" />
+                </el-form-item>
+              </el-col>
+            </el-row>
+            <el-form-item style="margin-bottom:0 !important">
+              <ul class="operation-box dialog-btn-box end-content-flex mcbtn">
+                <li class="operation-item" @click="resetForm('searchForm')">
+                  <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconrefresh" /></span>
+                  <span class="operation-text">重&nbsp;置</span>
+                </li>
+                <li class="operation-item">
+                  <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconsousuo" /></span>
+                  <span class="operation-text">检&nbsp;索</span>
+                </li>
+              </ul>
+            </el-form-item>
+          </el-form>
+        </div>
+      </div>
+      <div class="footer-box">
+        <div class="dialog-table-box">
+          <el-table ref="table" v-loading="isLoading" class="scroll-table-box" @header-dragend="headerDragend" :data="dacList" height="100%" stripe border @selection-change="handleSelectionChange">
+            <el-table-column width="40" :resizable="false" type="selection" fixed />
+            <el-table-column label="报价编号" width="125" align="center" show-overflow-tooltip>
+              <template slot-scope="scope">
+                <a class="link" @click.prevent="handleNumClick(scope.row.id)">{{ scope.row.identiferNum }}</a>
+              </template>
+            </el-table-column>
+
+            <el-table-column prop="quotationName" label="报价名称" min-width="230" align="center" show-overflow-tooltip />
+            <el-table-column prop="quotationType" label="客户编号" width="90" align="center" show-overflow-tooltip>
+              <template slot-scope="scope">
+                <dict-write dict-type-id="QuoType" :value="scope.row.quotationType" />
+              </template>
+            </el-table-column>
+            <el-table-column prop="accountName" label="客户名称" align="center" width="110" show-overflow-tooltip />
+
+            <el-table-column label="联系人" width="110" align="center" show-overflow-tooltip prop="createByName" />
+
+            <el-table-column prop="quotationCommitDate" label="创建时间" min-width="120" align="center" show-overflow-tooltip />
+            <el-table-column
+              prop="createByName"
+              label="报价有效期"
+              width="110"
+              header-align="center"
+              align="right"
+              show-overflow-tooltip
+            >
+              <template>
+                <p>30</p>
+              </template>
+            </el-table-column>
+
+            <el-table-column
+              prop="remark"
+              label="报价金额合计"
+              width="130"
+              header-align="center"
+              align="right"
+              show-overflow-tooltip
+            >
+              <template slot-scope="scope">
+                <p>{{ scope.row.id | NumFormat }}</p>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+        <div class="pagination-box">
+          <el-pagination
+            class="page-left"
+            :current-page.sync="searchParam.pageNo"
+            :page-size="searchParam.pageSize"
+            layout="total,sizes"
+            :total="searchParam.totalRecord"
+            :popper-class="theme=='Light' ? 'blueDL' : ''"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          />
+
+          <el-pagination
+            class="page-right"
+            :current-page.sync="searchParam.pageNo"
+            :page-size="searchParam.pageSize"
+            layout="prev,pager,next,slot,jumper"
+            :total="searchParam.totalRecord"
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+          >
+            <span class="iconfont iconjiantou-youzhi page-last-page" @click="toLastPage" />
+          </el-pagination>
+          <el-pagination class="page-right  page-first" layout="slot">
+            <span class="iconfont iconjiantou-zuozhi page-first-page" @click="toFirstPage" />
+          </el-pagination>
+        </div>
+      </div>
+      <ul class="operation-box dialog-btn-box fixed-btn-box end-content-flex">
+        <li class="operation-item" @click="onClose()">
+          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconquxiao" /></span>
+          <span class="operation-text">取&nbsp;消</span>
+        </li>
+        <li class="operation-item" @click="onConfirm()">
+          <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconqueren" /></span>
+          <span class="operation-text">确&nbsp;认</span>
+        </li>
+      </ul>
+    </div>
+  </el-dialog>
+</template>
+
+<script>
+import {
+  search
+} from '@/mixins/search-params'
+import {
+  formValidator
+} from '@/mixins/form-validator.js'
+import {
+  permission
+} from '@/mixins/permission-mixin'
+import DictWrite from '@/components/DictWrite'
+
+import $ from 'jquery'
+import 'jquery.nicescroll'
+import { getWfdemoList } from '@/api/bud/wfdemo.js'
+export default {
+  components: {
+    DictWrite
+  },
+  mixins: [search, formValidator, permission],
+  props: {
+    isShow: {
+      type: Boolean,
+      default: false
+    },
+    data: {
+      type: Array,
+      default: function () {
+        return []
+      }
+    }
+  },
+  data() {
+    return {
+      isLoading: false,
+      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
+      dacList: [],
+      // 新增结束
+
+      theme: localStorage.getItem('theme') != 'Dark' ? 'Light' : '',
+      Height: '',
+      item: null,
+      contactsPopover: false,
+      options: [{
+        value: '1',
+        label: '编号1'
+      }, {
+        value: '2',
+        label: '编号2'
+      }, {
+        value: '3',
+        label: '编号3'
+      }],
+      contacts: [{
+        label: '技术统括',
+        children: [{
+          label: '技术统括1',
+          children: [{
+            label: '王二'
+          }]
+        }]
+      }, {
+        label: '营业统括',
+        children: [{
+          label: '营业统括1',
+          children: [{
+            label: '张三'
+          }]
+        }, {
+          label: '营业统括2',
+          children: [{
+            label: '李四'
+          }]
+        }]
+
+      }],
+      form: { // 弹窗检索参数
+        identifer: '',
+        identiferNum: '', // 报价编号
+        identiferName: '', // 报价名称
+        accountNum: '', // 客户编号
+        address: '',
+        quotationType: [], // 报价种类
+        iseffective: false, // 是否有效
+        creatName: '', // 创建人
+        creatDate: '', // 创建日期
+        contacts: '', // 联系人
+        quotationMoney: '' // 报价金额
+
+      },
+      // 分页插件数据
+      searchParam: {
+        paging: true,
+        pageNo: 1, // 当前页码
+        pageSize: 10, // 每页条数
+        totalRecord: null // 总条数
+      }
+    }
+  },
+  // 新增监听
+  watch: {
+    'isShow': function (newVal, oldVal) {
+      if (newVal === true) {
+        this.fetchData()
+        this.$nextTick(() => {
+          this.getScrollBar()
+          this.getDragBar()
+          const dom = document.getElementsByClassName('el-dialog__body')[0]
+          dom.addEventListener('scroll', this.scroll)
+        })
+      }
+    }
+  },
+  mounted() {
+    console.log('data', this.data)
+
+    this.getScrollBar()
+    this.getDragBar()
+    this.draggable()
+    this.resizable()
+  },
+  methods: {
+    headerDragend() {
+      this.$refs.table.doLayout()
+    },
+    async fetchData() {
+      const res = await getWfdemoList(this.searchParam)
+
+      if (res && res.success) {
+        const { totalRecord, results } = res.datas.searchResult
+        this.searchParam.totalRecord = totalRecord
+        this.dacList = results
+        console.log('this.dacList', this.dacList)
+      }
+      this.tableDolayout(this.$refs['table'])
+      this.isLoading = false
+    },
+    getScrollBar() {
+      $('.el-table__body-wrapper').niceScroll({
+        cursorcolor: this.scrollColr,
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 0,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: false // 在加载事件时自动重置iframe大小
+      })
+    },
+    getDragBar() {
+      $('.el-dialog__body').niceScroll({
+        cursorcolor: this.scrollColr,
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 0,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: true // 在加载事件时自动重置iframe大小
+      })
+    },
+    draggable() {
+      $('.dialog-drag').draggable({
+        cursor: 'move',
+        handle: '.el-dialog__header',
+        refreshPositions: true,
+        containment: 'parent',
+        stop() {
+          $('.el-table__body-wrapper').getNiceScroll().resize()
+          $('.el-dialog__body').getNiceScroll().resize()
+        }
+      })
+    },
+    resizable() {
+      $('.dialog-drag').resizable({
+        aspectRatio: false,
+        minHeight: 150,
+        containment: 'parent',
+        stop: function (event, ui) {
+          $('.footer-box').addClass('drag-table-height')
+          $('.el-dialog__body').getNiceScroll().resize()
+        }
+      })
+    },
+    scroll() {
+      $('.el-table__body-wrapper').getNiceScroll().resize()
+    },
+    // 修改—— 新增关闭前事件
+    handleDialogClose() {
+      this.$emit('onClose')
+    },
+    onClose() {
+      this.$emit('onClose')
+    },
+    onConfirm() {
+      this.$emit('onConfirm', this.item)
+    },
+    getContactsChecked(data, node, ischeck) {
+      if (node.isLeaf) {
+        this.form.contacts = node.label
+        this.contactsPopover = false
+      }
+    },
+    getCurrentRow(index) {
+      this.item = index
+      console.log('index', index)
+    },
+
+    handleSelectionChange(val) {
+
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields()
+    },
+    toggleSelection(rows) {
+      if (rows) {
+        rows.forEach(row => {
+          this.$refs.table.toggleRowSelection(row)
+        })
+      } else {
+        this.$refs.table.clearSelection()
+      }
+    },
+    dateFtt(fmt, time) {
+      let date
+      if (!time) {
+        date = new Date()
+      } else {
+        date = new Date(time)
+      }
+      const o = {
+        'M+': date.getMonth() + 1, // 月份
+        'd+': date.getDate(), // 日
+        'h+': date.getHours(), // 小时
+        'm+': date.getMinutes(), // 分
+        's+': date.getSeconds(), // 秒
+        'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
+        'S': date.getMilliseconds() // 毫秒
+      }
+      if (/(y+)/.test(fmt)) {
+        fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+      }
+      for (var k in o) {
+        if (new RegExp('(' + k + ')').test(fmt)) {
+          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? (o[k]) : (('00' + o[k]).substr(('' + o[k]).length)))
+        }
+      }
+      return fmt
+    }
+  }
+}
+</script>

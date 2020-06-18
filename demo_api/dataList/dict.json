@@ -1,0 +1,363 @@
+{
+    "QuoType": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "QuoType",
+                    "dictId": "0",
+                    "dictName": "方针",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".QuoType.0.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "QuoType",
+                    "dictId": "1",
+                    "dictName": "提案",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".QuoType.1.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "QuoType",
+                    "dictId": "2",
+                    "dictName": "合同",
+                    "status": 1,
+                    "sortNo": 3,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".QuoType.2.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "DeleteFlag": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "DeleteFlag",
+                    "dictId": "0",
+                    "dictName": "有效",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".DeleteFlag.0.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "DeleteFlag",
+                    "dictId": "1",
+                    "dictName": "无效",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".DeleteFlag.1.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "AuthMode": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "AuthMode",
+                    "dictId": "local",
+                    "dictName": "本地密码认证",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".AuthMode.local.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "AuthMode",
+                    "dictId": "ldap",
+                    "dictName": "ldap认证",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".AuthMode.ldap.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "Language": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "Language",
+                    "dictId": "zh_CN",
+                    "dictName": "中文",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".Language.zh_CN.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "Language",
+                    "dictId": "ja_JP",
+                    "dictName": "日本語",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".Language.ja_JP.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "Language",
+                    "dictId": "en_US",
+                    "dictName": "English",
+                    "status": 1,
+                    "sortNo": 3,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".Language.en_US.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "UserStatus": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "1",
+                    "dictName": "有效",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".UserStatus.1.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "0",
+                    "dictName": "无效",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".UserStatus.0.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "IsNo": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "IsNo",
+                    "dictId": "1",
+                    "dictName": "是",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".IsNo.1.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "IsNo",
+                    "dictId": "0",
+                    "dictName": "否",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".IsNo.0.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "BudTemplateStatus": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "BudTemplateStatus",
+                    "dictId": "01",
+                    "dictName": "草稿",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudTemplateStatus.01.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "02",
+                    "dictName": "发布",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudTemplateStatus.02.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "03",
+                    "dictName": "审核",
+                    "status": 1,
+                    "sortNo": 3,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudTemplateStatus.03.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "04",
+                    "dictName": "正式",
+                    "status": 1,
+                    "sortNo": 4,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudTemplateStatus.04.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "UserStatus",
+                    "dictId": "05",
+                    "dictName": "作废",
+                    "status": 1,
+                    "sortNo": 5,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudTemplateStatus.05.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    },
+    "BudItemStatus": {
+        "messages": [],
+        "warnings": [],
+        "message": null,
+        "arguments": null,
+        "success": true,
+        "datas": {
+            "dicts": [
+                {
+                    "dictTypeId": "BudItemStatus",
+                    "dictId": "01",
+                    "dictName": "启用",
+                    "status": 1,
+                    "sortNo": 1,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudItemStatus.01.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                },
+                {
+                    "dictTypeId": "BudItemStatus",
+                    "dictId": "02",
+                    "dictName": "禁用",
+                    "status": 1,
+                    "sortNo": 2,
+                    "rankNo": null,
+                    "parentId": null,
+                    "seqNo": ".BudItemStatus.02.",
+                    "filter1": null,
+                    "filter2": null,
+                    "description": null
+                }
+            ]
+        }
+    }
+}

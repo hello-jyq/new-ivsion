@@ -1,0 +1,70 @@
+{
+    "msg": "成功",
+    "status": "1",
+    "data": [{
+            "id": 1,
+            "parentId": "0",
+            "level": 1,
+            "goodsTypeName": "BS",
+            "children": [{
+
+                    "id": 2,
+                    "parentId": "1",
+                    "level": null,
+                    "goodsTypeName": "Solution开发部",
+                    "children": [{
+
+                        "id": 6,
+                        "parentId": "2",
+                        "level": 1,
+                        "goodsTypeName": "王世廉",
+                        "children": []
+                    },{
+
+                        "id": 7,
+                        "parentId": "2",
+                        "level": 1,
+                        "goodsTypeName": "张鹏",
+                        "children": []
+                    },{
+
+                        "id": 8,
+                        "parentId": "2",
+                        "level": 1,
+                        "goodsTypeName": "吴振兴",
+                        "children": []
+                    },{
+
+                        "id": 9,
+                        "parentId": "2",
+                        "level": 1,
+                        "goodsTypeName": "王磊",
+                        "children": []
+                    }]
+                },
+                {
+
+                    "id": 3,
+                    "parentId": "1",
+                    "level": null,
+                    "goodsTypeName": "金融事业部",
+                    "children": [{
+
+                        "id": 4,
+                        "parentId": "3",
+                        "level": 1,
+                        "goodsTypeName": "吴益涛",
+                        "children": []
+                    }]
+                }
+            ]
+        },
+        {
+            "id": 5,
+            "parentId": "0",
+            "level": 1,
+            "goodsTypeName": "ITS",
+            "children": []
+        }
+    ]
+}
