@@ -902,17 +902,21 @@
 /* .content-dialog-box .market-drag .handsontableInput{
   width: 70%  !important;
 } */
+.apply-light .content-dialog-box .market-drag .el-dialog__body{
+  padding: 15px 15px 0 15px !important;
+}
 		.content-dialog-box .market-drag{
       height: 264px !important;
       min-height: 264px !important;
 		  padding: 14px !important;
 		}
 		.content-dialog-box .market-drag.el-dialog  .handsontable tr:first-child th{
-			height: 35px !important;
-			line-height: 35px !important;
+			height: 34px !important;
+			line-height: 34px !important;
 		}
 		 .content-dialog-box .market-drag .handsontable tr td{
-			 height: 28px !important;
+       height: 27px !important;
+       	line-height: 27px !important;
     }
     .htMiddle.handsontable tr:first-child th{
       height: 35px !important;
@@ -1857,6 +1861,19 @@
     height: 400px ; 
   }
 
+.content-dialog-box .market-drag{
+  width: 1000px !important;
+   max-height: 270px !important;
+}
+.handsontable thead th .relative{
+  padding: 0 4px ;
+}
+.apply-light .content-dialog-box .dialog-drag .el-dialog__body .dialog-table-box .editTable th .relative span{
+  line-height: 32px !important;
+}
+.content-dialog-box .market-drag .editTable th .relative span{
+  line-height: 35px !important;
+}
   .adaL-light .table-bg-box .el-table th{
      height: 32px !important;
      line-height: 32px !important;

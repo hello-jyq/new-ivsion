@@ -325,12 +325,12 @@ export default {
     var erd = elementResizeDetectorMaker()
     var that = this
     erd.listenTo(document.getElementsByClassName('dialog-drag')[0], function (element) {
-      // that.$nextTick(function () {
-      //   // this.getEditScroll()
-      //   this.getScrollBar()
-      //   // $('.wtHolder').getNiceScroll().resize()
-      //   $('.wtHolder').getNiceScroll().resize()
-      // })
+      that.$nextTick(function () {
+        // this.getEditScroll()
+        this.getScrollBar()
+        // $('.wtHolder').getNiceScroll().resize()
+        $('.wtHolder').getNiceScroll().resize()
+      })
     })
     this.$nextTick(function () {
       this.getScrollBar()
@@ -472,6 +472,7 @@ export default {
 <style lang="scss">
 .baf {
   width: 1400px;
+  max-height: 370px;
 }
 .erro {
   background: red !important;
@@ -492,6 +493,7 @@ export default {
     background: linear-gradient(180deg, #34393f 0%, #16171b 100%);
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.5);
     border-radius: 16px;
+    flex: auto;
   }
   // #app .handsontable td.htInvalid {
   //   background-color: transparents !important;
@@ -533,6 +535,25 @@ export default {
     //   overflow: hidden;
     //   height: 10px !important;
     // }
+    .htCore {
+      tbody {
+        tr:nth-child(2) td:nth-child(n + 4) {
+          border-right: 1px solid #2fa5bb;
+        }
+        tr:nth-child(1) td:nth-child(n + 5) {
+          border-bottom: 1px solid #2fa5bb;
+        }
+        tr:nth-child(2) td:nth-child(n + 5) {
+          border-bottom: 1px solid #2fa5bb;
+        }
+        tr:nth-child(3) td:nth-child(n + 4) {
+          border-right: 1px solid #2fa5bb;
+        }
+        tr:nth-child(3) td:nth-child(n + 5) {
+          border-bottom: 1px solid #2fa5bb;
+        }
+      }
+    }
   }
 
   // .handsontable {

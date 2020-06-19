@@ -279,6 +279,29 @@
 
             }
         }
+        .baf {
+        .editTable {
+            .htCore {
+      tbody {
+        tr:nth-child(2) td:nth-child(n + 4) {
+          border-right: 1px solid #0AB09C;
+        }
+        tr:nth-child(1) td:nth-child(n + 5) {
+          border-bottom: 1px solid #0AB09C;
+        }
+        tr:nth-child(2) td:nth-child(n + 5) {
+          border-bottom: 1px solid #0AB09C;
+        }
+        tr:nth-child(3) td:nth-child(n + 4) {
+          border-right: 1px solid #0AB09C;
+        }
+        tr:nth-child(3) td:nth-child(n + 5) {
+          border-bottom: 1px solid #0AB09C;
+        }
+      }
+      }
+    }
+    }
     }
 
     //蓝色主题
@@ -292,6 +315,13 @@
                 color: #2FA5BB !important;
             }
         } 
+        .manager-tabs .el-tabs__nav-next, .manager-tabs .el-tabs__nav-prev{
+            color: #2FA5BB;
+        }
+        
+        // .manager-tabs .is-disabled, .manager-tabs .el-tabs__nav-prev{
+        //     color: #cccccc;
+        // }
         #processDialog .dialog-drag{
             background: #ffffff;
             border: none;
