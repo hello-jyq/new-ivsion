@@ -219,90 +219,94 @@
         .update-news-dialog .dialog-drag .update-news-line .el-timeline-item__content .update-news-line-content .update-news-content-items li{
             color: #00E2DE;
         }
-    .update-news-detail-dialog .dialog-drag .dialog-table-box .el-table .el-table__body-wrapper tbody tr:nth-child(even) td{
-        color:#00E2DE ;
-    }
-    .update-news-detail-dialog .dialog-drag .dialog-table-box .el-table .el-table__body-wrapper tbody tr:nth-child(even) td:nth-child(1),td:nth-child(2) {
+        .update-news-detail-dialog .dialog-drag .dialog-table-box .el-table .el-table__body-wrapper tbody tr:nth-child(even) td{
+            color:#00E2DE ;
+        }
+        .update-news-detail-dialog .dialog-drag .dialog-table-box .el-table .el-table__body-wrapper tbody tr:nth-child(even) td:nth-child(1),td:nth-child(2) {
               color: #ffffff;
             }
-             #processDialog .el-dialog {
-            border-radius: 16px;
-            padding: 20px;
-            background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%);
-            box-shadow:0px 2px 20px 4px rgba(0,0,0,1);
+            #processDialog .el-dialog {
+        border-radius: 16px;
+        padding: 20px;
+        background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%);
+        box-shadow:0px 2px 20px 4px rgba(0,0,0,1);
 
-            border:2px solid rgba(68,71,78,1);
-            .el-dialog__header {
-                height: 40px;
-                padding: 5px 0 20px 0;
-                margin-bottom: 15px;
-                .el-dialog__title{
-                    color: #ffffff;
-                }
-            }
-            .el-dialog__body {
-                outline: none !important;
-                .el-table{
-                    background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%) !important;
-                    box-shadow:0px 2px 10px 0px rgba(0,0,0,0.5);
-                    border-radius:16px;
-                    border:2px solid rgba(68,71,78,1) !important;
-                    padding: 15px;
-                    .el-table__header-wrapper{
-                       overflow: hidden;
-                    }
-                }
-                .el-table::before{
-                    height: 0;
-                }
-                .el-table--border::after{
-                    width: 0;
-                }
-                .el-table th{
-                    background-color: #26272C !important;
-                    height: 50px;
-                    line-height: 50px;
-                    color: #ffffff !important;
-                     border-color: #44474E !important;
-                }
-                 .el-table td{
-                    height: 40px;
-                    line-height: 40px;
-                    color: #ffffff !important;
-                    border-color: #44474E !important;
-                    background: #34393f !important;
-                }
-                .el-table tbody tr:nth-child(even) td{
-                    background: #26272C !important;
-                  
-                }
-
+        border:2px solid rgba(68,71,78,1);
+        .el-dialog__header {
+            height: 40px;
+            padding: 5px 0 20px 0;
+            margin-bottom: 15px;
+            .el-dialog__title{
+                color: #ffffff;
             }
         }
-        .baf {
+        .el-dialog__body {
+            outline: none !important;
+            .el-table{
+                background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%) !important;
+                box-shadow:0px 2px 10px 0px rgba(0,0,0,0.5);
+                border-radius:16px;
+                border:2px solid rgba(68,71,78,1) !important;
+                padding: 15px;
+                .el-table__header-wrapper{
+                    overflow: hidden;
+                }
+            }
+            .el-table::before{
+                height: 0;
+            }
+            .el-table--border::after{
+                width: 0;
+            }
+            .el-table th{
+                background-color: #26272C !important;
+                height: 50px;
+                line-height: 50px;
+                color: #ffffff !important;
+                    border-color: #44474E !important;
+            }
+                .el-table td{
+                height: 40px;
+                line-height: 40px;
+                color: #ffffff !important;
+                border-color: #44474E !important;
+                background: #34393f !important;
+            }
+            .el-table tbody tr:nth-child(even) td{
+                background: #26272C !important;
+                
+            }
+
+        }
+    }
+    .baf {
         .editTable {
             .htCore {
-      tbody {
-        tr:nth-child(2) td:nth-child(n + 4) {
-          border-right: 1px solid #0AB09C;
+                tbody {
+                    tr:nth-child(2) td:nth-child(n + 4) {
+                    border-right: 1px solid #0AB09C;
+                    }
+                    tr:nth-child(1) td:nth-child(n + 5) {
+                    border-bottom: 1px solid #0AB09C;
+                    }
+                    tr:nth-child(2) td:nth-child(n + 5) {
+                    border-bottom: 1px solid #0AB09C;
+                    }
+                    tr:nth-child(3) td:nth-child(n + 4) {
+                    border-right: 1px solid #0AB09C;
+                    }
+                    tr:nth-child(3) td:nth-child(n + 5) {
+                    border-bottom: 1px solid #0AB09C;
+                    }
+                }
+            }
         }
-        tr:nth-child(1) td:nth-child(n + 5) {
-          border-bottom: 1px solid #0AB09C;
-        }
-        tr:nth-child(2) td:nth-child(n + 5) {
-          border-bottom: 1px solid #0AB09C;
-        }
-        tr:nth-child(3) td:nth-child(n + 4) {
-          border-right: 1px solid #0AB09C;
-        }
-        tr:nth-child(3) td:nth-child(n + 5) {
-          border-bottom: 1px solid #0AB09C;
-        }
-      }
-      }
     }
+    .con-flex .manager-main .apporve-table-box{
+        height: 100%;
+        max-height: 230px;
     }
-    }
+}
 
     //蓝色主题
     #app[data-theme='Light']{

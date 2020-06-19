@@ -141,33 +141,33 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-  .el-scrollbar .el-scrollbar__view .el-select-dropdown__item{
-    height: auto;
-    max-height: 274px;
-    padding: 0;
-    overflow: hidden;
-    overflow-y: auto;
-  }
-  .el-select-dropdown__item.selected{
-    font-weight: normal;
-  }
-  ul li >>>.el-tree .el-tree-node__content{
-    height:auto;
-    padding: 0 20px;
-  }
-  .el-tree-node__label{
-    font-weight: normal;
-  }
-  .el-tree >>>.is-current .el-tree-node__label{
-    color: #409EFF;
-    font-weight: 700;
-  }
-  .el-tree >>>.is-current .el-tree-node__children .el-tree-node__label{
-    color:#606266;
-    font-weight: normal;
-  }
-  .selectInput{
-    padding: 0 5px;
-    box-sizing: border-box;
-  }
+.el-scrollbar .el-scrollbar__view .el-select-dropdown__item {
+  height: auto;
+  max-height: 274px;
+  padding: 0;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.el-select-dropdown__item.selected {
+  font-weight: normal;
+}
+ul li >>> .el-tree .el-tree-node__content {
+  height: auto;
+  padding: 0 20px;
+}
+.el-tree-node__label {
+  font-weight: normal;
+}
+.el-tree >>> .is-current .el-tree-node__label {
+  color: #409eff;
+  font-weight: 700;
+}
+.el-tree >>> .is-current .el-tree-node__children .el-tree-node__label {
+  color: #606266;
+  font-weight: normal;
+}
+.selectInput {
+  padding: 0 5px;
+  box-sizing: border-box;
+}
 </style>

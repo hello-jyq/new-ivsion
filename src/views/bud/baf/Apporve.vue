@@ -41,7 +41,9 @@
               </div>
             </div>
           </template>
+           <div>111111111</div>
         </el-tree>
+       
       </el-scrollbar>
     </div>
     <div :class="theme=='Light'?'content  market-light approve-light':'content'">
@@ -77,8 +79,33 @@
                 </el-popover>
               </div>
               </div>
+                        <el-form :model="form" label-width="78px" label-position="left" class="content-top-form" style="padding-bottom: 0px">
+            <el-row type="flex" justify="space-between">
+              <el-col :span="7">
+                <el-form-item label="年度" class="big-input">
+                  <el-date-picker
+                    v-model="form.year"
+                    disabled
+                    type="year"
+                    prefix-icon="iconfont iconbuke"
+                    style="width:100%"
+                    :clearable="false"
+                    placeholder="选择年"
+                  />
+                </el-form-item>
+              </el-col>
+              <el-col :span="7">
+                <el-form-item label="模板名称" class="big-input">
+                  <el-input v-model="form.templateName" disabled>
+                    <i slot="suffix" class="iconfont iconbuke" />
+                  </el-input>
+                </el-form-item>
+              </el-col>
+              <el-col :span="7" />
+            </el-row>
+          </el-form>
             </div>
-            <div class="apporve-table-box">
+            <div class="apporve-table-box" >
               <el-table
               ref="table"
                 :data="budgetList"
@@ -349,7 +376,14 @@ export default {
         node: '',
         content: ''
       },
-      scrollColr: '#5A5E63'
+      scrollColr: '#5A5E63',
+      form: {
+        year: '2020',
+        creatName: '吴',
+        organizationName: '周',
+        templateName: '2020预算模板',
+        department: '菱威深根部门'
+      }
     }
   },
   updated: function () {
@@ -552,8 +586,10 @@ export default {
   height: 100%;
   .manager-main {
     overflow: hidden;
+    display: inline;
+    outline: none;
     .apporve-table-box {
-      height: calc(100% - 42px) !important;
+      height: 250px;
     }
   }
   .approval-box {

@@ -930,7 +930,19 @@
     }
     /* 总经理 */
     .apporve-table-box{
-      height: calc(100vh - 195px) !important;
+      /* height: calc(100vh - 195px) !important; */
+       height: 130px !important;
+    }
+    .approve-light   .apporve-table-box{
+      /* height: calc(100vh - 195px) !important; */
+       height: 130px !important;
+    }
+    .manager-main .content-top-state .content-top-form{
+      padding-bottom: 0 !important;
+    }
+    .el-collapse-item__header{
+      height: 36px !important;
+      line-height: 36px !important;
     }
     /* 模板管理 */
     .tpl-steps{
