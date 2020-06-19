@@ -52,6 +52,7 @@
               align="center"
               show-overflow-tooltip
               min-width="100"
+              fixed
             >
               <template slot-scope="scope">
                 <span v-if="scope.row.division === 'estimate'">估算</span>
@@ -64,6 +65,7 @@
               align="center"
               show-overflow-tooltip
               min-width="100"
+              fixed
             >
               <template slot-scope="scope">
                 <span v-if="scope.row.distinguish === 'beforeInfo'">变更前</span>
@@ -187,15 +189,15 @@ export default {
     }
   },
   watch: {
-    isShow: function(newVal) {
-      this.$nextTick(function() {
+    isShow: function (newVal) {
+      this.$nextTick(function () {
         this.getDragBar()
         this.getScrollBar()
       })
     },
 
-    dialogVisible: function(newVal) {
-      this.$nextTick(function() {
+    dialogVisible: function (newVal) {
+      this.$nextTick(function () {
         this.getDragBar()
         this.getScrollBar()
       })
@@ -222,6 +224,7 @@ export default {
     async getUpdateHistoryData() {
       const res = await getUpdateHistory()
       if (res && res.success) {
+        console.log('aaaaaaaaaaaa', res)
         this.tableData = res.datas.history
       }
     },
@@ -229,7 +232,7 @@ export default {
       const res = await getItemHstory()
       if (res && res.success) {
         this.itemData = res.datas.items
-        console.log('aaaaaaaaaaaa', res)
+
       }
     },
     draggable() {
@@ -249,7 +252,7 @@ export default {
         aspectRatio: false,
         minHeight: 150,
         containment: 'parent',
-        stop: function(event, ui) {
+        stop: function (event, ui) {
           $('.footer-box').addClass('drag-table-height')
           $('.el-table__body-wrapper').getNiceScroll().resize()
           $('.el-dialog__body').getNiceScroll().resize()
@@ -307,7 +310,7 @@ export default {
 .update-news-dialog {
   .dialog-drag {
     width: 1400px;
-    min-width: 520px !important;
+    min-width: 950px !important;
     height: 444px;
     max-height: 800px;
 
@@ -315,7 +318,7 @@ export default {
       padding-left: 10px;
     }
     .el-dialog__body {
-      padding: 10px 20px 0 0 !important;
+      padding: 20px 70px 0 60px;
       margin-left: -15px;
       height: 100%;
     }
@@ -452,6 +455,9 @@ export default {
               color: #606266;
             }
           }
+        }
+        .el-table__fixed-body-wrapper tr:nth-child(odd) td:nth-child(1) {
+          border-bottom: 1px solid;
         }
       }
     }

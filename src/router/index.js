@@ -74,6 +74,12 @@ const createRouter = () => new Router({
           name: '',
           component: () => import('@/views/bud/BtnDemo.vue')
         }
+        ,
+        {
+          path: '/edit',
+          name: '',
+          component: () => import('@/views/bud/edit.vue')
+        }
       ]
     },
 

@@ -131,7 +131,8 @@
 <script>
 import { getAllOrgTree } from '@/api/admin/org-api.js'
 import Swiper from 'swiper/dist/js/swiper.js'
-
+import $ from 'jquery'
+import 'jquery.nicescroll'
 var elementResizeDetectorMaker = require('element-resize-detector')
 
 export default {
@@ -309,6 +310,10 @@ export default {
     })
     this.activeName = this.$route.query.name
     this.searchTree()
+    // this.$nextTick(function () {
+    //   this.getDragBar()
+    // })
+
   },
   methods: {
     async searchTree() {
@@ -381,7 +386,21 @@ export default {
           name: name
         }
       })
-    }
+    },
+    // getDragBar() {
+    //   $('.el-tree-node').niceScroll({
+    //     cursorcolor: this.scrollColr,
+    //     cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+    //     cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+    //     cursorwidth: '8px', // 滚动条的宽度，单位：便素
+    //     cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
+    //     autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+    //     zindex: 0,
+    //     railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+    //     boxzoom: false,
+    //     iframeautoresize: true // 在加载事件时自动重置iframe大小
+    //   })
+    // }
   }
 }
 </script>

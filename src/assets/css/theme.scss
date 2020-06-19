@@ -292,6 +292,11 @@
                 color: #2FA5BB !important;
             }
         } 
+        #processDialog .dialog-drag{
+            background: #ffffff;
+            border: none;
+            box-shadow: none;
+        }
         .ht_master tr:nth-child(3) td:nth-child(1){
             border-bottom: 1px solid #dddddd !important;
         }

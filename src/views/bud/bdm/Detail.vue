@@ -104,7 +104,7 @@
             <div :class="theme=='Light'?'state-status  operation-item-text':'state-status  operation-item dark'">
               <el-popover v-model="statueFlag" trigger="manual" class="item" placement="bottom-end" :popper-class="theme=='Light'?'blueHelp':'darkHelp'">
                 <div v-for="(item,index) in dataList.confirmStatus" :key="index" :class="item.isConfirmed != '1'?'items confirm':'items'">
-                  <span class="circle-btn"><i :class="item.isConfirmed === '1'?'iconfont iconyiban':'iconfont icondaiban1'" /></span><span>{{ item.orgName }}</span>
+                  <span class="circle-btn"><i :class="item.isConfirmed === '1'?'iconfont iconyiban':'iconfont icondaiban1'" /></span><span class="con-text">{{ item.orgName }}</span>
                 </div>
                 <el-button slot="reference" @click="statueFlag = !statueFlag">
                   当前状态<i class="iconfont iconshuangjiantouyou" />
@@ -323,8 +323,8 @@ export default {
     }
   },
   computed: {
-    id: function() { return this.$route.query.id },
-    screenDiv: function() { return this.$route.query.screenDiv }
+    id: function () { return this.$route.query.id },
+    screenDiv: function () { return this.$route.query.screenDiv }
   },
   mounted() {
     this.searchTree()
@@ -343,7 +343,7 @@ export default {
     },
 
     async getBafDetail(selectOrgId) {
-      const params = { templateId: this.id,
+      const params = {        templateId: this.id,
         funcDiv: 'BDM',
         orgId: selectOrgId,
         screenDiv: this.screenDiv
@@ -453,9 +453,9 @@ export default {
       this.dialogVisible = obj
     },
     async searchTree() {
-      const params = { templateId: this.id,
+      const params = {        templateId: this.id,
         funcDiv: 'BDM',
-        screenDiv: this.screenDiv }
+        screenDiv: this.screenDiv      }
       const res = await getBudOrgTree(params)
       if (res && res.success) {
         this.expandedKeys = []
@@ -469,7 +469,7 @@ export default {
         const userOrgFullName = res.datas.userOrgFullName
 
         // 此处修改为默认选中1511结点
-        this.$nextTick(function() {
+        this.$nextTick(function () {
           this.expandedKeys.push(userOrgId)
           this.$refs.tree.setCurrentKey(userOrgId)
           this.activeKey = userOrgId
@@ -486,7 +486,7 @@ export default {
           if (!item.children) {
             this.expandedKeys.push(item.parentId)
 
-            this.$nextTick(function() {
+            this.$nextTick(function () {
               this.$refs.tree.setCurrentKey(item.id)
               this.activeKey = item.id
             })

@@ -50,7 +50,8 @@
 import Vue from 'vue'
 import DictWrite from '@/components/DictWrite'
 import { getProcessTrace, withdrawTask } from '@/api/base'
-
+import $ from 'jquery'
+import 'jquery.nicescroll'
 export default {
   name: 'ProcessDetail',
   components: {
@@ -71,14 +72,26 @@ export default {
       isLoading: true,
       approveHis: [],
       activityInfos: [],
-      picUrl: ''
+      picUrl: '',
+      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
+      theme: localStorage.getItem('theme') !== 'Dark' ? 'Light' : ''
     }
   },
   watch: {
-    processInstId: 'fetchData'
+    processInstId: 'fetchData',
+    dialogTableVisible: function (newVal) {
+      this.$nextTick(function () {
+        this.getDragBar()
+      })
+    }
   },
   created: function () {
     this.fetchData()
+  },
+  mounted() {
+    this.$nextTick(function () {
+      this.getDragBar()
+    })
   },
   methods: {
     fetchData: async function () {
@@ -111,6 +124,21 @@ export default {
           type: 'info',
           message: this.$t('comm.msg1')
         })
+      })
+    },
+
+    getDragBar() {
+      $('.el-tree-node').niceScroll({
+        cursorcolor: this.scrollColr,
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 0,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: true // 在加载事件时自动重置iframe大小
       })
     }
   }

@@ -1378,8 +1378,8 @@
 }
   /* 更新履历 */
   .content-dialog-box.update-news-dialog .dialog-drag{
-    width: 100px !important;
-    min-width: 360px !important;
+    width: 1000px ;
+    min-width: 675px !important;
   }
   .update-news-dialog .el-dialog__header{
     padding-left: 7px !important;
@@ -1431,7 +1431,9 @@
   .update-news-dialog .dialog-drag .update-news-line .el-timeline-item__wrapper{
     padding-left: 45px !important;
   }
-
+ #app .update-news-detail-dialog .el-dialog__body{
+  padding: 15px !important;
+}
   .content-dialog-box.update-news-detail-dialog .dialog-drag{
     width: 996px;
     height: 260px !important;
@@ -1620,7 +1622,7 @@
       font-size: 12px!important;
     }
     .apply-light .content-dialog-box .el-dialog__body{
-      padding: 14px!important;
+      padding: 15px 50px 0 42px!important;
     }
     .apply-light .content-dialog-box .dialog-table-box{
       padding: 14px!important;
@@ -2125,8 +2127,7 @@ font-size: 12px !important;
     #app[data-theme='Light'] .home .header .theme-info{
       line-height: 60px !important;
     }
-  }
-  .header-banner{
+      .header-banner{
     height: 72px !important;
     margin: 14px 0 28px 0 !important;
   }
@@ -2155,6 +2156,8 @@ font-size: 12px !important;
   width: 25px !important;
     height: 72px !important;
 }
+  }
+
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .apply-light .content-dialog-box .dialog-drag .mbtn{
       margin-bottom: -35px !important;

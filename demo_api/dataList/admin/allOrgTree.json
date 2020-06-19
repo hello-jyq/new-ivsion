@@ -86,7 +86,7 @@
                                         "enableLock": "1",
                                         "lockUser": "",
                                         "lockTime": "",
-                                        "editDiv":"1"
+                                        "editDiv": "1"
                                     },
                                     {
                                         "id": "1115",
@@ -303,7 +303,6 @@
                                         "parentId": "1240",
                                         "name": "PUR",
                                         "children": null,
-                                      
                                         "readDiv": "0",
                                         "confirmDiv": "0",
                                         "lockDiv": "0",
@@ -591,11 +590,11 @@
                                 "name": "HV-SCM部",
                                 "children": null,
                                 "readDiv": "1",
-                                        "confirmDiv": "1",
-                                        "lockDiv": "2",
-                                        "enableLock": "0",
-                                        "lockUser": "金融部长",
-                                        "lockTime": "2020年4月5日 13:00:03"
+                                "confirmDiv": "1",
+                                "lockDiv": "2",
+                                "enableLock": "0",
+                                "lockUser": "金融部长",
+                                "lockTime": "2020年4月5日 13:00:03"
                             },
                             {
                                 "id": "1550",

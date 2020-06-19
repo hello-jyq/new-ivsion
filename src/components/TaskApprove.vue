@@ -38,7 +38,7 @@
               />
             </div>
           </div>
-          <ul class="operation-box dialog-btn-box fixed-btn-box end-content-flex">
+          <ul class="operation-box dialog-btn-box fixed-btn-box end-content-flex" style="justify-content: flex-start;">
             <!-- 暂存 -->
             <li class="operation-small-item" @click="handleAgreeClick">
               <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbaocun" /></span>

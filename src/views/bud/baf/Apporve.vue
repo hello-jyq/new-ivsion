@@ -71,7 +71,7 @@
                 <div  :class="theme=='Light'?'state-status  operation-item-text':'state-status  operation-item dark'">
                  <el-popover trigger='manual' class="item" placement="bottom-end" v-model="statueFlag" :popper-class="theme=='Light'?'blueHelp':'darkHelp'">
                   <div :key="index" v-for="(item,index) in dataList.confirmStatus"  :class="item.isConfirmed != '1'?'items confirm':'items'">
-                      <span class="circle-btn"><i  :class="item.isConfirmed === '1'?'iconfont iconyiban':'iconfont icondaiban1'" /></span><span >{{ item.orgName}}</span>
+                      <span class="circle-btn"><i  :class="item.isConfirmed === '1'?'iconfont iconyiban':'iconfont icondaiban1'" /></span><span class="con-text">{{ item.orgName}}</span>
                   </div>
                   <el-button slot="reference" @click="statueFlag = !statueFlag">当前状态<i class="iconfont iconshuangjiantouyou" /></el-button>
                 </el-popover>

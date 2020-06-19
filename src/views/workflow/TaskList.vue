@@ -64,18 +64,18 @@
         />
       </el-table>
     </div>
-    <el-dialog id="processDialog" :title="$t('workflow.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" width="80%">
+    <el-dialog id="processDialog" :title="$t('workflow.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" custom-class="dialog-drag" class="content-dialog-box">
       <process-detail :key="processInstId" :process-inst-id="processInstId" />
     </el-dialog>
   </div>
 </template>
 <script>
-import $ from 'jquery'
-import 'jquery.nicescroll'
+
 import { getTasks, agreeTasks } from '@/api/base'
 import ProcessDetail from '@/components/ProcessDetail'
 import { mapGetters } from 'vuex'
-
+import $ from 'jquery'
+import 'jquery.nicescroll'
 export default {
   name: 'TaskList',
   components: {
@@ -113,17 +113,18 @@ export default {
   mounted() {
     // this.getAdrApproveList()
     // 拖拽
-    $('.dialog-drag').draggable({
-      cursor: 'move',
-      handle: '.el-dialog__header,.advice-title-box',
-      refreshPositions: true,
-      containment: 'parent',
-      stop() {
-      }
-    })
-  },
-  wtach: {
-
+    this.draggable()
+    // 缩放
+    this.resizable()
+    // 拖拽
+    // $('.dialog-drag').draggable({
+    //   cursor: 'move',
+    //   handle: '.el-dialog__header,.advice-title-box',
+    //   refreshPositions: true,
+    //   containment: 'parent',
+    //   stop() {
+    //   }
+    // })
   },
   Computed: {
     ...mapGetters([
@@ -131,18 +132,27 @@ export default {
     ])
   },
   methods: {
-    getScrollBar() {
-      $('.el-table__body-wrapper').niceScroll({
-        cursorcolor: this.scrollColr,
-        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
-        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: '8px', // 滚动条的宽度，单位：便素
-        cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
-        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
-        zindex: 0,
-        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
-        boxzoom: false,
-        iframeautoresize: false // 在加载事件时自动重置iframe大小
+    draggable() {
+      $('.dialog-drag').draggable({
+        cursor: 'move',
+        handle: '.el-dialog__header',
+        refreshPositions: true,
+        containment: 'parent',
+        stop() {
+          $('.el-dialog__body').getNiceScroll().resize()
+        }
+      })
+    },
+    resizable() {
+      $('.dialog-drag').resizable({
+        aspectRatio: false,
+        minHeight: 150,
+        containment: 'parent',
+        stop: function (event, ui) {
+          $('.footer-box').addClass('drag-table-height')
+          $('.el-table__body-wrapper').getNiceScroll().resize()
+          $('.el-dialog__body').getNiceScroll().resize()
+        }
       })
     },
     fetchData: async function () {
@@ -223,6 +233,7 @@ export default {
 #processDialog .el-dialog {
   width: 1000px;
   height: 800px;
+  min-width: 950px;
   margin-top: 80px !important;
   padding: 0;
   border-radius: 16px;

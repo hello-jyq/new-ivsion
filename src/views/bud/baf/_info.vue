@@ -171,6 +171,7 @@ export default {
           {
             data: 'total', // 合计
             type: 'numeric',
+            readOnly: true,
             className: 'htMiddle htRight'
           },
           {
@@ -186,68 +187,94 @@ export default {
           {
             data: 'jan',
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'feb',
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'mar',
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           }, {
             data: 'apr',
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'may', // 五月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'jun', // 六月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'jul', // 七月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'aug', // 八月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'sept', // 九月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'oct', // 十月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'nov', // 十一月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           },
           {
             data: 'dec', // 十二月
             type: 'numeric',
-            className: 'htMiddle htRight'
+            className: 'htMiddle htRight',
+            renderer: this.userCheck
           }
         ],
-        hiddenColumns: {
-          copyPasteEnabled: true,
-          indicators: true,
-          columns: [2, 3]
-        },
+        // hiddenColumns: {
+        //   copyPasteEnabled: true,
+        //   indicators: true,
+        //   columns: [2, 3]
+        // },
+        customBorder: true,
+        // customBorders: [
+        //   {            range:
+        //     {
+        //       from: { row: 2, col: 4 },
+        //       to: { row: 3, col: 8 }
+        //     },
+        //     top: { width: 1, color: 'red' },
+        //     left: { width: 1, color: 'red' },
+        //     bottom: { width: 1, color: 'red' },
+        //     right: { width: 1, color: 'red' }
+        //   },],
+        renderAllRows: true,
+        autoColumnSize: true,
         manualColumnResize: true, // 列可拖拽调整大小
         manualRowResize: true, // 列可拖拽调整大小
         //  autoColumnSize: true, // 自适应列大小
@@ -260,33 +287,7 @@ export default {
         cells: this.rowReadonly,
         contextMenu: false,
         afterOnCellMouseDown: this.cellClick,
-        afterChange: function (changes, source) {
-          console.log(111, source)
-          if (changes) {
-            // let total = 0
-            changes.forEach(([row, prop, oldValue, newValue]) => {
-              if (!/^[0-9]+$/.test(newValue)) {
-                alert("请输入数字!");
-                return;
-              } else {
-                // 监听到数值的变化，计算总数
-                newValue = newValue + '';
-                if (!newValue.includes('.')) {
-                  newValue += '.'
-                }
-                let a = newValue.replace(/(\d)(?=(\d{3})+\.)/g, function ($0, $1) {
-                  return $1 + ',';
-                }).replace(/\.$/, ".00");
-                console.log(111, a)
-              }
-            })
-
-          }
-          // 保留5位小数
-          function round(v) {
-            return Math.floor(v * 10000) / 10000
-          }
-        }
+        afterChange: this.afterChange
       },
       isShowYear: false
     }
@@ -310,6 +311,7 @@ export default {
       containment: 'parent',
       stop() {
         // $('.wtHolder').getNiceScroll().resize()
+        this.getScrollBar()
         $('.wtHolder').getNiceScroll().resize()
       }
     })
@@ -381,37 +383,65 @@ export default {
       }
       return cellProperties
     },
-    // afterChange(changes, source) {
-    //   var examData = this.$refs.editTab
-    //   console.log(examData)
-    //   this.getScrollBar()
-    //   // this.$nextTick(function () {
-    //   //   this.$refs.editTable[0].renderer()
-    //   // })
-    //    this.$refs.editTable.renderer()
-    //   // console.log(this.getData())
-    //   // console.log(this.getSourceData())
-    //   // 保留5位小数 v：number
-    // },
+    afterChange(changes, source) {
+      // this.getScrollBar()
+      // if (changes) {
+      //   // let total = 0
+      //   changes.forEach(([row, prop, oldValue, newValue]) => {
+      //     // 监听到数值的变化，计算总数
+      //     if (oldValue === newValue || /^(-?\d+)(\.\d+)?$/.test(newValue) === false) {
+      //       return false
+      //       console.log(this.setDataAtRowProp)
+      //       this.setDataAtRowProp(row, 'apr', this.css('background', "red"))
+      //     } else {
+      //       console.log(4444, round(newValue))
+      //       this.$refs.editTab.hotInstance.render()
+      //       console.log(this.$refs.editTab.hotInstance)
+      //     }
+      //   })
+      // }
+      // // 保留2位小数 v：number
+      // function round(v) {
+      //   return Math.floor(v * 100) / 100 || null
+      // }
+    },
+    userCheck(instance, td, row, col, prop, value, cellProperties) {
+      Handsontable.dom.addClass(td, 'htMiddle htRight')
+
+      // return td
+
+      function formatCurrency(num) {
+        num = num.toString().replace(/[^\d\.-]/g, ''); //转成字符串并去掉其中除数字, . 和 - 之外的其它字符。
+        if (isNaN(num)) num = "0";  //是否非数字值
+        var sign = (num == (num = Math.abs(num)));
+        num = Math.floor(num * 100 + 0.50000000001); //下舍入
+        var cents = num % 100;  //求余 余数 = 被除数 - 除数 * 商
+        cents = (cents < 10) ? "0" + cents : cents; //小于2位数就补齐
+        num = Math.floor(num / 100).toString();
+        for (var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) { //每隔三位小数分始开隔
+          //4 ==> 三位小数加一个分隔符，
+          num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+        }
+        return (((sign) ? '' : '-') + num + '.' + cents);
+      }
+      if (value.toString().includes(",") != true) {
+        if (/^(-?\d+)(\.\d+)?$/.test(value) === false) {
+          Handsontable.dom.addClass(td, 'htMiddle htRight erro')
+          return td.innerText = value
+        } else {
+          Handsontable.dom.addClass(td, 'htMiddle htRight')
+          return td.innerText = formatCurrency(value)
+
+        }
+      }
+      td.innerText = value
+    },
     saveData() {
       var examData = this.$refs.editTable.table.getData()
 
       console.log(examData)
     },
-    // getEditScroll() {
-    //   $('.wtHolder').niceScroll({
-    //     cursorcolor: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
-    //     cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
-    //     cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-    //     cursorwidth: '8px', // 滚动条的宽度，单位：便素
-    //     cursorborder: `1px solid ${localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
-    //     autohidemode: true, // 隐藏滚动条的方式, 可用的值:
-    //     zindex: 99,
-    //     railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
-    //     boxzoom: false,
-    //     iframeautoresize: true // 在加载事件时自动重置iframe大小
-    //   })
-    // },
+
     getScrollBar() {
       $('.wtHolder').niceScroll({
         cursorcolor: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
@@ -435,12 +465,22 @@ export default {
       this.$emit('onClose', false)
       // this.dialogVisible = false
     }
+
   }
 }
 </script>
 <style lang="scss">
 .baf {
-  min-width: 1400px;
+  width: 1400px;
+}
+.erro {
+  background: red !important;
+}
+.wtHolder::-webkit-scrollbar {
+  display: none;
+}
+.wtHolder::-ms-scrollbar {
+  display: none;
 }
 .content-dialog-box .market-drag {
   .el-dialog__body {
