@@ -950,12 +950,32 @@ aside.collapse+.header+.main .content-dialog-box{
   bottom: 0px;
 }
 .tree-org-user .el-tree{
-  width:100%;
+  display: inline-block;
+  // width:100%;
+  // min-width: 245px;
   height: 100%;
   font-family:"微软雅黑";
   font-size:14px ;
   color: #999999;
 }
+.el-tree-node__content{
+  display: inline-block;
+ width: auto !important;
+}
+.el-tree-node__expand-icon{
+  display: inline-block;
+}
+.custom-tree-node{
+  display: inline-block;
+}
+// .auto-tree{
+//   height: 100%;
+//   .el-scrollbar{
+//     height: 99%;
+//   }
+// }
+
+
 .tree-org-user .el-tree-node__content{
   height: 32px;
 }
@@ -972,6 +992,7 @@ aside.collapse+.header+.main .content-dialog-box{
     font-family: "微软雅黑";
     font-size: 14px;
     color: #999999;
+    // overflow: hidden;
   }
 
   .el-tree-node__content {
