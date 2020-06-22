@@ -6,91 +6,91 @@
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconhuodong-" /></div>
-                    <div class="slide-text">活动(10)</div>
+                    <div class="slide-text">活动活动<p>(99+)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide noData-active">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconhuodong-" /></div>
-                    <div class="slide-text">活动(0)</div>
+                    <div class="slide-text">活动活动<p>(0)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconnav_promoter" /></div>
-                    <div class="slide-text">客户(10)</div>
+                    <div class="slide-text">客户<p>(99+)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconyingyeqingkuang" /></div>
-                    <div class="slide-text">营业(10)</div>
+                    <div class="slide-text">营业<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconbaojiadan" /></div>
-                    <div class="slide-text">报价(10)</div>
+                    <div class="slide-text">报价<p>(1)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconfanli" /></div>
-                    <div class="slide-text">返利(10)</div>
+                    <div class="slide-text">返利<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconyingyeqingkuang" /></div>
-                    <div class="slide-text">营业(10)</div>
+                    <div class="slide-text">营业<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconbaojiadan" /></div>
-                    <div class="slide-text">报价(10)</div>
+                    <div class="slide-text">报价<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconfanli" /></div>
-                    <div class="slide-text">返利(10)</div>
+                    <div class="slide-text">返利返利<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconyingyeqingkuang" /></div>
-                    <div class="slide-text">营业(10)</div>
+                    <div class="slide-text">营业<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconbaojiadan" /></div>
-                    <div class="slide-text">报价(10)</div>
+                    <div class="slide-text">报价<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconfanli" /></div>
-                    <div class="slide-text">返利(10)</div>
+                    <div class="slide-text">返利<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconyingyeqingkuang" /></div>
-                    <div class="slide-text">营业(10)</div>
+                    <div class="slide-text">营业<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconbaojiadan" /></div>
-                    <div class="slide-text">报价(10)</div>
+                    <div class="slide-text">报价<p>(10)</p></div>
                   </div>
                 </div>
                 <div class="swiper-slide">
                   <div class="slide-content">
                     <div class="slide-icon"><i class="iconfont iconfanli" /></div>
-                    <div class="slide-text">返利(10)</div>
+                    <div class="slide-text">返利<p>(10)</p></div>
                   </div>
                 </div>               
             </div>
@@ -278,70 +278,6 @@
       <div class="advice-edit-table">
         <hot-table ref="textHot" :settings="hotSettings" />
       </div>
-      <!-- <el-table    
-      border
-      style="width: 100%; margin-top: 20px">
-      <el-table-column
-        prop="id"
-        label="数据年度">
-      </el-table-column>
-      <el-table-column
-        prop="name"
-        label="年度计上">
-      </el-table-column>
-      <el-table-column
-        prop="amount1"
-        label="增值税">
-      </el-table-column>
-      <el-table-column
-        prop="amount2"
-        label="一月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="二月">
-      </el-table-column>
-          <el-table-column
-        prop="amount2"
-        label="三月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="四月">
-      </el-table-column>
-          <el-table-column
-        prop="amount2"
-        label="五月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="六月">
-      </el-table-column>
-          <el-table-column
-        prop="amount2"
-        label="七月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="八月">
-      </el-table-column>
-          <el-table-column
-        prop="amount2"
-        label="九月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="十月">
-      </el-table-column>
-      <el-table-column
-        prop="amount2"
-        label="十一月">
-      </el-table-column>
-      <el-table-column
-        prop="amount3"
-        label="十二月">
-      </el-table-column>
-    </el-table> -->
     </div>
     <div class="table-bg-box up">
       <div class="box-header" style="margin-bottom:15px">
@@ -780,7 +716,8 @@ export default {
           .slide-icon {
             width: 28px;
             height: 28px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            margin-top: -8px;
             i {
               color: #2fa5bb;
               font-size: 28px;
@@ -788,10 +725,10 @@ export default {
           }
           .slide-text {
             width: 100%;
-            height: 20px;
+            height: 16px;
             font-family: "微软雅黑";
             font-size: 14px;
-            line-height: 20px;
+            line-height: 16px;
             color: #2fa5bb;
           }
         }
@@ -1099,7 +1036,8 @@ export default {
           .slide-icon {
             width: 28px;
             height: 28px;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            margin-top: -8px;
             i {
               color: #2fa5bb;
               font-size: 28px;
@@ -1107,10 +1045,10 @@ export default {
           }
           .slide-text {
             width: 100%;
-            height: 20px;
+            height: 16px;
             font-family: "微软雅黑";
             font-size: 14px;
-            line-height: 20px;
+            line-height: 16px;
             color: #2fa5bb;
           }
         }

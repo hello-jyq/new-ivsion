@@ -2173,13 +2173,15 @@ font-size: 12px !important;
   .header-banner .swiper-container .swiper-slide .slide-content .slide-icon{
     width: 20px !important;
     height: 20px !important;
-    margin-bottom: 2px !important;
+    margin-top: -5px !important;
+    margin-bottom: 5px !important;
   }
    .header-banner .swiper-container .swiper-slide .slide-content .slide-icon i{
     font-size:19px !important;
   }
 .header-banner .swiper-container .swiper-slide .slide-content .slide-text{
   font-size: 12px !important;
+  line-height: 12px !important;
 }
 .header-banner .swiper-container .edit-prev-btn,.edit-next-btn{
   width: 25px !important;
