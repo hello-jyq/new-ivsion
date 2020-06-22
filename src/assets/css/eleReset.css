@@ -1342,15 +1342,7 @@ width: 300px;
     background-repeat: no-repeat !important;
     background-position: center !important;
 }
-.custom-tree-node {
-  overflow: auto;
-}
-.custom-tree-node ::-webkit-scrollbar {
-  display: none !important;
-}
-.custom-tree-node ::-ms-scrollbar {
-  display: none !important;
-}
+
 .el-tree-node {
   overflow: hidden;
 }
@@ -1371,4 +1363,12 @@ cursor: move !important;
 .align-right input{
   text-align: end !important;
 }
-
+.custom-tree-node {
+  overflow: auto;
+}
+.custom-tree-node ::-webkit-scrollbar {
+  display: none !important;
+}
+.custom-tree-node ::-ms-scrollbar {
+  display: none !important;
+}

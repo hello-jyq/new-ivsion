@@ -2,7 +2,7 @@
   <div>
     <div>
       <el-collapse value="1">
-        <el-collapse-item name="1">
+        <el-collapse-item name="1" disabled=true>
           <span slot="title" class="collapse-title">{{ $t('component.taskApprove.approval') }}</span>
           <div class="input_box">
             <div class="flex3">
@@ -218,5 +218,15 @@ export default {
 }
 .input_box > div .title {
   width: 80px;
+}
+/deep/ .el-collapse-item.is-disabled .el-collapse-item__header {
+  cursor: default;
+}
+.collapse-title {
+  font-family: "微软雅黑";
+  font-size: 16px;
+}
+/deep/ .el-collapse-item__header i {
+  display: none;
 }
 </style>

@@ -1050,6 +1050,9 @@ export default {
       th {
         height: 42px;
         background: #8aa2ad;
+        color: #ffffff;
+        font-size: 16px;
+        border-color: #dddddd;
         .relative {
           span {
             line-height: 42px;
@@ -1059,6 +1062,9 @@ export default {
       td {
         line-height: 34px;
         height: 34px;
+        color: #666666;
+        font-size: 14px;
+        border-color: #dddddd;
       }
       tr:nth-child(even) td {
         background: #f5f5f5;
@@ -1309,6 +1315,7 @@ export default {
         height: 46px !important;
         background: #26272c;
         border-color: #44474e;
+        font-size: 16px;
         .relative {
           span {
             line-height: 46px;
@@ -1319,6 +1326,7 @@ export default {
       td {
         line-height: 38px;
         height: 38px;
+        font-size: 14px;
         color: #ffffff;
         background: #34393f;
         border-color: #44474e;
