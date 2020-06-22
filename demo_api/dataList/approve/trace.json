@@ -83,30 +83,6 @@
                     "描述": null
                 },
                 "height": 55
-            },
-            {
-                "currentActiviti": false,
-                "x": 760,
-                "width": 35,
-                "y": 150,
-                "vars": {
-                    "任务类型": "结束节点",
-                    "节点说明": null,
-                    "描述": null
-                },
-                "height": 35
-            },
-            {
-                "currentActiviti": false,
-                "x": 25,
-                "width": 35,
-                "y": 150,
-                "vars": {
-                    "任务类型": "开始节点",
-                    "节点说明": null,
-                    "描述": null
-                },
-                "height": 35
             }
         ],
         "approveHis": [
