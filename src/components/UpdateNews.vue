@@ -32,6 +32,7 @@
     <el-dialog
       title="交际费1"
       :visible.sync="dialogVisible"
+      :close-on-click-modal="false"
       class="content-dialog-box update-news-detail-dialog"
       custom-class="dialog-drag"
       top="0"

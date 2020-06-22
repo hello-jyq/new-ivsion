@@ -2181,12 +2181,94 @@ font-size: 12px !important;
 .header-banner .swiper-container .swiper-slide .slide-content .slide-text{
   font-size: 12px !important;
 }
-.header-banner .swiper-container .edit-prev-btn{
+.header-banner .swiper-container .edit-prev-btn,.edit-next-btn{
   width: 25px !important;
     height: 72px !important;
 }
+.edit-light .table-bg-box .box-header{
+    height: 26px !important;
+    margin-bottom: 15px;
+}
+.edit-light .table-bg-box .box-header-title{
+  font-size: 12px !important;
+}
+.edit-light .advice-edit-table .editTable th{
+    height: 32px !important;
+}
+.edit-light .advice-edit-table .editTable th  span{
+    height: 30px !important;
+    line-height: 30px !important;
+    font-size: 12px !important;
   }
+  .edit-light .advice-edit-table .editTable tr td {
+    height: 26px !important;
+    line-height: 26px !important;
+    font-size: 12px !important;
+}
+.edit-light .up .el-form-item .el-form-item__content .operation-item{
+  width: 105px !important;
+}
+.edit-light .table-bg-box .box-header .box-header-title{
+  line-height: 28px !important;
+}
+.edit-light .table-bg-box .box-header .box-header-info{
+      line-height: 28px !important;
+    font-size: 12px !important;
+    padding: 0 14px !important;
+    margin-left: 21px !important;
+}
+.edit-light .header-banner .edit-next, .edit-light .header-banner .edit-prev{
+      width: 25px !important;
+    height: 25px !important;
+    padding: 0 7px !important;
+    top: 60% !important;
+}
 
+.edit-dark .table-bg-box .box-header{
+    height: 26px !important;
+    margin-bottom: 15px;
+}
+.edit-dark .table-bg-box .box-header-title{
+  font-size: 12px !important;
+}
+.edit-dark .advice-edit-table .editTable th{
+    height: 34px !important;
+}
+.edit-dark .advice-edit-table .editTable th  span{
+    height: 32px !important;
+    line-height: 32px !important;
+    font-size: 12px !important;
+  }
+  .edit-dark .advice-edit-table .editTable tr td {
+    height: 28px !important;
+    line-height: 28px !important;
+    font-size: 12px !important;
+}
+.edit-dark .up .el-form-item .el-form-item__content .operation-item{
+  width: 105px !important;
+}
+.edit-dark .table-bg-box .box-header .box-header-title{
+  line-height: 28px !important;
+}
+.edit-dark .table-bg-box .box-header .box-header-info{
+      line-height: 28px !important;
+    font-size: 12px !important;
+    padding: 0 14px !important;
+    margin-left: 21px !important;
+}
+.edit-light .header-banner .edit-next i, .edit-light .header-banner .edit-prev i{
+  line-height: 25px !important;
+}
+.edit-dark .header-banner .edit-next, .edit-dark .header-banner .edit-prev{
+    width: 25px !important;
+    height: 25px !important;
+    padding: 0 7px !important;
+    top: 60% !important;
+}
+.edit-dark .header-banner .edit-next i, .edit-dark .header-banner .edit-prev i{
+  line-height: 25px !important;
+}
+}
   @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
     .apply-light .content-dialog-box .dialog-drag .mbtn{
       margin-bottom: -35px !important;

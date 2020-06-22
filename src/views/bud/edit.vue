@@ -1080,7 +1080,7 @@ export default {
     .swiper-container {
       height: 100%;
       .swiper-slide {
-        width: 102px !important;
+        width: 102px;
         height: 102px;
         padding: 21px;
         margin-left: 63px;
@@ -1312,7 +1312,7 @@ export default {
     .editTable {
       height: 100%;
       th {
-        height: 46px !important;
+        height: 46px;
         background: #26272c;
         border-color: #44474e;
         font-size: 16px;
