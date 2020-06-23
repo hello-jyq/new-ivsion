@@ -38,8 +38,8 @@
               <i v-else class="iconfont iconshouye" />
             </span> {{ $t('comm.home') }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to='{path:+item.resUrl}'>
-            {{ item.resName }}
+          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to="{path:''+item.resUrl+''}">
+            {{ item.resName!=''?item.resName:'' }}
           </el-breadcrumb-item>
         </el-breadcrumb>
       </div>
@@ -253,30 +253,36 @@ export default {
       console.log('oldValue', oldValue)
       console.log(444, this.breadcrumbItems)
       if (newValue) {
-        // let aa = JSON.parse(JSON.stringify(delete newValue.matched).replace(/name/g, 'resName'))
+        let routeNew = { 'resName': newValue.name, 'resUrl': newValue.path }
+        let routeOld = { 'resName': oldValue.name, 'resUrl': oldValue.path }
+        if (newValue.path === '/') {
+          this.breadcrumbItems = ''
+          console.log(1111)
+        } else {
+          this.breadcrumbItems.push(routeNew)
+          let aaa = Array.from(this.breadcrumbItems)
+          var arr = [];
+          for (var i = 0, len = aaa.length; i < len; i++) {
+            arr[i] = aaa[i];
+          }
+          arr.splice(1, 1)
+          this.breadcrumbItems = arr
+          console.log(9999, arr)
+          // if (this.breadcrumbItems.length >= 2 && localbreadcrumbItems.length === 3) {
+          //   let newbreadcrumbItems = this.breadcrumbItems.slice(0, 2)
+          //   // newbreadcrumbItems.push(routeNew)
+          //   this.breadcrumbItems = newbreadcrumbItems
+          //   console.log(22222, this.breadcrumbItems)
+          // } else {
+          //   this.breadcrumbItems.push(routeNew)
+          //   // console.log(333, newbreadcrumbItems)
+          // }
+        }
 
-        // if (this.breadcrumbItems.length >= 3) {
-        //   this.breadcrumbItems
-        // }
-        // this.breadcrumbItems.slice(0, 2).push(newValue)
-        console.log(555, this.breadcrumbItems)
+
+
+
       }
-      // if (newValue.meta.index) {
-      //   // const seqNo = newValue.meta.seqNo.split(':')
-      //   // this.breadcrumbItems = []
-      //   // console.log('newValuemeta', newValue.meta)
-      //   // this.breadcrumbItems.push(newValue.meta)
-      //   // const id = seqNo.shift()
-      //   // if (!id || id === 'null') {
-      //   //   return
-      //   // }
-      //   // // const menu = newValue.meta.seqNo.filter(menu => menu.index === id)
-      //   // this.breadcrumbItems.push(menu[0])
-      //   // this.$nextTick(()=>{
-
-      //   // })
-      //   // console.log(' this.breadcrumbItems', this.breadcrumbItems)
-      // }
     }
   },
   created() {
