@@ -23,8 +23,11 @@
         <span slot="reference" class="tree-help"><i class="iconfont iconbangzhu" /></span>
       </el-popover>
       <el-scrollbar>
-        <!-- 总经理 -->
-        <el-tree
+    
+       <div class="auto-tree">
+          <el-scrollbar>
+         
+          <el-tree
           ref="tree"
           :data="data"
           node-key="id"
@@ -41,9 +44,9 @@
               </div>
             </div>
           </template>
-           <div>111111111</div>
         </el-tree>
-       
+         </el-scrollbar>
+         </div>
       </el-scrollbar>
     </div>
     <div :class="theme=='Light'?'content  market-light approve-light':'content'">
