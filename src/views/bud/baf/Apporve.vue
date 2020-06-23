@@ -329,7 +329,7 @@
             </div>
           </div>
 
-          <div class="table-bg-box approval-box">
+          <div >
             <!-- 审批信息 -->
             <TaskApprove :task-id="'1'" :process-inst-id="'1'" />
           </div>
@@ -588,8 +588,11 @@ export default {
     overflow: hidden;
     display: inline;
     outline: none;
+    border-bottom-right-radius: 16px !important;
+    border-bottom-left-radius: 16px !important;
     .apporve-table-box {
-      height: 250px;
+      height: calc(100% - 120px);
+      flex: 1;
     }
   }
   .approval-box {
@@ -781,7 +784,11 @@ export default {
   color: #fff;
 }
 
-.el-table__body-wrapper {
-  height: calc(100% - 46px) !important;
+// .el-table__body-wrapper {
+//   height: calc(100% - 46px) !important;
+// }
+.con-flex .manager-main {
+  display: flex;
+  flex-direction: column;
 }
 </style>

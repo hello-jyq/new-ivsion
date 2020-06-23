@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div>
+    <div class="table-bg-box approval-box">
       <el-collapse value="1">
-        <el-collapse-item name="1" disabled=true>
+        <el-collapse-item name="1" disabled>
           <span slot="title" class="collapse-title">{{ $t('component.taskApprove.approval') }}</span>
           <div class="input_box">
             <div class="flex3">
@@ -38,7 +38,11 @@
               />
             </div>
           </div>
-          <ul class="operation-box dialog-btn-box fixed-btn-box end-content-flex" style="justify-content: flex-start;">
+
+        </el-collapse-item>
+      </el-collapse>
+    </div>
+              <ul class="operation-box dialog-btn-box fixed-btn-box end-content-flex" style="justify-content: flex-start;">
             <!-- 暂存 -->
             <li class="operation-small-item" @click="handleAgreeClick">
               <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbaocun" /></span>
@@ -70,9 +74,6 @@
               <span class="operation-text">{{ $t('bud.quo.return') }}</span>
             </li>
           </ul>
-        </el-collapse-item>
-      </el-collapse>
-    </div>
     <el-dialog id="processDialog" :title="$t('component.taskApprove.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" width="80%">
       <process-detail :key="processInstId" :process-inst-id="processInstId" />
     </el-dialog>
@@ -228,5 +229,13 @@ export default {
 }
 /deep/ .el-collapse-item__header i {
   display: none;
+}
+.approval-box {
+  border-radius: 16px !important;
+  padding-bottom: 0px;
+  padding-top: 0px;
+}
+.approval-box .flex1 {
+  padding-bottom: 0px;
 }
 </style>

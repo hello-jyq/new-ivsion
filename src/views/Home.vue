@@ -32,13 +32,13 @@
     <div class="header">
       <div class="path">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ path: '/' }" @click.native="handleHomeClick">
+          <el-breadcrumb-item :to="{ path: '/' }">
             <span class="circle-btn home-icon btn-light-color">
-              <i v-if="theme === 'Light'" class="iconfont icontianchongxing-" />
+              <i v-if="theme === 'Light'" class="iconfont icontianchongxing-"/>
               <i v-else class="iconfont iconshouye" />
             </span> {{ $t('comm.home') }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to='{path:+item}'>
+          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to='{path:+item.resUrl}'>
             {{ item.resName }}
           </el-breadcrumb-item>
         </el-breadcrumb>
@@ -249,30 +249,40 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      // console.log('newValue', newValue)
-      // console.log('oldValue', oldValue)
+      console.log('newValue', newValue)
+      console.log('oldValue', oldValue)
+      console.log(444, this.breadcrumbItems)
+      if (newValue) {
+        // let aa = JSON.parse(JSON.stringify(delete newValue.matched).replace(/name/g, 'resName'))
+
+        // if (this.breadcrumbItems.length >= 3) {
+        //   this.breadcrumbItems
+        // }
+        // this.breadcrumbItems.slice(0, 2).push(newValue)
+        console.log(555, this.breadcrumbItems)
+      }
       // if (newValue.meta.index) {
-      //   const seqNo = newValue.meta.seqNo.split(':')
+      //   // const seqNo = newValue.meta.seqNo.split(':')
       //   // this.breadcrumbItems = []
-      //   console.log('newValuemeta', newValue.meta)
-      //   this.breadcrumbItems.push(newValue.meta)
-      //   const id = seqNo.shift()
-      //   if (!id || id === 'null') {
-      //     return
-      //   }
-      //   // const menu = newValue.meta.seqNo.filter(menu => menu.index === id)
+      //   // console.log('newValuemeta', newValue.meta)
+      //   // this.breadcrumbItems.push(newValue.meta)
+      //   // const id = seqNo.shift()
+      //   // if (!id || id === 'null') {
+      //   //   return
+      //   // }
+      //   // // const menu = newValue.meta.seqNo.filter(menu => menu.index === id)
       //   // this.breadcrumbItems.push(menu[0])
       //   // this.$nextTick(()=>{
 
       //   // })
-      //   console.log(' this.breadcrumbItems', this.breadcrumbItems)
+      //   // console.log(' this.breadcrumbItems', this.breadcrumbItems)
       // }
     }
   },
   created() {
   },
   mounted() {
-    console.log('this.$route.router', this.$route)
+    // console.log('this.$route.router', this.$route)
     this.theme = localStorage.getItem('theme') || 'Light'
     const menuIndex = window.sessionStorage.getItem('activeMenu')
     document.getElementById('app').setAttribute('data-theme', this.theme)
@@ -308,11 +318,11 @@ export default {
       this.isCollapse = false
     },
     handleopen() {
-      console.log('a')
+      // console.log('a')
       this.isCollapse = false
     },
     handleselect(menuIndex) {
-      console.log(9999999, menuIndex)
+      // console.log(9999999, menuIndex)
       saveActiveMenu(menuIndex)
       this.activeIndex = menuIndex
       this.breadcrumbItems = []
@@ -327,6 +337,7 @@ export default {
       const menu = menuList.filter(menu => menu.id === id)
       this.breadcrumbItems.push(menu[0])
       this.getSelectedMenus(menu[0].children, seqNo)
+      // console.log(588, menu)
     },
     handleHomeClick() {
       this.breadcrumbItems = []
