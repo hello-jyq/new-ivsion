@@ -249,15 +249,15 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      console.log('newValue', newValue)
-      console.log('oldValue', oldValue)
-      console.log(444, this.breadcrumbItems)
+      // console.log('newValue', newValue)
+      // console.log('oldValue', oldValue)
+      // console.log(444, this.breadcrumbItems)
       if (newValue) {
         let routeNew = { 'resName': newValue.name, 'resUrl': newValue.path }
         let routeOld = { 'resName': oldValue.name, 'resUrl': oldValue.path }
         if (newValue.path === '/') {
           this.breadcrumbItems = ''
-          console.log(1111)
+          // console.log(1111)
         } else {
           this.breadcrumbItems.push(routeNew)
           let aaa = Array.from(this.breadcrumbItems)
