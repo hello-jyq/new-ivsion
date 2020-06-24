@@ -33,8 +33,8 @@
             </div> -->
             <div class="advice-title-items" style="display: grid;">
               <span class="operation-text" style="font-weight: bold;">所在组织位置<i class="iconfont iconshuangjiantouyou" /><p>
-                <template>
-                  iVision >BS統括
+                <template v-for="(item,index) in orgDetails">            
+                   {{ item.orgName }} <template v-if="index!=orgDetails.length-1">></template>
                 </template>
               </p></span>
             </div>
@@ -92,7 +92,7 @@
             height="100%"
           >
             <el-table-column
-              prop="itemName"
+              prop="orgName"
               align="center"
               label="部门名称"
               min-width="110"
@@ -104,13 +104,13 @@
               show-overflow-tooltip
             >
               <el-table-column
-                prop="budDiv"
+                prop="budDiv1"
                 align="center"
                 width="50"
                 show-overflow-tooltip
               />
               <el-table-column
-                prop="typeDiv"
+                prop="budDiv2"
                 align="center"
                 width="90"
                 show-overflow-tooltip
@@ -149,9 +149,10 @@
 
 <script>
 import { getAllOrgTree } from '@/api/admin/org-api.js'
+import { getAdrDetail } from '@/api/bud/adr/adr-api.js'
 import $ from 'jquery'
 import 'jquery.nicescroll'
-import department from './department'
+// import department from './department'
 import child from './child'
 export default {
   data() {
@@ -166,6 +167,7 @@ export default {
       expandedKeys: [],
       isShowYear: false,
       scrollColr: '#5A5E63',
+      orgDetails: '',
       form: {
         year: '2020',
         subject: '办公用品费',
@@ -231,23 +233,27 @@ export default {
   created() {
     this.form.classify = this.$route.query.id
     const id = this.form.classify
-    console.log(id)
+    // console.log(id)
     if (id === '0') {
-      this.tableData = department.detail.datas.data
+      this.tableData
     } else if (id === '2') {
-      this.tableData = department.budget.datas.data
+      this.tableData.splice(0, this.tableData.length - 1)
     }
   },
   mounted() {
     console.log(localStorage.getItem('theme'))
-    this.merage()
+    this.AdrDetail().then(() => {
+      this.merage()
+    })
     this.getScrollBar()
     this.searchTree()
+    // this.adrDetails()
     this.form.subject = this.$route.query.name || '办公用品费'
     const content = document.getElementsByClassName('content')[0]
     console.log('content', content)
     const dom = content.getElementsByClassName(' el-scrollbar__wrap')[0]
     dom.addEventListener('scroll', this.scroll)
+
   },
   methods: {
     scroll() {
@@ -258,9 +264,9 @@ export default {
     selectNode(target) {
       console.log('target', child)
       if (target.children === null) {
-        this.tableData = child.detail.datas.data
+        this.tableData.splice(0, this.tableData.length - 6)
       } else {
-        this.tableData = department.detail.datas.data
+        this.tableData
       }
       this.activeName = target.name
     },
@@ -278,6 +284,18 @@ export default {
           })
         }
       }
+    },
+    async AdrDetail() {
+      const res = await getAdrDetail()
+      if (res && res.success) {
+        this.$nextTick(() => {
+          this.orgDetails = res.datas.orgDetails
+          this.tableData = res.datas.buds
+
+        })
+
+      }
+
     },
     onChange(value) {
       console.log('查看类别选中的值', value)
@@ -350,15 +368,16 @@ export default {
         } else {
           // 判断当前元素与上一个元素是否相同 this.itemNamePos是itemNameArr内容的序号
 
-          if (this.tableData[i].itemName === this.tableData[i - 1].itemName) {
+          if (this.tableData[i].orgName === this.tableData[i - 1].orgName) {
             this.itemNameArr[this.itemNamePos] += 1
             this.itemNameArr.push(0)
+
           } else {
             this.itemNameArr.push(1)
             this.itemNamePos = i
           }
 
-          if (this.tableData[i].budDiv === this.tableData[i - 1].budDiv && this.tableData[i].itemName === this.tableData[i - 1].itemName) {
+          if (this.tableData[i].budDiv1 === this.tableData[i - 1].budDiv1 && this.tableData[i].orgName === this.tableData[i - 1].orgName) {
             this.budDivArr[this.budDivPos] += 1
             this.budDivArr.push(0)
           } else {
@@ -366,7 +385,7 @@ export default {
             this.budDivPos = i
           }
 
-          if (this.tableData[i].typeDiv === this.tableData[i - 1].typeDiv && this.tableData[i].budDiv === this.tableData[i - 1].budDiv && this.tableData[i].itemName === this.tableData[i - 1].itemName) {
+          if (this.tableData[i].budDiv2 === this.tableData[i - 1].budDiv2 && this.tableData[i].budDiv1 === this.tableData[i - 1].budDiv1 && this.tableData[i].orgName === this.tableData[i - 1].orgName) {
             this.typeDivArr[this.typeDivPos] += 1
             this.typeDivArr.push(0)
           } else {
@@ -377,12 +396,12 @@ export default {
       }
     },
     arraySpanMethod({ row, column, rowIndex, columnIndex }) {
-      if (columnIndex === 1 && row.budDiv !== '禀议') {
+      if (columnIndex === 1 && row.budDiv1 !== '禀议') {
         return {
           rowspan: 1,
           colspan: 2
         }
-      } else if (columnIndex === 2 && row.budDiv !== '禀议') {
+      } else if (columnIndex === 2 && row.budDiv1 !== '禀议') {
         return {
           rowspan: 0,
           colspan: 0

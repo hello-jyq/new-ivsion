@@ -1,8 +1,12 @@
 import { request } from '@/utils/request'
 
+// 禀议查看3-1禀议一览画面.jpg
+export function getAdrList(params) {
+  return request('POST', '/api/adr/list', params)
+}
 // 禀议查看3-3禀议详情查看.jpg
 export function getAdrDetail(params) {
-  return request('POST', '/api/apr/detail' + params)
+  return request('POST', '/api/apr/detail', params)
 }
 // 禀议查看3-5禀议通过查看.jpg
 export function getAdrApplyList(params) {

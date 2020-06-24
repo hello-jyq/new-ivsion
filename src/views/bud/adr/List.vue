@@ -130,6 +130,7 @@
 </template>
 <script>
 import { getAllOrgTree } from '@/api/admin/org-api.js'
+import { getAdrList } from '@/api/bud/adr/adr-api.js'
 import Swiper from 'swiper/dist/js/swiper.js'
 import $ from 'jquery'
 import 'jquery.nicescroll'
@@ -149,171 +150,20 @@ export default {
       activeName: null,
       expandedKeys: [],
       dataList: [
-        {
-          name: '办公用品费',
-          icon: 'iconfont iconbangongyongpinlingyong',
-          budget: '10,000.00',
-          adopt: '8,000.00',
-          actual: '6,000.00',
-          discussion: '8,000.00'
-        },
-        {
-          name: '通信费',
-          icon: 'iconfont iconzhihuitongxin',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '出差费',
-          icon: 'iconfont iconchuchahaiwaiqianzhengshenqingliucheng',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '培训费',
-          icon: 'iconfont icondrxx106',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '新闻杂志费',
-          icon: 'iconfont iconxinwen',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '会社资产购入(非IT类)',
-          icon: 'iconfont iconzichan',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '软件许可与服务费',
-          icon: 'iconfont iconhangzhengxuke',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '交际费',
-          icon: 'iconfont iconhuiyishi',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '交通费',
-          icon: 'iconfont iconjiaotongchuhang',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '保险费',
-          icon: 'iconfont iconbaoxian',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '人才介绍费',
-          icon: 'iconfont iconboshimao',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        },
-        {
-          name: '业务委托费',
-          icon: 'iconfont iconweituokehuxinxiguanli',
-          budget: '20,000.00',
-          adopt: '20,000.00',
-          actual: '20,000.00',
-          discussion: '20,000.00'
-        }
+
       ]
     }
   },
   watch: {
+
     $route(to, from) {
       // console.log(to)
       this.activeName = to.query.name
     }
   },
   mounted() {
-    const self = this
-    var gallerThumb = new Swiper('.advice-thumbs-box', {
-      loop: true,
-      initialSlide: 0,
-      centeredSlides: true,
-      slidesPerView: 'auto',
-      slideToClickedSlide: true,
-      runCallbacksOnInit: false,
-      pagination: {
-        el: '.thumbs-page',
-        type: 'fraction'
-      },
-      navigation: {
-        nextEl: '.thumbs-next',
-        prevEl: '.thumbs-prev'
-      },
-      on: {
-        click: function () {
-          gallerTop.slideToLoop(this.realIndex, 500, false)
-        },
-        slideChangeTransitionEnd: function () {
-          self.activeindex = this.realIndex
-          console.log('activeindex', this.activeindex)
-          gallerTop.slideToLoop(this.realIndex, 500, false)
-        }
-      }
-    })
-
-    var gallerTop = new Swiper('.swiper-big-box', {
-      loop: true,
-      initialSlide: 0,
-      slidesPerView: '3',
-      centeredSlides: true,
-      slideToClickedSlide: true,
-      runCallbacksOnInit: false,
-      navigation: {
-        nextEl: '.big-next',
-        prevEl: '.big-prev'
-      },
-      on: {
-        slideChangeTransitionEnd: function () {
-          self.activeindex = this.realIndex
-          gallerThumb.slideToLoop(this.realIndex, 500, false)
-        }
-      }
-    })
-    // 菜单栏收缩时更新轮播
-    var erd = elementResizeDetectorMaker()
-    erd.listenTo(self.$refs.adviceBox, function (element) {
-      self.$nextTick(function () {
-        gallerThumb.update()
-      })
-    })
-    this.activeName = this.$route.query.name
     this.searchTree()
-    // this.$nextTick(function () {
-    //   this.getDragBar()
-    // })
-
+    this.AdrList()
   },
   methods: {
     async searchTree() {
@@ -331,6 +181,73 @@ export default {
           })
         }
       }
+    },
+    async AdrList() {
+      const res = await getAdrList()
+      if (res && res.success) {
+        this.dataList = res.datas.searchResult
+        this.$nextTick(() => { // 下一个UI帧再初始化swiper
+          this.initSwiper()
+        });
+
+        // 默认展开
+      }
+    },
+    initSwiper() {
+      // const self = this
+      var gallerThumb = new Swiper('.advice-thumbs-box', {
+        loop: true,
+        initialSlide: 0,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        slideToClickedSlide: true,
+        runCallbacksOnInit: false,
+        pagination: {
+          el: '.thumbs-page',
+          type: 'fraction'
+        },
+        navigation: {
+          nextEl: '.thumbs-next',
+          prevEl: '.thumbs-prev'
+        },
+        on: {
+          click: function () {
+            gallerTop.slideToLoop(this.realIndex, 500, false)
+          },
+          slideChangeTransitionEnd: function () {
+            self.activeindex = this.realIndex
+            console.log('activeindex', this.activeindex)
+            gallerTop.slideToLoop(this.realIndex, 500, false)
+          }
+        }
+      })
+
+      var gallerTop = new Swiper('.swiper-big-box', {
+        loop: true,
+        initialSlide: 0,
+        slidesPerView: '3',
+        centeredSlides: true,
+        slideToClickedSlide: true,
+        runCallbacksOnInit: false,
+        navigation: {
+          nextEl: '.big-next',
+          prevEl: '.big-prev'
+        },
+        on: {
+          slideChangeTransitionEnd: function () {
+            self.activeindex = this.realIndex
+            gallerThumb.slideToLoop(this.realIndex, 500, false)
+          }
+        }
+      })
+      // 菜单栏收缩时更新轮播
+      var erd = elementResizeDetectorMaker()
+      erd.listenTo(self.$refs.adviceBox, function (element) {
+        self.$nextTick(function () {
+          gallerThumb.update()
+        })
+      })
+
     },
     // 点击节点
     selectNode(target) {

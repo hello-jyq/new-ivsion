@@ -347,16 +347,16 @@ export default {
       id: "",
       options: [],
       tableHeight: null,
-      scrollColr:
-        localStorage.getItem("theme") === "Light" ? "#D8E0E8" : "#5A5E63",
-      selectData: "",
-      orgAddOrEdit: "",
+      // scrollColr: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
+      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
+      selectData: '',
+      orgAddOrEdit: '',
       itemEditVisible: false
     };
   },
-  created: function() {
-    this.fetchData();
-    console.log(this.theme);
+  created: function () {
+    this.fetchData()
+    console.log(this.theme)
   },
   mounted() {
     // this.theme = localStorage.getItem('theme') || 'Dark'
@@ -365,33 +365,25 @@ export default {
     // } else {
     //   this.scrollColr = '#dddddd'
     // }
-    var erd = elementResizeDetectorMaker();
-    var that = this;
-    erd.listenTo(that.$refs.apply, function(element) {
-      that.$nextTick(function() {
-        this.getScrollBar();
-        this.getDragBar();
-        this.changeTableHeight();
-        $(".el-table__body-wrapper")
-          .getNiceScroll()
-          .resize();
-      });
-    });
+    var erd = elementResizeDetectorMaker()
+    var that = this
+    erd.listenTo(that.$refs.apply, function (element) {
+      that.$nextTick(function () {
+        this.getScrollBar()
+        this.getDragBar()
+        this.changeTableHeight()
+        $('.el-table__body-wrapper').getNiceScroll().resize()
+      })
+    })
 
-    erd.listenTo(document.getElementsByClassName("dialog-drag")[0], function(
-      element
-    ) {
-      that.$nextTick(function() {
-        this.getScrollBar();
-        this.getDragBar();
-        $(".el-table__body-wrapper")
-          .getNiceScroll()
-          .resize();
-        $(".el-dialog__body")
-          .getNiceScroll()
-          .resize();
-      });
-    });
+    erd.listenTo(document.getElementsByClassName('dialog-drag')[0], function (element) {
+      that.$nextTick(function () {
+        this.getScrollBar()
+        this.getDragBar()
+        $('.el-table__body-wrapper').getNiceScroll().resize()
+        $('.el-dialog__body').getNiceScroll().resize()
+      })
+    })
     // erd.listenTo(document.getElementsByClassName('dialog-drag')[1], function(element) {
     //   that.$nextTick(function() {
     //     this.getScrollBar()
