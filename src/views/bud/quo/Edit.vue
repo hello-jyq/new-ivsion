@@ -1,73 +1,68 @@
 <template>
   <div class="addApply">
     <div class="content">
-      <h4>{{ $t('comm.essentialInformation') }} <span calss="identiferNum" style="float: right"><span id="identiferNum">报价编号：{{ quotationSaveForm.identiferNum }}</span></span></h4>
-      <div class="">
+      <h4>
+        {{ $t('comm.essentialInformation') }}
+        <span calss="identiferNum" style="float: right">
+          <span id="identiferNum">报价编号：{{ quotationSaveForm.identiferNum }}</span>
+        </span>
+      </h4>
+      <div class>
         <div class="input_box">
           <div class="flex3">
-            <div class="title must">
-              {{ $t('bud.quo.quotationName') }}
-            </div>
+            <div class="title must">{{ $t('bud.quo.quotationName') }}</div>
             <div class="input">
               <el-input
                 v-model="quotationSaveForm.quotationName"
                 class="input"
-                placeholder=""
+                placeholder
                 @blur="validator('addQuotationName')"
               />
-              <span ref="addQuotationName" data-roles="required,lengthCheck[0:30]" :data-value="quotationSaveForm.quotationName" class="message" />
+              <span
+                ref="addQuotationName"
+                data-roles="required,lengthCheck[0:30]"
+                :data-value="quotationSaveForm.quotationName"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.quotationType') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.quotationType') }}</div>
             <div class="input">
               <dict-select v-model="quotationSaveForm.quotationType" dict-type-id="QuoType" />
             </div>
           </div>
           <div class="flex3">
-            <div class="title must">
-              {{ $t('bud.quo.email') }}
-            </div>
+            <div class="title must">{{ $t('bud.quo.email') }}</div>
             <div class="input">
               <el-input
                 v-model="quotationSaveForm.pipelineId"
                 class="input"
-                placeholder=""
+                placeholder
                 @blur="validator('addPipelineId')"
               />
-              <span ref="addPipelineId" data-roles="required,email" :data-value="quotationSaveForm.pipelineId" class="message" />
-            </div>
-          </div>
-          <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.businessDepartment') }}
-            </div>
-            <div class="input">
-              <el-input
-                v-model="quotationSaveForm.orgLevel1"
-                class="input"
-                placeholder=""
+              <span
+                ref="addPipelineId"
+                data-roles="required,email"
+                :data-value="quotationSaveForm.pipelineId"
+                class="message"
               />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.department') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.businessDepartment') }}</div>
             <div class="input">
-              <el-input
-                v-model="quotationSaveForm.orgLevel2"
-                class="input"
-                placeholder=""
-              />
+              <el-input v-model="quotationSaveForm.orgLevel1" class="input" placeholder />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.pmUser') }}
+            <div class="title">{{ $t('bud.quo.department') }}</div>
+            <div class="input">
+              <el-input v-model="quotationSaveForm.orgLevel2" class="input" placeholder />
             </div>
+          </div>
+          <div class="flex3">
+            <div class="title">{{ $t('bud.quo.pmUser') }}</div>
             <div class="input">
               <SelectTree
                 v-model="quotationSaveForm.pmUser"
@@ -78,45 +73,34 @@
             <!-- ID为：{{ valueId }} -->
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.contiAmount') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.contiAmount') }}</div>
             <div class="input">
               <money-input
                 v-model="quotationSaveForm.contiAmount"
                 @blur="validator('addContiAmount')"
               />
-              <span ref="addContiAmount" data-roles="moneyWith2Decimal[10:2]" :data-value="quotationSaveForm.contiAmount" class="message" />
-            </div>
-          </div>
-          <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.customerName') }}
-            </div>
-            <div class="input">
-              <el-input
-                v-model="quotationSaveForm.accountId"
-                class="input"
-                placeholder=""
+              <span
+                ref="addContiAmount"
+                data-roles="moneyWith2Decimal[10:2]"
+                :data-value="quotationSaveForm.contiAmount"
+                class="message"
               />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.creditRank') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.customerName') }}</div>
             <div class="input">
-              <el-input
-                v-model="quotationSaveForm.creditRank"
-                class="input"
-                placeholder=""
-              />
+              <el-input v-model="quotationSaveForm.accountId" class="input" placeholder />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.quotationCommitDate') }}
+            <div class="title">{{ $t('bud.quo.creditRank') }}</div>
+            <div class="input">
+              <el-input v-model="quotationSaveForm.creditRank" class="input" placeholder />
             </div>
+          </div>
+          <div class="flex3">
+            <div class="title">{{ $t('bud.quo.quotationCommitDate') }}</div>
             <div class="input">
               <el-date-picker
                 v-model="quotationSaveForm.quotationCommitDate"
@@ -130,50 +114,43 @@
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.transactionsType') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.transactionsType') }}</div>
             <div class="input">
               <dict-select v-model="quotationSaveForm.transactionsType" dict-type-id="TranType" />
-              <span ref="addTranType" data-roles="required" :data-value="quotationSaveForm.transactionsType" class="message" />
+              <span
+                ref="addTranType"
+                data-roles="required"
+                :data-value="quotationSaveForm.transactionsType"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex3">
-            <div class="title">
-              {{ $t('bud.quo.purchaseConfirm') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.purchaseConfirm') }}</div>
             <div class="input">
               <el-radio-group v-model="quotationSaveForm.purchaseConfirmFlag">
-                <el-radio label="1">
-                  {{ $t('bud.quo.needConfirm') }}
-                </el-radio>
-                <el-radio label="0">
-                  {{ $t('bud.quo.notConfirm') }}
-                </el-radio>
+                <el-radio label="1">{{ $t('bud.quo.needConfirm') }}</el-radio>
+                <el-radio label="0">{{ $t('bud.quo.notConfirm') }}</el-radio>
               </el-radio-group>
             </div>
           </div>
           <div class="flex1">
-            <div class="title">
-              {{ $t('bud.quo.importantOptional') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.importantOptional') }}</div>
             <div class="input">
-              <el-checkbox v-model="quotationSaveForm.newAccountFlag">
-                {{ $t('bud.quo.newAccountFlag') }}
-              </el-checkbox>
-              <el-checkbox v-model="quotationSaveForm.appointmentTradeFlag">
-                {{ $t('bud.quo.appointmentTradeFlag') }}
-              </el-checkbox>
-              <el-checkbox v-model="quotationSaveForm.stockTradeFlag">
-                {{ $t('bud.quo.stockTradeFlag') }}
-              </el-checkbox>
+              <el-checkbox
+                v-model="quotationSaveForm.newAccountFlag"
+              >{{ $t('bud.quo.newAccountFlag') }}</el-checkbox>
+              <el-checkbox
+                v-model="quotationSaveForm.appointmentTradeFlag"
+              >{{ $t('bud.quo.appointmentTradeFlag') }}</el-checkbox>
+              <el-checkbox
+                v-model="quotationSaveForm.stockTradeFlag"
+              >{{ $t('bud.quo.stockTradeFlag') }}</el-checkbox>
             </div>
           </div>
 
           <div class="flex1">
-            <div class="title">
-              {{ $t('bud.quo.caseOutline') }}
-            </div>
+            <div class="title">{{ $t('bud.quo.caseOutline') }}</div>
             <div class="input">
               <el-input
                 v-model="quotationSaveForm.caseOutline"
@@ -184,14 +161,10 @@
           </div>
         </div>
       </div>
-      <h4>
-        {{ $t('bud.quo.payPlan') }}
-      </h4>
+      <h4>{{ $t('bud.quo.payPlan') }}</h4>
       <div class="out">
         <div>
-          <div class="title">
-            {{ $t('bud.quo.aggregatePeriod') }}
-          </div>
+          <div class="title">{{ $t('bud.quo.aggregatePeriod') }}</div>
           <el-date-picker
             v-model="value1"
             type="monthrange"
@@ -203,28 +176,22 @@
           />
         </div>
         <div>
-          <el-button type="primary" @click="payPlan=!payPlan">
-            {{ $t('bud.quo.monthsDetail') }}
-          </el-button>
+          <el-button type="primary" @click="payPlan=!payPlan">{{ $t('bud.quo.monthsDetail') }}</el-button>
         </div>
       </div>
       <div v-show="payPlan" class="handsontable">
         <hot-table ref="textHot" :settings="hotSettings" class="table_info" style="height: 80px" />
       </div>
-      <h4>
-        {{ $t('bud.advice.UploadAttachments') }}
-      </h4>
+      <h4>{{ $t('bud.advice.UploadAttachments') }}</h4>
       <div>
-        <el-button type="success" class="el-icon-upload2" @click="uploadDialog = true">
-          {{ $t('comm.upload') }}
-        </el-button>
+        <el-button
+          type="success"
+          class="el-icon-upload2"
+          @click="uploadDialog = true"
+        >{{ $t('comm.upload') }}</el-button>
       </div>
-      <h4>
-        {{ $t('bud.quo.otherMessage') }}
-      </h4>
-      <div class="title1">
-        {{ $t('bud.quo.remarks') }}
-      </div>
+      <h4>{{ $t('bud.quo.otherMessage') }}</h4>
+      <div class="title1">{{ $t('bud.quo.remarks') }}</div>
       <div class="input">
         <el-input
           v-model="quotationSaveForm.remark"
@@ -235,51 +202,25 @@
       </div>
       <div class="in">
         <div>
-          <div class="title">
-            {{ $t('admin.role.createTime') }}
-          </div>
-          <el-input
-            v-model="quotationSaveForm.createTime"
-            class="input"
-          />
+          <div class="title">{{ $t('admin.role.createTime') }}</div>
+          <el-input v-model="quotationSaveForm.createTime" class="input" />
         </div>
         <div>
-          <div class="title">
-            {{ $t('admin.role.createBy') }}
-          </div>
-          <el-input
-            v-model="quotationSaveForm.createBy"
-            class="input"
-          />
+          <div class="title">{{ $t('admin.role.createBy') }}</div>
+          <el-input v-model="quotationSaveForm.createBy" class="input" />
         </div>
         <div>
-          <div class="title">
-            {{ $t('bud.quo.updateTime') }}
-          </div>
-          <el-input
-            v-model="quotationSaveForm.updateTime"
-            class="input"
-          />
+          <div class="title">{{ $t('bud.quo.updateTime') }}</div>
+          <el-input v-model="quotationSaveForm.updateTime" class="input" />
         </div>
         <div>
-          <div class="title">
-            {{ $t('bud.quo.updateBy') }}
-          </div>
-          <el-input
-            v-model="quotationSaveForm.updateBy"
-            class="input"
-          />
+          <div class="title">{{ $t('bud.quo.updateBy') }}</div>
+          <el-input v-model="quotationSaveForm.updateBy" class="input" />
         </div>
         <div class="submit">
-          <el-button type="primary" @click="submit">
-            {{ $t('comm.save') }}
-          </el-button>
-          <el-button type="success">
-            {{ $t('comm.submit') }}
-          </el-button>
-          <el-button type="info" @click="backToQuotationQuery">
-            {{ $t('bud.quo.return') }}
-          </el-button>
+          <el-button type="primary" @click="submit">{{ $t('comm.save') }}</el-button>
+          <el-button type="success">{{ $t('comm.submit') }}</el-button>
+          <el-button type="info" @click="backToQuotationQuery">{{ $t('bud.quo.return') }}</el-button>
         </div>
       </div>
     </div>
@@ -293,37 +234,43 @@
         <div slot="tip" class="el-upload__tip">
           <!-- 请用模板格式的xlsx文件进行上传 -->
         </div>
-        <upload action="/api/bud/upload" :multiple="false" :on-success="handleUploadSuccess" :on-error="handleUploadError" @finish="uploadDialog=false" />
+        <upload
+          action="/api/bud/upload"
+          :multiple="false"
+          :on-success="handleUploadSuccess"
+          :on-error="handleUploadError"
+          @finish="uploadDialog=false"
+        />
       </div>
     </el-dialog>
   </div>
 </template>
 <script>
-import { HotTable } from '@handsontable/vue'
-import '@/../node_modules/handsontable/dist/handsontable.full.css'
+import { HotTable } from "@handsontable/vue";
+import "@/../node_modules/handsontable/dist/handsontable.full.css";
 // eslint-disable-next-line no-unused-vars
-import Handsontable from 'handsontable'
-import { updateQuoInfo, findById, downloadFile } from '@/api/bud/bud.js'
-import Upload from '@/components/Upload'
-import { formValidator } from '@/mixins/form-validator.js'
-import DictSelect from '@/components/DictSelect'
-import SelectTree from '@/components/TreeSelect'
-import MoneyInput from '@/components/MoneyInput.vue'
-import commonUtil from '@/utils/common.js'
+import Handsontable from "handsontable";
+import { updateQuoInfo, findById, downloadFile } from "@/api/bud/bud.js";
+import Upload from "@/components/Upload";
+import { formValidator } from "@/mixins/form-validator.js";
+import DictSelect from "@/components/DictSelect";
+import SelectTree from "@/components/TreeSelect";
+import MoneyInput from "@/components/MoneyInput.vue";
+import commonUtil from "@/utils/common.js";
 const monthList = [
-  'value01',
-  'value02',
-  'value03',
-  'value04',
-  'value05',
-  'value06',
-  'value07',
-  'value08',
-  'value09',
-  'value10',
-  'value11',
-  'value12'
-]
+  "value01",
+  "value02",
+  "value03",
+  "value04",
+  "value05",
+  "value06",
+  "value07",
+  "value08",
+  "value09",
+  "value10",
+  "value11",
+  "value12"
+];
 export default {
   components: {
     HotTable,
@@ -335,7 +282,7 @@ export default {
   mixins: [formValidator],
   data() {
     return {
-      value1: '',
+      value1: "",
       payPlan: false,
       quotationSaveForm: {
         payPlanSaveForm: []
@@ -344,9 +291,7 @@ export default {
       isClearable: true, // 可清空（可选）
       isAccordion: true, // 可收起（可选）
       hotSettings: {
-        data: [
-          { vateRate: '6%' }
-        ], // 数据在这个里面,由数据填充表
+        data: [{ vateRate: "6%" }], // 数据在这个里面,由数据填充表
         colWidths: [50, 90, 70, 70, 70, 70, 70, 70, 70, 70, 70, 70], // 单元格宽
         manualColumnResize: true,
         manualRowResize: true,
@@ -358,20 +303,20 @@ export default {
         minCols: 2,
         // rowHeaders: true, // 行表头
         colHeaders: [
-          '增值税',
-          '2020年度计上',
-          '1月',
-          '2月',
-          '3月',
-          '4月',
-          '5月',
-          '6月',
-          '7月',
-          '8月',
-          '9月',
-          '10月',
-          '11月',
-          '12月'
+          "增值税",
+          "2020年度计上",
+          "1月",
+          "2月",
+          "3月",
+          "4月",
+          "5月",
+          "6月",
+          "7月",
+          "8月",
+          "9月",
+          "10月",
+          "11月",
+          "12月"
         ],
         minSpareCols: 0, // 列留白
         minSpareRows: 0, // 行留白
@@ -387,74 +332,74 @@ export default {
           // 添加每一列的数据类型和一些配置
           // { data: "subordindateUnit" }, // data后面跟的这个字段是上传对应的字段
           {
-            data: 'vateRate', // 部门,
-            type: 'text',
-            className: 'htMiddle htCenter notread'
+            data: "vateRate", // 部门,
+            type: "text",
+            className: "htMiddle htCenter notread"
           },
           {
-            data: 'dataYear', // 年合计
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "dataYear", // 年合计
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value01', // 一月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value01", // 一月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value02', // 二月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value02", // 二月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value03', // 三月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value03", // 三月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value04', // 四月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value04", // 四月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value05', // 五月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value05", // 五月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value06', // 六月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value06", // 六月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value07', // 七月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value07", // 七月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value08', // 八月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value08", // 八月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value09', // 九月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value09", // 九月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value10', // 十月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value10", // 十月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value11', // 十一月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value11", // 十一月
+            type: "numeric",
+            className: "htMiddle htCenter"
           },
           {
-            data: 'value12', // 十二月
-            type: 'numeric',
-            className: 'htMiddle htCenter'
+            data: "value12", // 十二月
+            type: "numeric",
+            className: "htMiddle htCenter"
           }
         ],
         // @params: changes, source
@@ -467,49 +412,51 @@ export default {
               // 监听到数值的变化，计算总数
               if (row === 0) {
                 if (oldValue === newValue) {
-                  return false
+                  return false;
                 }
                 if (!monthList.find(item => item === prop)) {
-                  return false
+                  return false;
                 }
                 // 计算年合计
-                const count = getCount(this.getDataAtRow(row).slice(2))
+                const count = getCount(this.getDataAtRow(row).slice(2));
                 // 设置年合计
                 // console.log(count)
-                this.setDataAtRowProp(row, 'dataYear', round(count))
+                this.setDataAtRowProp(row, "dataYear", round(count));
               }
-            })
+            });
           }
           // 保留5位小数 v：number
           function round(v) {
-            return Math.floor(v * 10000) / 10000 || null
+            return Math.floor(v * 10000) / 10000 || null;
           }
           // 计算数组当中为数字的和
           function getCount(list) {
-            let count = 0
+            let count = 0;
             list.forEach(item => {
-              if (item && typeof item === 'number') {
-                count += item
+              if (item && typeof item === "number") {
+                count += item;
               }
-            })
-            return count || null
+            });
+            return count || null;
           }
         }
       }
-    }
+    };
   },
   created() {
-    const editId = localStorage.getItem('editId')
+    const editId = localStorage.getItem("editId");
     findById({ id: editId }).then(res => {
-      this.quotationSaveForm = res.datas.quotation
-      const payPlan = this.quotationSaveForm.payPlanSaveForm
-      this.$refs.textHot.hotInstance.loadData(payPlan)
-      console.log(payPlan)
+      this.quotationSaveForm = res.datas.quotation;
+      const payPlan = this.quotationSaveForm.payPlanSaveForm;
+      this.$refs.textHot.hotInstance.loadData(payPlan);
+      console.log(payPlan);
       if (this.quotationSaveForm.contiAmount !== null) {
-        const contiAmount = this.quotationSaveForm.contiAmount + ''
-        this.quotationSaveForm.contiAmount = commonUtil.moneyFormat(contiAmount)
+        const contiAmount = this.quotationSaveForm.contiAmount + "";
+        this.quotationSaveForm.contiAmount = commonUtil.moneyFormat(
+          contiAmount
+        );
       }
-    })
+    });
     // getPayPlanInfo({ id: editId }).then(res => {
     //   res.data
     // })
@@ -517,280 +464,297 @@ export default {
   methods: {
     async submit() {
       if (!this.validatorAll()) {
-        return false
+        return false;
       }
       // const check = this.submitCheck()
       // if (!check) {
       //   return false
       // }
-      const hot = this.$refs.textHot
-      console.log(hot)
-      console.log(hot.hotInstance.getSourceData())
+      const hot = this.$refs.textHot;
+      console.log(hot);
+      console.log(hot.hotInstance.getSourceData());
       const handsonTableList = hot.hotInstance.getSourceData().map(item => {
-        console.log(item)
-        return item
-      })
-      this.quotationSaveForm.payPlanSaveForm = handsonTableList
-      const res = await updateQuoInfo(this.quotationSaveForm)
+        console.log(item);
+        return item;
+      });
+      this.quotationSaveForm.payPlanSaveForm = handsonTableList;
+      const res = await updateQuoInfo(this.quotationSaveForm);
       if (res) {
         this.$message({
-          type: 'success',
-          message: '编辑成功!'
-        })
-        this.$router.push('/quotation/list')
+          type: "success",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: "编辑成功!"
+        });
+        this.$router.push("/quotation/list");
       }
     },
     handleDelete(table, row, index) {
       // console.log(index)
-      this.$confirm('您将要删除该条数据,是否继续?', this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this[table].splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: '删除成功!'
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '已取消删除'
-        })
+      this.$confirm("您将要删除该条数据,是否继续?", this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this[table].splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: "删除成功!"
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: "已取消删除"
+          });
+        });
     },
     __resetTable() {
-      this.outTableData = []
-      this.inTableData = []
+      this.outTableData = [];
+      this.inTableData = [];
     },
     backToQuotationQuery() {
-      this.$router.push('/quotation/list')
+      this.$router.push("/quotation/list");
     },
     // 取值
     getValue(value) {
-      this.valueId = value
-      console.log(this.valueId)
+      this.valueId = value;
+      console.log(this.valueId);
     },
     handleUploadSuccess(res, file, fileList) {
       if (res) {
-        this.uploadFileName = res.datas.fileName
-        this.systemFileName = res.datas.systemFileName
+        this.uploadFileName = res.datas.fileName;
+        this.systemFileName = res.datas.systemFileName;
       }
-      console.log(res)
-      console.log(file)
-      console.log(fileList)
+      console.log(res);
+      console.log(file);
+      console.log(fileList);
     },
     handleUploadError(res, file, fileList) {
-      console.log(res)
-      console.log(file)
-      console.log(fileList)
+      console.log(res);
+      console.log(file);
+      console.log(fileList);
     },
     handleDownload(systemFileName) {
-      downloadFile({ systemFileName: this.systemFileName })
+      downloadFile({ systemFileName: this.systemFileName });
     },
     // 提交前校验
     submitCheck() {
       // const list = [1,7,9,10,11,12,13,14,15,16,17,18,19,20]
-      const list = [1, 7]
-      let flag = true
-      let message = ''
+      const list = [1, 7];
+      let flag = true;
+      let message = "";
       for (var i = 0; i < 23; i++) {
         if (list.find(item => item === i)) {
-          this.$refs.textHot.hotInstance.getDataAtCol(i).forEach((item, index) => {
-            if (!item && index % 3 === 0) {
-              flag = false
-              message = `${this.hotSettings.colHeaders[i]}不能为空`
-              return false
-            }
-          })
+          this.$refs.textHot.hotInstance
+            .getDataAtCol(i)
+            .forEach((item, index) => {
+              if (!item && index % 3 === 0) {
+                flag = false;
+                message = `${this.hotSettings.colHeaders[i]}不能为空`;
+                return false;
+              }
+            });
         }
         if (!flag) {
           // console.log(message)
           this.$message({
-            type: 'error',
+            type: "error",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
             message
-          })
-          return false
+          });
+          return false;
         }
       }
-      return flag
+      return flag;
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-  .addApply {
-    width: 100%;
+.addApply {
+  width: 100%;
+  // height: 100%;
+  background-color: #fff;
+  box-sizing: border-box;
+  padding: 20px 20px 20px 55px;
+  padding-bottom: 40px;
+  border-radius: 6px;
+  overflow: auto;
+  h4 {
+    height: 40px;
+    line-height: 40px;
+    font-size: 18px;
+    border-bottom: 1px dashed #ccc;
+    color: rgb(50, 50, 50);
+    // margin-bottom: 20px;
+  }
+  .content {
     // height: 100%;
-    background-color: #fff;
-    box-sizing: border-box;
-    padding: 20px 20px 20px 55px;
-    padding-bottom: 40px;
-    border-radius: 6px;
-    overflow: auto;
+    .basic {
+      display: flex;
+      padding: 10px 0;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      & > div {
+        width: 33.33%;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 15px 10px 20px;
+        align-items: center;
+        .title {
+          width: 130px;
+          font-size: 14px;
+        }
+        .input {
+          flex: 1;
+        }
+        .text {
+          width: 100%;
+        }
+      }
+    }
     h4 {
-      height: 40px;
-      line-height: 40px;
+      height: 35px;
+      line-height: 35px;
       font-size: 18px;
       border-bottom: 1px dashed #ccc;
       color: rgb(50, 50, 50);
-      // margin-bottom: 20px;
-    }
-    .content {
-      // height: 100%;
-      .basic {
-        display: flex;
-        padding: 10px 0;
-        box-sizing: border-box;
-        flex-wrap: wrap;
-        &>div {
-          width: 33.33%;
-          display: flex;
-          box-sizing: border-box;
-          padding: 0 15px 10px 20px;
-          align-items: center;
-          .title {
-            width: 130px;
-            font-size: 14px;
-          }
-          .input {
-            flex: 1;
-          }
-          .text {
-            width: 100%;
-          }
-        }
-      }
-      h4 {
-        height: 35px;
-        line-height: 35px;
-        font-size: 18px;
-        border-bottom: 1px dashed #ccc;
-        color: rgb(50, 50, 50);
-        margin-bottom: 10px;
-        padding: 10px 0;
-        position: relative;
-        // color: #000;
-        .add_row {
-          position: absolute;
-          right: 0;
-          bottom: 10px;
-          border-radius: 6px;
-          // border: 1px solid #ccc;
-          cursor: pointer;
-          font-size: 12px;
-          width: 100px;
-          height: 30px;
-          line-height: 30px;
-          text-align: center;
-          background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
-          color: #fff;
-          &:hover {
-            background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
-          }
-        }
-      }
-      .count {
+      margin-bottom: 10px;
+      padding: 10px 0;
+      position: relative;
+      // color: #000;
+      .add_row {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+        border-radius: 6px;
+        // border: 1px solid #ccc;
+        cursor: pointer;
+        font-size: 12px;
+        width: 100px;
         height: 30px;
         line-height: 30px;
-        font-size: 16px;
-        margin: 10px 0;
-        margin-bottom: 40px;
-        border-bottom: 1px solid #ccc;
-      }
-      .searchBox {
-        box-sizing: border-box;
-        padding-right: 30px;
-        position: relative;
-        // .input {}
-        .search {
-          position: absolute;
-          right: 0;
-          top: 50%;
-          cursor: pointer;
-          color: #ccc;
-          transform: translateY(-50%);
-        }
-      }
-      .out {
-        display: flex;
-        padding: 10px 0;
-        box-sizing: border-box;
-        flex-wrap: wrap;
-        &>div {
-          width: 33.33%;
-          display: flex;
-          box-sizing: border-box;
-          padding: 0 15px 10px 20px;
-          align-items: center;
-          .title {
-            width: 130px;
-            font-size: 14px;
-          }
-          .input {
-            flex: 1;
-          }
-          .text {
-            width: 50%;
-          }
-        }
-      }
-      .in {
-         display: flex;
-        padding: 10px 0;
-        box-sizing: border-box;
-        flex-wrap: wrap;
-        &>div {
-          width: 50%;
-          display: flex;
-          box-sizing: border-box;
-          padding: 0 15px 10px 20px;
-          align-items: center;
-          .title {
-            width: 130px;
-            font-size: 14px;
-          }
-          .input {
-            flex: 1;
-          }
-          .text {
-            float: left;
-            width: 50%;
-          }
-        }
-      }
-      .reason {
-        .title {
-          font-size: 18px;
-          line-height: 30px;
-          font-weight: 700;
-          color: rgb(50, 50, 50);
+        text-align: center;
+        background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
+        color: #fff;
+        &:hover {
+          background-image: linear-gradient(
+            rgb(42, 155, 238),
+            rgb(8, 142, 240)
+          );
         }
       }
     }
-    .submit {
-      height: 56px;
-      line-height: 56px;
-      // padding-right: 20px;
+    .count {
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
+      margin: 10px 0;
+      margin-bottom: 40px;
+      border-bottom: 1px solid #ccc;
+    }
+    .searchBox {
+      box-sizing: border-box;
+      padding-right: 30px;
+      position: relative;
+      // .input {}
+      .search {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        cursor: pointer;
+        color: #ccc;
+        transform: translateY(-50%);
+      }
+    }
+    .out {
+      display: flex;
       padding: 10px 0;
-      text-align: right;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      & > div {
+        width: 33.33%;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 15px 10px 20px;
+        align-items: center;
+        .title {
+          width: 130px;
+          font-size: 14px;
+        }
+        .input {
+          flex: 1;
+        }
+        .text {
+          width: 50%;
+        }
+      }
+    }
+    .in {
+      display: flex;
+      padding: 10px 0;
+      box-sizing: border-box;
+      flex-wrap: wrap;
+      & > div {
+        width: 50%;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 15px 10px 20px;
+        align-items: center;
+        .title {
+          width: 130px;
+          font-size: 14px;
+        }
+        .input {
+          flex: 1;
+        }
+        .text {
+          float: left;
+          width: 50%;
+        }
+      }
+    }
+    .reason {
+      .title {
+        font-size: 18px;
+        line-height: 30px;
+        font-weight: 700;
+        color: rgb(50, 50, 50);
+      }
     }
   }
-  .pjshouzhi {
-    font-size: 14px;
+  .submit {
+    height: 56px;
+    line-height: 56px;
+    // padding-right: 20px;
+    padding: 10px 0;
+    text-align: right;
   }
-  .pjcaigou {
-    font-size: 14px;
+}
+.pjshouzhi {
+  font-size: 14px;
+}
+.pjcaigou {
+  font-size: 14px;
+}
+.upload_file {
+  .content {
+    width: 350px;
+    margin: 0 auto;
   }
-  .upload_file {
-    .content {
-      width: 350px;
-      margin: 0 auto;
-    }
-  }
-  .title1 {
-      font-size: 14px;
-    }
+}
+.title1 {
+  font-size: 14px;
+}
 </style>
 <style lang="scss">
 .addApply {

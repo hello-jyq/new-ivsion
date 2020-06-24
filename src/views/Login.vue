@@ -5,12 +5,22 @@
       <div class="language-in">
         <el-dropdown trigger="click">
           <span class="el-dropdown-link" style="color:#202B5C">
-            中文<i class="iconfont iconai-arrow-down" />
+            中文
+            <i class="iconfont iconai-arrow-down" />
           </span>
           <el-dropdown-menu slot="dropdown" class="login-down">
-            <el-dropdown-item><img src="@/assets/images/language/cn.png" class="lanIcon"><span>中文</span></el-dropdown-item>
-            <el-dropdown-item><img src="@/assets/images/language/en.png" class="lanIcon"><span>English</span></el-dropdown-item>
-            <el-dropdown-item><img src="@/assets/images/language/jp.png" class="lanIcon"><span>にほんご</span></el-dropdown-item>
+            <el-dropdown-item>
+              <img src="@/assets/images/language/cn.png" class="lanIcon" />
+              <span>中文</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <img src="@/assets/images/language/en.png" class="lanIcon" />
+              <span>English</span>
+            </el-dropdown-item>
+            <el-dropdown-item>
+              <img src="@/assets/images/language/jp.png" class="lanIcon" />
+              <span>にほんご</span>
+            </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -23,16 +33,12 @@
         @submit.native.prevent
       >
         <h1 class="logo">
-          <router-link to="">
-            <img src="@/assets/images/login/logo-login.png">
+          <router-link to>
+            <img src="@/assets/images/login/logo-login.png" />
           </router-link>
         </h1>
         <el-form-item prop="userName">
-          <el-input
-            v-model="ruleForm.userName"
-            type="text"
-            :placeholder="$t('comm.userName')"
-          />
+          <el-input v-model="ruleForm.userName" type="text" :placeholder="$t('comm.userName')" />
         </el-form-item>
         <el-form-item prop="userPassword">
           <el-input
@@ -41,11 +47,7 @@
             type="password"
             :placeholder="$t('comm.password')"
           >
-            <i
-              slot="suffix"
-              class="iconfont iconyanjing"
-              @click.prevent="onOpen()"
-            />
+            <i slot="suffix" class="iconfont iconyanjing" @click.prevent="onOpen()" />
           </el-input>
           <el-input
             v-else
@@ -53,11 +55,7 @@
             type="text"
             :placeholder="$t('comm.password')"
           >
-            <i
-              slot="suffix"
-              class="iconfont iconyanjing"
-              @click.prevent="onOpen"
-            />
+            <i slot="suffix" class="iconfont iconyanjing" @click.prevent="onOpen" />
           </el-input>
         </el-form-item>
         <div class="retrieve">
@@ -70,14 +68,12 @@
             native-type="handleSubmit"
             :loading="logining"
             @click="handleSubmit"
-          >
-            登&nbsp;&nbsp;录
-          </el-button>
+          >登&nbsp;&nbsp;录</el-button>
         </el-form-item>
       </el-form>
-      <div class="copyright">
-        ©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. 沪ICP备xxxxxxxx号
-      </div>
+      <div
+        class="copyright"
+      >©Copyright 2009-2020 iVision Shanghai Co., Ltd. All Rights Reserved. 沪ICP备xxxxxxxx号</div>
     </div>
     <!--右边banner-->
     <div class="login-banner">
@@ -85,9 +81,9 @@
         <el-carousel-item v-for="item in 3" :key="item">
           <h2>Hey there, Welcome back！</h2>
 
-          <div class="txt">
-            Start Now,Huge Vision Budget system will help you handle your finance budget management in a smart way .
-          </div>
+          <div
+            class="txt"
+          >Start Now,Huge Vision Budget system will help you handle your finance budget management in a smart way .</div>
         </el-carousel-item>
       </el-carousel>
     </div>
@@ -100,9 +96,7 @@
       center
     >
       <div class="context">
-        <p class="retrieve-tips">
-          为了确定是您本人，系统将发送一条邮件到您的邮箱，请按邮件提示操作!
-        </p>
+        <p class="retrieve-tips">为了确定是您本人，系统将发送一条邮件到您的邮箱，请按邮件提示操作!</p>
         <el-form ref="retrieveForm" :model="retrieveForm" class="retrieve-form">
           <el-form-item
             prop="userName"
@@ -119,9 +113,7 @@
               :loading="btnLoading"
               :disabled="!validatorState"
               @click="submitForm('retrieveForm')"
-            >
-              发&nbsp;&nbsp;送
-            </el-button>
+            >发&nbsp;&nbsp;送</el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -136,18 +128,14 @@
       center
     >
       <div class="context">
-        <p class="retrieve-tips">
-          {{ isSucccess ? successText : failText }}
-        </p>
+        <p class="retrieve-tips">{{ isSucccess ? successText : failText }}</p>
         <div class="retrieve-form">
           <el-button
             type="primary"
             :loading="btnLoading"
             :disabled="!validatorState"
             @click="submitResult"
-          >
-            {{ isSucccess ? ' 完&nbsp;&nbsp;成' : ' 重新填写' }}
-          </el-button>
+          >{{ isSucccess ? ' 完&nbsp;&nbsp;成' : ' 重新填写' }}</el-button>
         </div>
       </div>
     </el-dialog>
@@ -155,11 +143,11 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
-import { setLang } from '@/utils/storage'
-import { lang } from '@/mixins/lang'
-import { formValidator } from '@/mixins/form-validator'
-import { getLanguageType } from '@/utils/lang'
+import { mapGetters, mapActions } from "vuex";
+import { setLang } from "@/utils/storage";
+import { lang } from "@/mixins/lang";
+import { formValidator } from "@/mixins/form-validator";
+import { getLanguageType } from "@/utils/lang";
 // import { sendMail } from '@/api/login.js'
 
 export default {
@@ -169,163 +157,168 @@ export default {
       isOpen: false,
       resultDialog: false,
       isSucccess: false,
-      successText: '系统已将邮件发送至您的邮箱，请注意查收！',
-      failText: '邮箱发送失败，请重新填写邮箱地址！',
-      title: '发送成功',
+      successText: "系统已将邮件发送至您的邮箱，请注意查收！",
+      failText: "邮箱发送失败，请重新填写邮箱地址！",
+      title: "发送成功",
       language: [
         {
-          'dictTypeId': 'Language',
-          'dictId': 'zh_CN',
-          'dictName': '中文',
-          'status': 1,
-          'sortNo': 1,
-          'rankNo': null,
-          'parentId': null,
-          'seqNo': '.Language.zh_CN.',
-          'filter1': null,
-          'filter2': null,
-          'description': null
+          dictTypeId: "Language",
+          dictId: "zh_CN",
+          dictName: "中文",
+          status: 1,
+          sortNo: 1,
+          rankNo: null,
+          parentId: null,
+          seqNo: ".Language.zh_CN.",
+          filter1: null,
+          filter2: null,
+          description: null
         },
         {
-          'dictTypeId': 'Language',
-          'dictId': 'ja_JP',
-          'dictName': '日本語',
-          'status': 1,
-          'sortNo': 2,
-          'rankNo': null,
-          'parentId': null,
-          'seqNo': '.Language.ja_JP.',
-          'filter1': null,
-          'filter2': null,
-          'description': null
+          dictTypeId: "Language",
+          dictId: "ja_JP",
+          dictName: "日本語",
+          status: 1,
+          sortNo: 2,
+          rankNo: null,
+          parentId: null,
+          seqNo: ".Language.ja_JP.",
+          filter1: null,
+          filter2: null,
+          description: null
         },
         {
-          'dictTypeId': 'Language',
-          'dictId': 'en_US',
-          'dictName': 'English',
-          'status': 1,
-          'sortNo': 3,
-          'rankNo': null,
-          'parentId': null,
-          'seqNo': '.Language.en_US.',
-          'filter1': null,
-          'filter2': null,
-          'description': null
+          dictTypeId: "Language",
+          dictId: "en_US",
+          dictName: "English",
+          status: 1,
+          sortNo: 3,
+          rankNo: null,
+          parentId: null,
+          seqNo: ".Language.en_US.",
+          filter1: null,
+          filter2: null,
+          description: null
         }
       ],
       retrieveDialog: false,
       active: 1,
       btnLoading: false,
       retrieveForm: {
-        userName: ''
+        userName: ""
       },
-      userName: '',
-      langIcon: '',
+      userName: "",
+      langIcon: "",
       logining: false,
       ruleForm: {
-        userName: '',
-        userPassword: ''
+        userName: "",
+        userPassword: ""
       },
       rules: {
         userName: [
           {
             required: true,
-            message: this.$t('comm.msg32', { para0: this.$t('comm.userName') }),
-            trigger: 'blur'
+            message: this.$t("comm.msg32", { para0: this.$t("comm.userName") }),
+            trigger: "blur"
           }
         ],
         userPassword: [
           {
             required: true,
-            message: this.$t('comm.msg32', { para0: this.$t('comm.password') }),
-            trigger: 'blur'
+            message: this.$t("comm.msg32", { para0: this.$t("comm.password") }),
+            trigger: "blur"
           }
         ]
       }
-    }
+    };
   },
   computed: {
-    ...mapGetters(['userInfo'])
+    ...mapGetters(["userInfo"])
   },
   mounted() {
-    this.title = this.isSucccess ? '发送成功' : '发送失败'
-    window.localStorage.getItem('lang')
+    this.title = this.isSucccess ? "发送成功" : "发送失败";
+    window.localStorage.getItem("lang");
   },
   methods: {
     submitResult() {
-      this.resultDialog = false
+      this.resultDialog = false;
       if (!this.isSucccess) {
-        this.retrieveDialog = true
+        this.retrieveDialog = true;
       }
     },
     submitForm(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
-          console.log('submit!')
+          console.log("submit!");
           // const res = await sendMail(this.retrieveForm.userName)
           const res = {
             success: true
-          }
+          };
 
           if (res && res.success) {
-            this.btnLoading = false
-            this.title = '发送成功'
-            this.isSucccess = true
-            this.retrieveDialog = false
+            this.btnLoading = false;
+            this.title = "发送成功";
+            this.isSucccess = true;
+            this.retrieveDialog = false;
           } else {
-            this.title = '发送失败'
-            this.isSucccess = false
+            this.title = "发送失败";
+            this.isSucccess = false;
           }
-          this.resultDialog = true
+          this.resultDialog = true;
         } else {
-          console.log('error submit!!')
-          return false
+          console.log("error submit!!");
+          return false;
         }
-      })
+      });
     },
     initLang(langStr) {
-      const lang = getLanguageType(langStr)
-      console.log('lang', lang)
-      setLang(lang)
-      this.$i18n.locale = lang
+      const lang = getLanguageType(langStr);
+      console.log("lang", lang);
+      setLang(lang);
+      this.$i18n.locale = lang;
     },
     onOpen() {
-      this.isOpen = !this.isOpen
+      this.isOpen = !this.isOpen;
     },
     handleReset() {
-      this.$refs.ruleForm.resetFields()
+      this.$refs.ruleForm.resetFields();
     },
     handleSubmit() {
       this.$refs.ruleForm.validate(async valid => {
         if (valid) {
-          const params = this.ruleForm
-          const res = await this.loginAction(params)
-          console.log(res)
+          const params = this.ruleForm;
+          const res = await this.loginAction(params);
+          console.log(res);
           if (res && res.success) {
-            this.initLang(this.userInfo.locale)
+            this.initLang(this.userInfo.locale);
             this.$message({
-              type: 'success',
-              message: this.$t('comm.welcome') + this.userInfo.nickName
-            })
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass:
+                localStorage.getItem("theme") == "Dark"
+                  ? "dark-el-message"
+                  : " ",
+              message: this.$t("comm.welcome") + this.userInfo.nickName
+            });
             if (res.datas.userInfo.isNeedChangePassword) {
-              this.$router.push('/changePassword')
-              return
+              this.$router.push("/changePassword");
+              return;
             }
-            let redirect = this.$router.history.current.query.redirect
-            redirect = redirect === '/login' ? '' : redirect
-            const path = redirect || '/'
-            console.log(path)
-            this.$router.push(path)
+            let redirect = this.$router.history.current.query.redirect;
+            redirect = redirect === "/login" ? "" : redirect;
+            const path = redirect || "/";
+            console.log(path);
+            this.$router.push(path);
           }
         } else {
-          return false
+          return false;
         }
-      })
+      });
     },
 
-    ...mapActions(['loginAction'])
+    ...mapActions(["loginAction"])
   }
-}
+};
 </script>
 
 <style lang="scss">

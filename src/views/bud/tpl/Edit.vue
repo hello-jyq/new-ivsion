@@ -1,5 +1,7 @@
 <template>
-  <div :class="theme=='Light'?'no-search-content-box tpl-template tplE-light':'no-search-content-box tpl-template'">
+  <div
+    :class="theme=='Light'?'no-search-content-box tpl-template tplE-light':'no-search-content-box tpl-template'"
+  >
     <div class="fixed-box">
       <el-steps :active="active" align-center class="tpl-steps">
         <el-step :class="{'activeSteps' : activeIndex == 0}" @click.native="stpesClick(0)" />
@@ -11,25 +13,35 @@
       <div class="justify-content-flex">
         <ul class="operation-box">
           <li v-if="showEditBtn()" class="operation-item" @click="edit">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbianji2" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+              <i class="iconfont iconbianji2" />
+            </span>
             <span class="operation-text">编&nbsp;&nbsp;辑</span>
           </li>
         </ul>
         <ul class="operation-box end-content-flex">
           <li v-if="activeIndex > 0" class="operation-item" @click="prev">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconshangyibu" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+              <i class="iconfont iconshangyibu" />
+            </span>
             <span class="operation-text">上一步</span>
           </li>
           <li v-if="activeIndex < 3" class="operation-item" @click="next">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconxiayibu" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+              <i class="iconfont iconxiayibu" />
+            </span>
             <span class="operation-text">下一步</span>
           </li>
           <li v-if="activeIndex == 3 && isEditFour" class="operation-item" @click="next">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbaocun" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+              <i class="iconfont iconbaocun" />
+            </span>
             <span class="operation-text">保&nbsp;&nbsp;存</span>
           </li>
           <li class="operation-item" @click="back">
-            <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconwithdraw-fill" /></span>
+            <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+              <i class="iconfont iconwithdraw-fill" />
+            </span>
             <span class="operation-text">返&nbsp;&nbsp;回</span>
           </li>
         </ul>
@@ -42,9 +54,19 @@
           <div class="table-bg-box marigin-bottom">
             <div class="advice-edit-table-title">
               <span>{{ $t('bud.tpl.baseInfo') }}</span>
-              <span v-if="templateId && templateId !== '-1'" class="advice-edit-title-num">{{ $t('bud.tpl.identiferNum') }}：{{ tplInfo.identiferNum }}</span>
+              <span
+                v-if="templateId && templateId !== '-1'"
+                class="advice-edit-title-num"
+              >{{ $t('bud.tpl.identiferNum') }}：{{ tplInfo.identiferNum }}</span>
             </div>
-            <el-form ref="tplInfo" :model="tplInfo" :rules="rules" label-width="110px" label-position="left" class="form-big-lable">
+            <el-form
+              ref="tplInfo"
+              :model="tplInfo"
+              :rules="rules"
+              label-width="110px"
+              label-position="left"
+              class="form-big-lable"
+            >
               <el-row type="flex" justify="space-between">
                 <el-col :span="7">
                   <el-form-item :label="$t('bud.tpl.year')" prop="year" class="big-input">
@@ -71,7 +93,13 @@
                 <el-col :span="7" />
               </el-row>
               <el-form-item :label="$t('bud.tpl.remark')" prop="remark" class="big-input">
-                <el-input v-model="tplInfo.remark" type="textarea" :disabled="!isEditFirst" class="textarea-height" maxlength="200">
+                <el-input
+                  v-model="tplInfo.remark"
+                  type="textarea"
+                  :disabled="!isEditFirst"
+                  class="textarea-height"
+                  maxlength="200"
+                >
                   <i slot="suffix" class="iconfont iconbuke" />
                 </el-input>
               </el-form-item>
@@ -81,10 +109,19 @@
             <div class="advice-edit-table-title">
               <span>{{ $t('bud.comm.otherInfo') }}</span>
             </div>
-            <el-form :model="tplInfo" label-width="110px" label-position="left" class="form-big-lable">
+            <el-form
+              :model="tplInfo"
+              label-width="110px"
+              label-position="left"
+              class="form-big-lable"
+            >
               <el-row type="flex" justify="space-between">
                 <el-col :span="10">
-                  <el-form-item :label="$t('bud.comm.createBy')" prop="createTime" class="big-input">
+                  <el-form-item
+                    :label="$t('bud.comm.createBy')"
+                    prop="createTime"
+                    class="big-input"
+                  >
                     <el-date-picker
                       v-model="tplInfo.createTime"
                       type="datetime"
@@ -98,7 +135,11 @@
                   </el-form-item>
                 </el-col>
                 <el-col :span="10">
-                  <el-form-item :label="$t('bud.comm.createTime')" prop="createBy" class="big-input">
+                  <el-form-item
+                    :label="$t('bud.comm.createTime')"
+                    prop="createBy"
+                    class="big-input"
+                  >
                     <el-input v-model="tplInfo.createBy" disabled>
                       <i slot="suffix" class="iconfont iconbuke" />
                     </el-input>
@@ -107,7 +148,11 @@
               </el-row>
               <el-row type="flex" justify="space-between">
                 <el-col :span="10">
-                  <el-form-item :label="$t('bud.comm.updateTime')" prop="updateTime" class="big-input">
+                  <el-form-item
+                    :label="$t('bud.comm.updateTime')"
+                    prop="updateTime"
+                    class="big-input"
+                  >
                     <el-date-picker
                       v-model="tplInfo.updateTime"
                       type="datetime"
@@ -136,7 +181,14 @@
         <div class="table-bg-box">
           <div class="advice-edit-table-title justify-content-flex">
             <span>{{ $t('bud.tpl.itemInfo') }}</span>
-            <span class="advice-table-add-btn" :class="{'disabled-btn-style' : !isEditSecond}" @click="isEditSecond ? openDialog():null"><i class="iconfont icontianjia_huaban" />{{ $t('bud.tpl.addItem') }}</span>
+            <span
+              class="advice-table-add-btn"
+              :class="{'disabled-btn-style' : !isEditSecond}"
+              @click="isEditSecond ? openDialog():null"
+            >
+              <i class="iconfont icontianjia_huaban" />
+              {{ $t('bud.tpl.addItem') }}
+            </span>
           </div>
           <div class="tpl-table-box">
             <el-table
@@ -178,7 +230,7 @@
                     </p>
                     <p v-else>
                       合计项
-                    </p> -->
+                  </p>-->
                   <dict-write dict-type-id="BudItemType" :value="scope.row.itemType" />
                 </template>
               </el-table-column>
@@ -220,8 +272,12 @@
               </el-table-column>
               <el-table-column align="center" :label="$t('bud.comm.operation')" width="120">
                 <template slot-scope="scope">
-                  <span class="advice-deleted-btn" @click="isEditSecond ? deleteTopItem(scope.$index):null">
-                    <i class="iconfont iconshanchu1" />{{ $t('bud.comm.remove') }}
+                  <span
+                    class="advice-deleted-btn"
+                    @click="isEditSecond ? deleteTopItem(scope.$index):null"
+                  >
+                    <i class="iconfont iconshanchu1" />
+                    {{ $t('bud.comm.remove') }}
                   </span>
                 </template>
               </el-table-column>
@@ -233,22 +289,37 @@
         <div class="table-bg-box marigin-bottom">
           <div class="advice-edit-table-title justify-content-flex">
             <span>{{ $t('bud.tpl.itemTotalInfo') }}</span>
-            <span class="advice-table-add-btn" :class="{'disabled-btn-style' : !isEditThree}" @click="isEditThree ? addTotalTree():null"><i class="iconfont icontianjia_huaban" />{{ $t('bud.tpl.addItemTotal') }}</span>
+            <span
+              class="advice-table-add-btn"
+              :class="{'disabled-btn-style' : !isEditThree}"
+              @click="isEditThree ? addTotalTree():null"
+            >
+              <i class="iconfont icontianjia_huaban" />
+              {{ $t('bud.tpl.addItemTotal') }}
+            </span>
           </div>
           <div class="table-tree-bg tree-org-user">
             <el-scrollbar>
-              <el-tree
-                ref="tree"
-                default-expand-all
-                :data="tplItemTreeList"
-              >
+              <el-tree ref="tree" default-expand-all :data="tplItemTreeList">
                 <template slot-scope="scope">
                   <div class="custom-tree-node">
                     <div class="tree_item">
                       {{ scope.data.label }}
                       <template v-if="scope.data.itemType ==='03'">
-                        <span class="tree-btn" :class="{'disabled-tree-btn' : !isEditThree}" @click="isEditThree ? onEditTree(scope.data.id):null"><i class="iconfont iconbianji" />编辑</span>
-                        <span class="tree-btn" :class="{'disabled-tree-btn' : !isEditThree}" @click="isEditThree ? onDeletedTree(scope.data.id):null"><i class="iconfont iconshanchu1" />删除</span>
+                        <span
+                          class="tree-btn"
+                          :class="{'disabled-tree-btn' : !isEditThree}"
+                          @click="isEditThree ? onEditTree(scope.data.id):null"
+                        >
+                          <i class="iconfont iconbianji" />编辑
+                        </span>
+                        <span
+                          class="tree-btn"
+                          :class="{'disabled-tree-btn' : !isEditThree}"
+                          @click="isEditThree ? onDeletedTree(scope.data.id):null"
+                        >
+                          <i class="iconfont iconshanchu1" />删除
+                        </span>
                       </template>
                     </div>
                   </div>
@@ -274,9 +345,7 @@
               >
                 <template slot-scope="scope">
                   <div class="custom-tree-node">
-                    <div class="tree_item">
-                      {{ scope.data.label }}
-                    </div>
+                    <div class="tree_item">{{ scope.data.label }}</div>
                   </div>
                 </template>
               </el-tree>
@@ -299,7 +368,7 @@
       :visible.sync="itemDialogVisible"
     >
       <item-dialog ref="itemDialogTable" @onClose="onCloseDialog" @onConfirm="onConfirm" @onScroll="onScroll" />
-    </el-dialog> -->
+    </el-dialog>-->
 
     <!-- 添加科目弹框 -->
     <add-item-dailog
@@ -322,14 +391,23 @@
   </div>
 </template>
 <script>
-import $ from 'jquery'
-import 'jquery.nicescroll'
-import DictWrite from '@/components/DictWrite'
-import { getTplInfo, getTplItemTopList, saveTplInfo, saveTplTopItemList, getTplItemTreeList, saveTplItemTotalList, saveTplItemSortList, resetTplInfo } from '@/api/bud/tpl/tpl-api.js'
+import $ from "jquery";
+import "jquery.nicescroll";
+import DictWrite from "@/components/DictWrite";
+import {
+  getTplInfo,
+  getTplItemTopList,
+  saveTplInfo,
+  saveTplTopItemList,
+  getTplItemTreeList,
+  saveTplItemTotalList,
+  saveTplItemSortList,
+  resetTplInfo
+} from "@/api/bud/tpl/tpl-api.js";
 // import itemDialog from '../itm/_itemSearch'
 
-import addItemDailog from '../itm/_addItem.vue'
-import addTotalDailog from './_addTotalList.vue'
+import addItemDailog from "../itm/_addItem.vue";
+import addTotalDailog from "./_addTotalList.vue";
 
 // var elementResizeDetectorMaker = require('element-resize-detector')
 
@@ -344,27 +422,25 @@ export default {
     return {
       // 页面属性
       flag: -1, // 操作标记位
-      theme: localStorage.getItem('theme') !== 'Dark' ? 'Light' : '',
-      templateId: '', // 模板主键
+      theme: localStorage.getItem("theme") !== "Dark" ? "Light" : "",
+      templateId: "", // 模板主键
       active: 0,
       activeIndex: -1,
       editIndex: -1,
       isClickEdit: [0, 0, 0, 0, 0],
       rules: {
         year: [
-          { required: true, message: '请选择年度', trigger: 'change' },
-          { min: 4, max: 4, message: '年度格式为YYYY', trigger: 'blur' }
+          { required: true, message: "请选择年度", trigger: "change" },
+          { min: 4, max: 4, message: "年度格式为YYYY", trigger: "blur" }
         ],
         name: [
-          { required: true, message: '请输入模板名称', trigger: 'blur' },
-          { min: 1, max: 100, message: '100字符以内', trigger: 'blur' }
+          { required: true, message: "请输入模板名称", trigger: "blur" },
+          { min: 1, max: 100, message: "100字符以内", trigger: "blur" }
         ],
-        remark: [
-          { max: 200, message: '200字符以内', trigger: 'blur' }
-        ]
+        remark: [{ max: 200, message: "200字符以内", trigger: "blur" }]
       },
       // 第一步相关信息
-      tplInfo: { year: '' },
+      tplInfo: { year: "" },
       // 第二步相关操作
       itemDialogVisible: false, // 科目选择弹框显示标志位
       tplItemTopList: [],
@@ -382,29 +458,30 @@ export default {
       isShowAddTotal: false, // 显示添加合计项弹框标志位
       itemsData: {}, // 合计项编辑时回显数据，传递给子组件
       editTotal: false, // 合计项编辑时传入子组件的标志位
-      scrollColr: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63'
-    }
+      scrollColr:
+        localStorage.getItem("theme") === "Light" ? "#D8E0E8" : "#5A5E63"
+    };
   },
   watch: {
-    'active': function(newVal, oldVal) {
+    active: function(newVal, oldVal) {
       // 进行下一步
       if (newVal > oldVal) {
-        this.activeIndex = newVal
+        this.activeIndex = newVal;
         // this.isBack = true
         this.$nextTick(() => {
-          this.getScrollBar()
-        })
+          this.getScrollBar();
+        });
       }
     },
-    'activeIndex': function(newVal, oldVal) {
+    activeIndex: function(newVal, oldVal) {
       // 点击的是后面的步骤
       // if (this.active < this.activeIndex) {
       //   this.active = newVal
       // }
       // this.loadData()
       this.$nextTick(() => {
-        this.getScrollBar()
-      })
+        this.getScrollBar();
+      });
     }
   },
   created: function() {
@@ -417,18 +494,19 @@ export default {
     // console.log('templateId', this.templateId)
     // console.log('activeIndex', this.activeIndex)
     // console.log('active', this.active)
-    this.templateId = this.$route.params.templateId || localStorage.getItem('tpl-step-templateId')
-    localStorage.setItem('tpl-step-templateId', this.templateId)
+    this.templateId =
+      this.$route.params.templateId ||
+      localStorage.getItem("tpl-step-templateId");
+    localStorage.setItem("tpl-step-templateId", this.templateId);
     // this.activeIndex = this.$route.params.flag === 1 ? 0 : -1
-    this.flag = this.$route.params.flag
-    this.activeIndex = this.flag === 1 ? 0 : -1
-    this.loadTplInfo()
+    this.flag = this.$route.params.flag;
+    this.activeIndex = this.flag === 1 ? 0 : -1;
+    this.loadTplInfo();
   },
   mounted() {
     // this.templateId = this.$route.params.templateId || localStorage.getItem('tpl-step-templateId')
     // localStorage.setItem('tpl-step-templateId', this.templateId)
     // this.loadTplInfo()
-
     // 调整弹出框位置等相关
     // var erd = elementResizeDetectorMaker()
     // var that = this
@@ -462,28 +540,28 @@ export default {
   },
   methods: {
     getScrollBar() {
-      $('.el-table__body-wrapper').niceScroll({
+      $(".el-table__body-wrapper").niceScroll({
         cursorcolor: this.scrollColr,
         cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
-        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorwidth: "8px", // 滚动条的宽度，单位：便素
         cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
         autohidemode: true, // 隐藏滚动条的方式, 可用的值:
         zindex: 0,
         railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
         boxzoom: false,
         iframeautoresize: false // 在加载事件时自动重置iframe大小
-      })
+      });
     },
     handleDrop(draggingNode, dropNode, dropType, ev) {
       // 拖拽之后进行排序
       const obj = {
-        aboveId: '',
+        aboveId: "",
         arr: []
-      }
-      obj.aboveId = dropNode.data.aboveId
+      };
+      obj.aboveId = dropNode.data.aboveId;
       for (const item of dropNode.parent.childNodes) {
-        obj.arr.push(item.data.id)
+        obj.arr.push(item.data.id);
       }
       // console.log('obj', obj)
     },
@@ -492,11 +570,11 @@ export default {
       if (draggingNode.level === dropNode.level) {
         // 同父级拖拽
         if (draggingNode.parent.id === dropNode.parent.id) {
-          return type === 'prev' || type === 'next'
+          return type === "prev" || type === "next";
         }
       } else {
         // 不同级进行处理
-        return false
+        return false;
       }
     },
     // 加载页面数据
@@ -505,72 +583,74 @@ export default {
       if (this.activeIndex === 0) {
         // this.loadTplInfo()
       } else if (this.activeIndex === 1) {
-        this.isEditFirst = false
-        this.loadTplItemTopList()
+        this.isEditFirst = false;
+        this.loadTplItemTopList();
       } else if (this.activeIndex === 2) {
-        this.isEditFirst = false
-        this.isEditSecond = false
-        this.loadTplItemTreeList()
+        this.isEditFirst = false;
+        this.isEditSecond = false;
+        this.loadTplItemTreeList();
       } else {
         if (this.activeIndex === 3) {
-          this.isEditFirst = false
-          this.isEditSecond = false
-          this.isEditThree = false
+          this.isEditFirst = false;
+          this.isEditSecond = false;
+          this.isEditThree = false;
         } else {
-          this.isEditFirst = false
-          this.isEditSecond = false
-          this.isEditThree = false
-          this.isEditFour = false
+          this.isEditFirst = false;
+          this.isEditSecond = false;
+          this.isEditThree = false;
+          this.isEditFour = false;
         }
-        this.loadTplItemTreeSortList()
+        this.loadTplItemTreeSortList();
       }
     },
     // 查询第一部分模板信息
     async loadTplInfo() {
-      const res = await getTplInfo(this.templateId)
+      const res = await getTplInfo(this.templateId);
       if (res && res.success) {
-        this.tplInfo = res.datas.result
+        this.tplInfo = res.datas.result;
         if (this.tplInfo && this.tplInfo.id) {
-          this.templateId = this.tplInfo.id
+          this.templateId = this.tplInfo.id;
           // this.activeIndex = this.tplInfo.step === 4 ? 3 : this.tplInfo.step
-          this.activeIndex = this.tplInfo.step
-          this.active = this.tplInfo.step
+          this.activeIndex = this.tplInfo.step;
+          this.active = this.tplInfo.step;
           // console.log('activeIndex', this.activeIndex)
           // console.log('active', this.active)
           if (this.tplInfo.step === 4) {
-            this.isEditFour = false
-            this.isDraggable = false
+            this.isEditFour = false;
+            this.isDraggable = false;
             this.$nextTick(() => {
-              this.prev()
-            })
+              this.prev();
+            });
           } else {
             this.$nextTick(() => {
-              this.stpesClick(this.activeIndex)
-            })
+              this.stpesClick(this.activeIndex);
+            });
           }
         } else {
           // console.log('nodata', this.activeIndex)
-          this.tplInfo = { year: '' }
+          this.tplInfo = { year: "" };
         }
       }
     },
     // 查询第二部分模板科目顶层列表
     async loadTplItemTopList() {
-      const res = await getTplItemTopList({ templateId: this.templateId })
+      const res = await getTplItemTopList({ templateId: this.templateId });
       if (res && res.success) {
-        this.tplItemTopList = res.datas.results
+        this.tplItemTopList = res.datas.results;
         this.$nextTick(() => {
-          this.$refs['itemListTb'].doLayout()
-          this.getScrollBar()
-          $('.el-table__body-wrapper').getNiceScroll().resize()
-        })
+          this.$refs["itemListTb"].doLayout();
+          this.getScrollBar();
+          $(".el-table__body-wrapper")
+            .getNiceScroll()
+            .resize();
+        });
       }
     },
     // 查询第三部分模板科目树形列表
     async loadTplItemTreeList() {
-      const res = await getTplItemTreeList({ templateId: this.templateId })
+      const res = await getTplItemTreeList({ templateId: this.templateId });
       if (res && res.success) {
-        this.tplItemTreeList = res.datas.results
+        this.tplItemTreeList = res.datas.results;
         // this.$nextTick(() => {
         //   this.getScrollBar()
         // })
@@ -578,9 +658,9 @@ export default {
     },
     // 查询第三部分模板科目树形列表
     async loadTplItemTreeSortList() {
-      const res = await getTplItemTreeList({ templateId: this.templateId })
+      const res = await getTplItemTreeList({ templateId: this.templateId });
       if (res && res.success) {
-        this.tplItemTreeSortList = res.datas.results
+        this.tplItemTreeSortList = res.datas.results;
         // this.$nextTick(() => {
         //   this.getScrollBar()
         // })
@@ -588,204 +668,242 @@ export default {
     },
     // 显示编辑按钮
     showEditBtn() {
-      return this.editIndex === this.activeIndex && this.isClickEdit[this.activeIndex] === 0
+      return (
+        this.editIndex === this.activeIndex &&
+        this.isClickEdit[this.activeIndex] === 0
+      );
     },
     // 编辑按钮事件
     edit() {
-      this.$confirm(this.$t('bud.tpl.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        cancelButtonClass: 'btn-custom-cancel',
-        type: 'warning'
-      }).then(() => {
-        this.handleEdit()
-      }).catch(() => {})
+      this.$confirm(this.$t("bud.tpl.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        cancelButtonClass: "btn-custom-cancel",
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
+      })
+        .then(() => {
+          this.handleEdit();
+        })
+        .catch(() => {});
     },
     async handleEdit() {
-      const res = await resetTplInfo({ templateId: this.templateId, step: this.activeIndex })
+      const res = await resetTplInfo({
+        templateId: this.templateId,
+        step: this.activeIndex
+      });
       if (res && res.success) {
-        this.$set(this.isClickEdit, this.activeIndex, 1)
+        this.$set(this.isClickEdit, this.activeIndex, 1);
         // this.isClickEdit[this.activeIndex] = 1
         if (this.activeIndex === 0) {
-          this.isEditFirst = true
-          this.isEditSecond = true
-          this.isEditThree = true
-          this.isEditFour = true
+          this.isEditFirst = true;
+          this.isEditSecond = true;
+          this.isEditThree = true;
+          this.isEditFour = true;
           // 清空后续数据内容
-          this.tplItemTopList = []
-          this.tplItemTreeList = []
-          this.tplItemTreeSortList = []
+          this.tplItemTopList = [];
+          this.tplItemTreeList = [];
+          this.tplItemTreeSortList = [];
         } else if (this.activeIndex === 1) {
-          this.isEditSecond = true
-          this.isEditThree = true
-          this.isEditFour = true
+          this.isEditSecond = true;
+          this.isEditThree = true;
+          this.isEditFour = true;
           // 清空后续数据内容
-          this.tplItemTreeList = []
-          this.tplItemTreeSortList = []
+          this.tplItemTreeList = [];
+          this.tplItemTreeSortList = [];
         } else if (this.activeIndex === 2) {
-          this.isEditThree = true
-          this.isEditFour = true
+          this.isEditThree = true;
+          this.isEditFour = true;
           // 清空后续数据内容
-          this.tplItemTreeSortList = []
+          this.tplItemTreeSortList = [];
         } else if (this.activeIndex >= 3) {
-          this.isEditFour = true
+          this.isEditFour = true;
         }
-        this.isDraggable = true
-        this.active = this.activeIndex
+        this.isDraggable = true;
+        this.active = this.activeIndex;
       }
     },
     // 下一步按钮事件
     next() {
       // 如果当前操作步骤大于当前所在步骤
       if (this.activeIndex === 0) {
-        !this.isEditFirst ? this.nextFn() : this.saveInfo()
+        !this.isEditFirst ? this.nextFn() : this.saveInfo();
       } else if (this.activeIndex === 1) {
-        !this.isEditSecond ? this.nextFn() : this.saveItemTopList()
+        !this.isEditSecond ? this.nextFn() : this.saveItemTopList();
       } else if (this.activeIndex === 2) {
-        !this.isEditThree ? this.nextFn() : this.saveItemTotalList()
+        !this.isEditThree ? this.nextFn() : this.saveItemTotalList();
       } else if (this.activeIndex === 3) {
-        !this.isEditFour ? this.nextFn() : this.saveItemSortList()
+        !this.isEditFour ? this.nextFn() : this.saveItemSortList();
       }
     },
     // 下一步执行
     nextFn() {
-      this.$set(this.isClickEdit, this.activeIndex, 0)
+      this.$set(this.isClickEdit, this.activeIndex, 0);
       if (this.activeIndex < 3) {
         if (this.active > this.activeIndex) {
-          this.activeIndex++
-          this.editIndex = this.activeIndex
+          this.activeIndex++;
+          this.editIndex = this.activeIndex;
         } else {
-          this.active++
+          this.active++;
         }
       } else {
-        this.editIndex = this.activeIndex
+        this.editIndex = this.activeIndex;
       }
     },
     // 前一步
     prev() {
-      this.activeIndex--
-      this.editIndex = this.activeIndex
+      this.activeIndex--;
+      this.editIndex = this.activeIndex;
       // if (this.isBack === true) {
       //   // this.active = this.activeIndex
       //   this.isBack = false
       // }
-      this.loadData()
+      this.loadData();
     },
     // 点击步骤条
     stpesClick(index) {
       // 不能点击还没有操作的步骤
       if (index <= this.active) {
-        this.activeIndex = index
+        this.activeIndex = index;
         if (index === this.active) {
-          this.editIndex = -1
+          this.editIndex = -1;
         } else {
-          this.editIndex = this.activeIndex
+          this.editIndex = this.activeIndex;
         }
         // if (this.isBack === true) {
         // //   this.active = this.activeIndex
         //   // this.active--
         //   this.isBack = false
         // }
-        this.loadData()
+        this.loadData();
       }
     },
     // 返回列表页面
     back() {
-      if (!this.isEditFirst && !this.isEditSecond && !this.isEditThree && !this.isEditFour) {
-        this.$router.push('/tpl/list')
+      if (
+        !this.isEditFirst &&
+        !this.isEditSecond &&
+        !this.isEditThree &&
+        !this.isEditFour
+      ) {
+        this.$router.push("/tpl/list");
       } else {
-        this.$confirm(this.$t('bud.tpl.tip4'), this.$t('comm.tips'), {
-          confirmButtonText: this.$t('comm.certain'),
-          cancelButtonText: this.$t('comm.cancel'),
-          cancelButtonClass: 'btn-custom-cancel',
-          type: 'warning'
-        }).then(() => {
-          this.$router.push('/tpl/list')
-        }).catch(() => {})
+        this.$confirm(this.$t("bud.tpl.tip4"), this.$t("comm.tips"), {
+          confirmButtonText: this.$t("comm.certain"),
+          cancelButtonText: this.$t("comm.cancel"),
+          cancelButtonClass: "btn-custom-cancel",
+          type: "warning",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
+        })
+          .then(() => {
+            this.$router.push("/tpl/list");
+          })
+          .catch(() => {});
       }
     },
     // 第一部分模板信息保存
     saveInfo() {
-      this.$refs['tplInfo'].validate(async valid => {
+      this.$refs["tplInfo"].validate(async valid => {
         if (valid) {
-          const res = await saveTplInfo(this.tplInfo)
+          const res = await saveTplInfo(this.tplInfo);
           if (res) {
             if (res.success) {
               this.$message({
-                type: 'success',
-                message: '保存成功!'
-              })
-              this.isEditFirst = false
+                type: "success",
+                iconClass: "iconfont icongantanhao_icon",
+                customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                message: "保存成功!"
+              });
+              this.isEditFirst = false;
               if (res.datas.result) {
-                this.templateId = res.datas.result.id
-                this.tplInfo = res.datas.result
-                localStorage.setItem('tpl-step-templateId', this.templateId)
+                this.templateId = res.datas.result.id;
+                this.tplInfo = res.datas.result;
+                localStorage.setItem("tpl-step-templateId", this.templateId);
               }
-              this.nextFn()
+              this.nextFn();
             }
           }
         } else {
-          return false
+          return false;
         }
-      })
+      });
     },
     // 第二部分模板科目选择部分
-    openDialog() { // 打开弹框
-      this.itemDialogVisible = true
+    openDialog() {
+      // 打开弹框
+      this.itemDialogVisible = true;
     },
-    onConfirm(arr) { // 点击确认
+    onConfirm(arr) {
+      // 点击确认
       // this.itemDialogVisible = false
-      this.onCloseDialog()
-      let items = this.tplItemTopList
-      items = items.concat(arr.map(function(item) {
-        return {
-          id: null,
-          itemId: item.id,
-          itemType: item.itemType,
-          isInit: 0,
-          isApprove: 0,
-          sortNo: 0,
-          itemName: item.itemName,
-          itemNum: item.itemNum
-        }
-      }))
+      this.onCloseDialog();
+      let items = this.tplItemTopList;
+      items = items.concat(
+        arr.map(function(item) {
+          return {
+            id: null,
+            itemId: item.id,
+            itemType: item.itemType,
+            isInit: 0,
+            isApprove: 0,
+            sortNo: 0,
+            itemName: item.itemName,
+            itemNum: item.itemNum
+          };
+        })
+      );
       // console.log('222--------------->' + JSON.stringify(items))
-      const res = new Map()
-      this.tplItemTopList = items.filter((a) => !res.has(a.itemId) && res.set(a.itemId, 1))
+      const res = new Map();
+      this.tplItemTopList = items.filter(
+        a => !res.has(a.itemId) && res.set(a.itemId, 1)
+      );
       this.$nextTick(() => {
-        this.$refs['itemListTb'].doLayout()
-        this.getScrollBar()
-        $('.el-table__body-wrapper').getNiceScroll().resize()
-      })
+        this.$refs["itemListTb"].doLayout();
+        this.getScrollBar();
+        $(".el-table__body-wrapper")
+          .getNiceScroll()
+          .resize();
+      });
     },
-    onCloseDialog() { // 点击取消
-      this.itemDialogVisible = false
+    onCloseDialog() {
+      // 点击取消
+      this.itemDialogVisible = false;
       // this.$refs.itemDialogTable.clearSelectedItems()
     },
     // 移除模板科目当前行按钮
     deleteTopItem(index) {
-      this.$confirm(this.$t('comm.tip19'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        cancelButtonClass: 'btn-custom-cancel',
-        type: 'warning'
-      }).then(() => {
-        this.tplItemTopList.splice(index, 1)
-      }).catch(() => {
+      this.$confirm(this.$t("comm.tip19"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        cancelButtonClass: "btn-custom-cancel",
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.tplItemTopList.splice(index, 1);
+        })
+        .catch(() => {});
     },
     // 第二部分保存模板科目
     async saveItemTopList() {
-      const res = await saveTplTopItemList({ templateId: this.templateId, items: JSON.stringify(this.tplItemTopList) })
+      const res = await saveTplTopItemList({
+        templateId: this.templateId,
+        items: JSON.stringify(this.tplItemTopList)
+      });
       if (res) {
         if (res.success) {
           this.$message({
-            type: 'success',
-            message: '保存成功!'
-          })
-          this.isEditSecond = false
-          this.loadTplItemTreeList()
-          this.nextFn()
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: "保存成功!"
+          });
+          this.isEditSecond = false;
+          this.loadTplItemTreeList();
+          this.nextFn();
         }
       }
       // TODO 临时去掉校验
@@ -812,43 +930,46 @@ export default {
     },
     // 第三步添加合计项部分
     addTotalTree() {
-      this.editTotal = false
-      this.isShowAddTotal = true
+      this.editTotal = false;
+      this.isShowAddTotal = true;
     },
     // 关闭合计项弹框
     onCloseTotal() {
-      this.isShowAddTotal = false
+      this.isShowAddTotal = false;
     },
     // 删除合计项节点
     onDeletedTree(id) {
-      this.$confirm(this.$t('comm.tip19'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        cancelButtonClass: 'btn-custom-cancel',
-        type: 'warning'
-      }).then(() => {
-        this.tplItemTreeList.map((item, index) => {
-          if (item.id === id) {
-            this.tplItemTreeList.splice(index, 1)
-          }
-        })
-      }).catch(() => {
+      this.$confirm(this.$t("comm.tip19"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        cancelButtonClass: "btn-custom-cancel",
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.tplItemTreeList.map((item, index) => {
+            if (item.id === id) {
+              this.tplItemTreeList.splice(index, 1);
+            }
+          });
+        })
+        .catch(() => {});
     },
     // 编辑合计项节点
     onEditTree(id) {
       this.tplItemTreeList.map((item, index) => {
         if (item.id === id) {
-          this.itemsData = item
+          this.itemsData = item;
           // console.log('---------->', JSON.stringify(this.itemsData))
-          this.editTotal = true
-          this.isShowAddTotal = true
+          this.editTotal = true;
+          this.isShowAddTotal = true;
         }
-      })
+      });
     },
     // 添加合计项确认按钮
     onConfirmTotal(val) {
-      this.isShowAddTotal = false
+      this.isShowAddTotal = false;
       // console.log('this.editTotal', this.editTotal)
       // console.log('totalItem', JSON.stringify(val))
       // console.log('editTotal', this.editTotal)
@@ -858,63 +979,73 @@ export default {
           id: val.id,
           itemType: val.itemType,
           templateItemIds: val.templateItemIds
-        })
+        });
       } else {
         this.tplItemTreeList.map(item => {
           if (item.id === val.id) {
-            item.templateItemIds = val.templateItemIds
-            item.label = val.label
+            item.templateItemIds = val.templateItemIds;
+            item.label = val.label;
           }
-        })
+        });
       }
     },
     // 第三部分保存合计项信息
     async saveItemTotalList() {
       // TODO 增加保存方法
-      const itemTotalData = []
+      const itemTotalData = [];
       this.tplItemTreeList.map((item, index) => {
-        if (item.itemType === '03') {
+        if (item.itemType === "03") {
           itemTotalData.push({
             name: item.label,
             templateItemIds: item.templateItemIds
-          })
+          });
         }
-      })
-      const res = await saveTplItemTotalList({ templateId: this.templateId, items: JSON.stringify(itemTotalData) })
+      });
+      const res = await saveTplItemTotalList({
+        templateId: this.templateId,
+        items: JSON.stringify(itemTotalData)
+      });
       if (res) {
         if (res.success) {
           this.$message({
-            type: 'success',
-            message: '保存成功!'
-          })
-          this.isEditThree = false
-          this.loadTplItemTreeSortList()
-          this.nextFn()
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: "保存成功!"
+          });
+          this.isEditThree = false;
+          this.loadTplItemTreeSortList();
+          this.nextFn();
         }
       }
     },
     // 第四步保存模板科目排序
     async saveItemSortList() {
-      this.isEditFour = false
-      const nodeList = []
+      this.isEditFour = false;
+      const nodeList = [];
       this.tplItemTreeSortList.map((item, index) => {
-        nodeList.push(item.id)
+        nodeList.push(item.id);
         if (item.children && item.children.length > 0) {
           item.children.map(it => {
-            nodeList.push(it.id)
-          })
+            nodeList.push(it.id);
+          });
         }
-      })
+      });
       // console.log('ids', nodeList.join(','))
-      const res = await saveTplItemSortList({ templateId: this.templateId, templateItemIds: nodeList.join(',') })
+      const res = await saveTplItemSortList({
+        templateId: this.templateId,
+        templateItemIds: nodeList.join(",")
+      });
       if (res) {
         if (res.success) {
           this.$message({
-            type: 'success',
-            message: '保存成功!'
-          })
-          this.isDraggable = false
-          this.$router.push('/tpl/list')
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: "保存成功!"
+          });
+          this.isDraggable = false;
+          this.$router.push("/tpl/list");
           // this.$router.go(0)
           // this.isEditFour = false
           // this.active = 4
@@ -924,15 +1055,15 @@ export default {
       }
     },
     draggable() {
-      $('.dialog-drag').draggable({
-        cursor: 'move',
-        handle: '.el-dialog__header',
+      $(".dialog-drag").draggable({
+        cursor: "move",
+        handle: ".el-dialog__header",
         refreshPositions: true,
-        containment: 'parent'
-      })
+        containment: "parent"
+      });
     }
   }
-}
+};
 </script>
 <style lang="scss">
 //设置取消按钮向右浮动，左magin为10px，即与确定按钮间距为10px

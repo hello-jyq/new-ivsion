@@ -10,37 +10,50 @@
                 <!-- 类型id: -->
                 {{ $t('admin.dict.dictTypeId') }}:
               </div>
-              <el-input v-model="searchParam.params.dictTypeId" class="input" :placeholder="$t('admin.dict.dictTypeId')" clearable />
+              <el-input
+                v-model="searchParam.params.dictTypeId"
+                class="input"
+                :placeholder="$t('admin.dict.dictTypeId')"
+                clearable
+              />
             </div>
             <div class="flex3">
               <div class="title">
                 <!-- 类型名称: -->
                 {{ $t('admin.dict.dictTypeName') }}:
               </div>
-              <el-input v-model="searchParam.params.dictTypeName" class="input" :placeholder="$t('admin.dict.dictTypeName')" clearable />
+              <el-input
+                v-model="searchParam.params.dictTypeName"
+                class="input"
+                :placeholder="$t('admin.dict.dictTypeName')"
+                clearable
+              />
             </div>
           </div>
         </el-collapse-item>
       </el-collapse>
       <div class="btns">
         <div class="left">
-          <el-button type="primary" class="el-icon-circle-plus-outline" @click="handleCreate">
-            {{ $t('comm.newlyBuild') }}
-          </el-button>
-          <el-button type="danger" class="el-icon-delete" @click="batchDelete">
-            {{ $t('comm.batchDeletion') }}
-          </el-button>
-          <el-button type="primary" class="el-icon-refresh" plain @click="refreshDict">
-            {{ $t('comm.refreshCache') }}
-          </el-button>
+          <el-button
+            type="primary"
+            class="el-icon-circle-plus-outline"
+            @click="handleCreate"
+          >{{ $t('comm.newlyBuild') }}</el-button>
+          <el-button
+            type="danger"
+            class="el-icon-delete"
+            @click="batchDelete"
+          >{{ $t('comm.batchDeletion') }}</el-button>
+          <el-button
+            type="primary"
+            class="el-icon-refresh"
+            plain
+            @click="refreshDict"
+          >{{ $t('comm.refreshCache') }}</el-button>
         </div>
         <div class="right">
-          <el-button type="success" class="el-icon-search" @click="search">
-            {{ $t('comm.query') }}
-          </el-button>
-          <el-button class="el-icon-refresh-left" type="info" @click="reset">
-            {{ $t('comm.reset') }}
-          </el-button>
+          <el-button type="success" class="el-icon-search" @click="search">{{ $t('comm.query') }}</el-button>
+          <el-button class="el-icon-refresh-left" type="info" @click="reset">{{ $t('comm.reset') }}</el-button>
         </div>
       </div>
     </div>
@@ -53,46 +66,32 @@
         height="579"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column
-          type="selection"
-          width="55"
-        />
-        <el-table-column
-          :label="$t('comm.operation')"
-          min-width="120"
-          width="120"
-        >
+        <el-table-column type="selection" width="55" />
+        <el-table-column :label="$t('comm.operation')" min-width="120" width="120">
           <template slot-scope="scope">
-            <el-button size="mini" icon="el-icon-delete" type="danger" @click="handleDelete(scope.row, scope.$index)" />
-            <el-button size="mini" icon="el-icon-edit" type="primary" @click="handleEdit(scope.row, scope.$index)" />
+            <el-button
+              size="mini"
+              icon="el-icon-delete"
+              type="danger"
+              @click="handleDelete(scope.row, scope.$index)"
+            />
+            <el-button
+              size="mini"
+              icon="el-icon-edit"
+              type="primary"
+              @click="handleEdit(scope.row, scope.$index)"
+            />
           </template>
         </el-table-column>
-        <el-table-column
-          :label="$t('admin.dict.dictTypeId')"
-          min-width="150"
-          prop="dictTypeId"
-        />
+        <el-table-column :label="$t('admin.dict.dictTypeId')" min-width="150" prop="dictTypeId" />
         <el-table-column
           prop="dictTypeName"
           :label="$t('admin.dict.dictTypeName')"
           min-width="140"
         />
-        <el-table-column
-          prop="rankNo"
-          :label="$t('admin.dict.level')"
-          min-width="80"
-        />
-        <el-table-column
-          prop="parentId"
-          :label="$t('admin.dict.parentId')"
-          min-width="120"
-        />
-        <el-table-column
-          prop="seqNo"
-          label="seqNo"
-          min-width="160"
-          show-overflow-tooltip
-        />
+        <el-table-column prop="rankNo" :label="$t('admin.dict.level')" min-width="80" />
+        <el-table-column prop="parentId" :label="$t('admin.dict.parentId')" min-width="120" />
+        <el-table-column prop="seqNo" label="seqNo" min-width="160" show-overflow-tooltip />
       </el-table>
       <div class="pagination">
         <el-pagination
@@ -123,8 +122,18 @@
                 {{ $t('admin.dict.dictTypeId') }}
               </div>
               <div class="input">
-                <el-input v-model="dialogObj.dictTypeId" :placeholder="$t('admin.dict.dictTypeId')" class="input" @blur="validator('typeId')" />
-                <span ref="typeId" data-roles="required" :data-value="dialogObj.dictTypeId" class="message" />
+                <el-input
+                  v-model="dialogObj.dictTypeId"
+                  :placeholder="$t('admin.dict.dictTypeId')"
+                  class="input"
+                  @blur="validator('typeId')"
+                />
+                <span
+                  ref="typeId"
+                  data-roles="required"
+                  :data-value="dialogObj.dictTypeId"
+                  class="message"
+                />
               </div>
             </div>
             <div class="flex3">
@@ -133,8 +142,18 @@
                 {{ $t('admin.dict.dictTypeName') }}
               </div>
               <div class="input">
-                <el-input v-model="dialogObj.dictTypeName" :placeholder="$t('admin.dict.dictTypeName')" class="input" @blur="validator('typeName')" />
-                <span ref="typeName" data-roles="required" :data-value="dialogObj.dictTypeName" class="message" />
+                <el-input
+                  v-model="dialogObj.dictTypeName"
+                  :placeholder="$t('admin.dict.dictTypeName')"
+                  class="input"
+                  @blur="validator('typeName')"
+                />
+                <span
+                  ref="typeName"
+                  data-roles="required"
+                  :data-value="dialogObj.dictTypeName"
+                  class="message"
+                />
               </div>
             </div>
             <div class="flex3">
@@ -142,19 +161,25 @@
                 <!-- 级别 -->
                 {{ $t('admin.dict.level') }}
               </div>
-              <el-input v-model="dialogObj.rankNo" :placeholder="$t('admin.dict.level')" class="input" />
+              <el-input
+                v-model="dialogObj.rankNo"
+                :placeholder="$t('admin.dict.level')"
+                class="input"
+              />
             </div>
             <div class="flex3">
               <div class="title">
                 {{ $t('admin.dict.parentId') }}
                 <!-- 父级ID -->
               </div>
-              <el-input v-model="dialogObj.parentId" :placeholder="$t('admin.dict.parentId')" class="input" />
+              <el-input
+                v-model="dialogObj.parentId"
+                :placeholder="$t('admin.dict.parentId')"
+                class="input"
+              />
             </div>
             <div class="flex3">
-              <div class="title">
-                seqNo
-              </div>
+              <div class="title">seqNo</div>
               <el-input v-model="dialogObj.seqNo" placeholder="seqNo" class="input" disabled />
             </div>
           </div>
@@ -168,15 +193,15 @@
           </div>
         </h5>
         <div class="table">
-          <el-table
-            :data="detailTable"
-            border
-            height="200"
-            style="width: 100%"
-          >
+          <el-table :data="detailTable" border height="200" style="width: 100%">
             <el-table-column :label="$t('comm.operation')" width="70">
               <template slot-scope="scope">
-                <el-button size="mini" icon="el-icon-delete" type="danger" @click="handleDeleteRow(scope.row, scope.$index)" />
+                <el-button
+                  size="mini"
+                  icon="el-icon-delete"
+                  type="danger"
+                  @click="handleDeleteRow(scope.row, scope.$index)"
+                />
               </template>
             </el-table-column>
             <el-table-column :label="$t('admin.dict.dictId')" width="100">
@@ -223,24 +248,33 @@
         </div>
         <span slot="footer">
           <!-- <el-button @click="dialogVisible = false">{{$t('comm.cancel')}}</el-button> -->
-          <el-button type="primary" :disabled="!validatorState" @click="handleSave">{{ $t('comm.certain') }}</el-button>
+          <el-button
+            type="primary"
+            :disabled="!validatorState"
+            @click="handleSave"
+          >{{ $t('comm.certain') }}</el-button>
         </span>
       </el-dialog>
     </div>
   </div>
 </template>
 <script>
-import { search } from '@/mixins/search-params'
-import { getDictInfo, deleteDictById, editDict, getEntryList } from '@/api/admin/dict-api.js'
-import { mapActions } from 'vuex'
-import { formValidator } from '@/mixins/form-validator.js'
+import { search } from "@/mixins/search-params";
+import {
+  getDictInfo,
+  deleteDictById,
+  editDict,
+  getEntryList
+} from "@/api/admin/dict-api.js";
+import { mapActions } from "vuex";
+import { formValidator } from "@/mixins/form-validator.js";
 export default {
   mixins: [search, formValidator],
   data() {
     return {
       isLoading: true,
-      activeNames: ['1'],
-      dialogType: 'create',
+      activeNames: ["1"],
+      dialogType: "create",
       showDialog: false,
       dictList: [],
       // 分页插件数据
@@ -250,157 +284,184 @@ export default {
         pageSize: 10, // 每页条数
         totalRecord: null, // 总条数
         params: {
-          dictTypeId: '',
-          dictTypeName: ''
+          dictTypeId: "",
+          dictTypeName: ""
         }
       },
       dialogObj: {},
       multipleSelection: [],
       detailTable: []
-    }
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     async fetchData() {
-      const res = await getDictInfo(this.searchParam)
+      const res = await getDictInfo(this.searchParam);
       if (res && res.success) {
-        const { results, pageNo, totalRecord } = res.datas.searchResult
-        this.dictList = results
-        this.searchParam.pageNo = pageNo
-        this.searchParam.totalRecord = totalRecord
+        const { results, pageNo, totalRecord } = res.datas.searchResult;
+        this.dictList = results;
+        this.searchParam.pageNo = pageNo;
+        this.searchParam.totalRecord = totalRecord;
       }
-      this.tableDolayout(this.$refs['table'])
-      this.isLoading = false
+      this.tableDolayout(this.$refs["table"]);
+      this.isLoading = false;
     },
     handleCreate() {
-      this.dialogObj = {}
-      this.detailTable = []
-      this.dialogType = 'create'
-      this.showDialog = true
-      this.validatorState = false
+      this.dialogObj = {};
+      this.detailTable = [];
+      this.dialogType = "create";
+      this.showDialog = true;
+      this.validatorState = false;
       this.$nextTick(function() {
-        this.clearErrorMessage()
-      })
+        this.clearErrorMessage();
+      });
     },
     handleEdit(rowData) {
       getEntryList({ dictTypeId: rowData.dictTypeId }).then(res => {
-        this.detailTable = res.datas.entryList
-        this.dialogObj = { ...rowData }
-        this.dialogType = 'edit'
-        this.showDialog = true
-        this.validatorState = true
+        this.detailTable = res.datas.entryList;
+        this.dialogObj = { ...rowData };
+        this.dialogType = "edit";
+        this.showDialog = true;
+        this.validatorState = true;
         this.$nextTick(function() {
-          this.clearErrorMessage()
-        })
-      })
+          this.clearErrorMessage();
+        });
+      });
     },
     handleDelete(rowData) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        deleteDictById([rowData]).then(() => {
-          this.search()
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          deleteDictById([rowData]).then(() => {
+            this.search();
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     batchDelete() {
       if (this.multipleSelection.length > 0) {
-        this.$confirm(this.$t('comm.tip2'), this.$t('comm.tips'), {
-          confirmButtonText: this.$t('comm.certain'),
-          cancelButtonText: this.$t('comm.cancel'),
-          type: 'warning'
-        }).then(() => {
-          deleteDictById(this.multipleSelection).then(() => {
-            this.search()
-          })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: this.$t('comm.msg1')
-          })
+        this.$confirm(this.$t("comm.tip2"), this.$t("comm.tips"), {
+          confirmButtonText: this.$t("comm.certain"),
+          cancelButtonText: this.$t("comm.cancel"),
+          type: "warning",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
         })
+          .then(() => {
+            deleteDictById(this.multipleSelection).then(() => {
+              this.search();
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg1")
+            });
+          });
       } else {
         this.$message({
-          type: 'info',
-          message: this.$t('comm.msg3')
-        })
+          type: "info",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg3")
+        });
       }
     },
     handleSave() {
       if (!this.validatorAll()) {
-        return false
+        return false;
       }
-      this.dialogObj.dicts = this.detailTable
+      this.dialogObj.dicts = this.detailTable;
       editDict(this.dialogObj).then(() => {
-        this.showDialog = false
-        this.fetchData()
-      })
+        this.showDialog = false;
+        this.fetchData();
+      });
     },
     handleAddTableRows() {
       const newRow = {
-        dictId: '',
-        dictName: '',
-        status: '',
-        sortNo: '',
-        parentId: '',
-        filter1: '',
-        filter2: ''
-      }
-      this.detailTable = [...this.detailTable, newRow]
+        dictId: "",
+        dictName: "",
+        status: "",
+        sortNo: "",
+        parentId: "",
+        filter1: "",
+        filter2: ""
+      };
+      this.detailTable = [...this.detailTable, newRow];
     },
     handleDeleteRow(row, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.detailTable.splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: this.$t('comm.msg2')
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.detailTable.splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg2")
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     refreshDict() {
-      this.$confirm(this.$t('comm.tip3'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.refreshDictAndClearStore()
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip3"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.refreshDictAndClearStore();
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     },
-    ...mapActions([
-      'refreshDictAndClearStore'
-    ])
+    ...mapActions(["refreshDictAndClearStore"])
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .dict {
-  .editDilog,.addDilog {
+  .editDilog,
+  .addDilog {
     h5 {
       font-size: 16px;
       line-height: 30px;
@@ -420,7 +481,10 @@ export default {
         background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
         color: #fff;
         &:hover {
-          background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
+          background-image: linear-gradient(
+            rgb(42, 155, 238),
+            rgb(8, 142, 240)
+          );
         }
       }
     }

@@ -2,7 +2,14 @@
   <div class="online">
     <h3>{{ $t('admin.onlineUser.onlineUser') }}</h3>
     <div>
-      <el-table ref="table" v-loading="isLoading" :data="onlineUsers" border stripe style="width: 100%; margin: 5px;">
+      <el-table
+        ref="table"
+        v-loading="isLoading"
+        :data="onlineUsers"
+        border
+        stripe
+        style="width: 100%; margin: 5px;"
+      >
         <el-table-column label="SessionID" prop="sessionId" />
         <el-table-column prop="userId" :label="$t('admin.onlineUser.userId')" />
         <el-table-column prop="nickName" :label="$t('admin.onlineUser.nickName')" />
@@ -11,9 +18,11 @@
         <el-table-column prop="loginIp" :label="$t('admin.onlineUser.loginIp')" />
         <el-table-column :label="$t('comm.operation')">
           <template slot-scope="scope">
-            <el-button type="primary" size="mini" @click.prevent="handleLogoutClick(scope.row.sessionId)">
-              {{ $t('admin.onlineUser.offline') }}
-            </el-button>
+            <el-button
+              type="primary"
+              size="mini"
+              @click.prevent="handleLogoutClick(scope.row.sessionId)"
+            >{{ $t('admin.onlineUser.offline') }}</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -22,55 +31,60 @@
 </template>
 
 <script>
-import { onlineUsers, kickOut } from '@/api/admin/online-user-api.js'
+import { onlineUsers, kickOut } from "@/api/admin/online-user-api.js";
 
 export default {
-  name: 'OnlineUsers',
+  name: "OnlineUsers",
   data: function() {
     return {
       isLoading: true,
       onlineUsers: []
-    }
+    };
   },
   created: function() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     async fetchData() {
-      const res = await onlineUsers()
+      const res = await onlineUsers();
       if (res && res.success) {
-        this.onlineUsers = res.datas.onlineUserList
+        this.onlineUsers = res.datas.onlineUserList;
       }
-      this.tableDolayout(this.$refs['table'])
-      this.isLoading = false
+      this.tableDolayout(this.$refs["table"]);
+      this.isLoading = false;
     },
     handleLogoutClick(sessionId) {
-      this.$confirm(this.$t('comm.tip6'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(async() => {
-        const param = { sessionId }
-        const res = await kickOut(param)
-        if (res && res.success) {
-          this.fetchData()
-        }
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip6"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(async () => {
+          const param = { sessionId };
+          const res = await kickOut(param);
+          if (res && res.success) {
+            this.fetchData();
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     // 出现纵向滚动条时，防止表头行错位
     tableDolayout(refTable) {
       setTimeout(() => {
-        if (refTable) refTable.doLayout()
-      },
-      1000)
+        if (refTable) refTable.doLayout();
+      }, 1000);
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -88,10 +102,9 @@ export default {
     position: relative;
   }
   a {
-    text-decoration:underline;
-    cursor:pointer;
-    color:rgb(120, 165, 241);
+    text-decoration: underline;
+    cursor: pointer;
+    color: rgb(120, 165, 241);
   }
 }
-
 </style>

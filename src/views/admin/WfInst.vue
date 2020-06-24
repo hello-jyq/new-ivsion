@@ -6,17 +6,25 @@
           <span slot="title" class="collapse-title">{{ $t('comm.queryCriteria') }}</span>
           <div class="mode input_box">
             <div class="flex3">
-              <div class="title">
-                {{ $t('admin.wfInst.processDefinitionId') }}
-              </div>
-              <el-input v-model="searchParam.params.instId" class="input" :placeholder="$t('admin.wfInst.processDefinitionId')" clearable />
+              <div class="title">{{ $t('admin.wfInst.processDefinitionId') }}</div>
+              <el-input
+                v-model="searchParam.params.instId"
+                class="input"
+                :placeholder="$t('admin.wfInst.processDefinitionId')"
+                clearable
+              />
             </div>
             <div class="flex3">
               <div class="title">
                 <!-- 流程定义名称： -->
                 {{ $t('admin.wfInst.processDefinitionName') }}
               </div>
-              <el-input v-model="searchParam.params.def" class="input" :placeholder="$t('admin.wfInst.processDefinitionName')" clearable />
+              <el-input
+                v-model="searchParam.params.def"
+                class="input"
+                :placeholder="$t('admin.wfInst.processDefinitionName')"
+                clearable
+              />
             </div>
           </div>
         </el-collapse-item>
@@ -44,13 +52,14 @@
         style="width: 100%"
         height="579"
       >
-        <el-table-column
-          align="center"
-          :label="$t('comm.operation')"
-          width="70"
-        >
+        <el-table-column align="center" :label="$t('comm.operation')" width="70">
           <template slot-scope="scope">
-            <el-button size="mini" icon="el-icon-edit" type="primary" @click="editDetail(scope.row, scope.$index)" />
+            <el-button
+              size="mini"
+              icon="el-icon-edit"
+              type="primary"
+              @click="editDetail(scope.row, scope.$index)"
+            />
           </template>
         </el-table-column>
         <el-table-column :label="$t('admin.wfInst.processInstanceId')" width="120">
@@ -58,10 +67,7 @@
             <a class="link" @click.prevent="handleProcessInstClick(scope.row.id)">{{ scope.row.id }}</a>
           </template>
         </el-table-column>
-        <el-table-column
-          :label="$t('admin.wfInst.businessKey')"
-          min-width="100"
-        >
+        <el-table-column :label="$t('admin.wfInst.businessKey')" min-width="100">
           <template slot-scope="scope">
             <a
               class="link"
@@ -80,21 +86,9 @@
           :label="$t('admin.wfInst.processDefinitionName')"
           min-width="120"
         />
-        <el-table-column
-          prop="name"
-          :label="$t('admin.wfInst.exampleName')"
-          min-width="120"
-        />
-        <el-table-column
-          prop="startTime"
-          :label="$t('admin.wfInst.startTime')"
-          min-width="140"
-        />
-        <el-table-column
-          prop="endTime"
-          min-width="140"
-          :label="$t('admin.wfInst.endTime')"
-        />
+        <el-table-column prop="name" :label="$t('admin.wfInst.exampleName')" min-width="120" />
+        <el-table-column prop="startTime" :label="$t('admin.wfInst.startTime')" min-width="140" />
+        <el-table-column prop="endTime" min-width="140" :label="$t('admin.wfInst.endTime')" />
       </el-table>
       <div class="pagination">
         <el-pagination
@@ -109,64 +103,45 @@
         />
       </div>
     </div>
-    <el-dialog
-      title="详情修改"
-      :visible.sync="aditDialog"
-      width="80%"
-      class="edit_dialog"
-    >
+    <el-dialog title="详情修改" :visible.sync="aditDialog" width="80%" class="edit_dialog">
       <div class="adit_content">
         <el-tabs v-model="activeName">
           <el-tab-pane :label="$t('admin.wfInst.taskDetails')" name="first">
-            <el-table
-              :data="detailData"
-              height="320"
-              style="width: 100%"
-            >
-              <el-table-column
-                prop="id"
-                :label="$t('admin.wfInst.taskId')"
-              />
-              <el-table-column
-                prop="name"
-                :label="$t('admin.wfInst.taskName')"
-              />
-              <el-table-column
-                prop="assignee"
-                :label="$t('admin.wfInst.assignee')"
-              />
-              <el-table-column
-                prop="processInstId"
-                :label="$t('admin.wfInst.processInstanceId')"
-              />
-              <el-table-column
-                prop="executionId"
-                :label="$t('admin.wfInst.implementId')"
-              />
+            <el-table :data="detailData" height="320" style="width: 100%">
+              <el-table-column prop="id" :label="$t('admin.wfInst.taskId')" />
+              <el-table-column prop="name" :label="$t('admin.wfInst.taskName')" />
+              <el-table-column prop="assignee" :label="$t('admin.wfInst.assignee')" />
+              <el-table-column prop="processInstId" :label="$t('admin.wfInst.processInstanceId')" />
+              <el-table-column prop="executionId" :label="$t('admin.wfInst.implementId')" />
               <el-table-column
                 prop="processDefinitionId"
                 :label="$t('admin.wfInst.processDefinitionId')"
               />
-              <el-table-column
-                prop="endTime"
-                :label="$t('admin.wfInst.endTime')"
-              />
-              <el-table-column
-                align="center"
-                :label="$t('comm.operation')"
-                width="300"
-              >
+              <el-table-column prop="endTime" :label="$t('admin.wfInst.endTime')" />
+              <el-table-column align="center" :label="$t('comm.operation')" width="300">
                 <template slot-scope="scope">
                   <div v-show="scope.row.endTime == null">
-                    <el-button size="mini" type="success" @click="taskComplete(scope.row, scope.$index)">
+                    <el-button
+                      size="mini"
+                      type="success"
+                      @click="taskComplete(scope.row, scope.$index)"
+                    >
                       <!-- 完成 -->
                       {{ $t('admin.wfInst.complete') }}
                     </el-button>
-                    <el-button size="mini" type="danger" @click="taskReject(scope.row, scope.$index)">
+                    <el-button
+                      size="mini"
+                      type="danger"
+                      @click="taskReject(scope.row, scope.$index)"
+                    >
                       <!-- 驳回 -->
                       {{ $t('admin.wfInst.reject') }}
                     </el-button>
-                    <el-button size="mini" type="primary" @click="changeDeliver(scope.row, scope.$index)">
+                    <el-button
+                      size="mini"
+                      type="primary"
+                      @click="changeDeliver(scope.row, scope.$index)"
+                    >
                       <!-- 改派 -->
                       {{ $t('admin.wfInst.reform') }}
                     </el-button>
@@ -176,28 +151,18 @@
             </el-table>
           </el-tab-pane>
           <el-tab-pane v-if="isEnd" :label="$t('admin.wfInst.processVariable')" name="second">
-            <el-table
-              :data="hisVarList"
-              height="320"
-              style="width: 100%"
-            >
-              <el-table-column
-                :label="$t('admin.wfInst.processInstanceId')"
-              >
+            <el-table :data="hisVarList" height="320" style="width: 100%">
+              <el-table-column :label="$t('admin.wfInst.processInstanceId')">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.processInstanceId" disabled="disabled" />
                 </template>
               </el-table-column>
-              <el-table-column
-                :label="$t('admin.wfInst.variableName')"
-              >
+              <el-table-column :label="$t('admin.wfInst.variableName')">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.variableName" disabled="disabled" />
                 </template>
               </el-table-column>
-              <el-table-column
-                :label="$t('admin.wfInst.variableValue')"
-              >
+              <el-table-column :label="$t('admin.wfInst.variableValue')">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.value" disabled="disabled" />
                 </template>
@@ -206,31 +171,26 @@
           </el-tab-pane>
           <el-tab-pane v-else :label="$t('admin.wfInst.processVariable')" name="second">
             <h4>
-              <el-button type="primary" size="mini" class="el-icon-circle-plus-outline" @click="addVariable">
+              <el-button
+                type="primary"
+                size="mini"
+                class="el-icon-circle-plus-outline"
+                @click="addVariable"
+              >
                 <!-- 增加变量 -->
                 {{ $t('admin.wfInst.addVariable') }}
               </el-button>
             </h4>
-            <el-table
-              :data="varList"
-              height="320"
-              style="width: 100%"
-            >
-              <el-table-column
-                :label="$t('admin.wfInst.processInstanceId')"
-              >
+            <el-table :data="varList" height="320" style="width: 100%">
+              <el-table-column :label="$t('admin.wfInst.processInstanceId')">
                 <el-input v-model="instId" disabled="disabled" />
               </el-table-column>
-              <el-table-column
-                :label="$t('admin.wfInst.variableName')"
-              >
+              <el-table-column :label="$t('admin.wfInst.variableName')">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.key" :disabled="scope.$index < length" />
                 </template>
               </el-table-column>
-              <el-table-column
-                :label="$t('admin.wfInst.variableValue')"
-              >
+              <el-table-column :label="$t('admin.wfInst.variableValue')">
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.value" />
                 </template>
@@ -242,7 +202,12 @@
                 width="70"
               >
                 <template slot-scope="scope">
-                  <el-button v-show="scope.$index >= length" size="mini" type="danger" @click="deleteVarRow(scope.row, scope.$index)">
+                  <el-button
+                    v-show="scope.$index >= length"
+                    size="mini"
+                    type="danger"
+                    @click="deleteVarRow(scope.row, scope.$index)"
+                  >
                     <!-- 删除 -->
                     {{ $t('comm.delete') }}
                   </el-button>
@@ -257,11 +222,7 @@
         <el-button v-if="!isEnd" type="primary" @click="addVars">{{ $t('comm.certain') }}</el-button>
       </span>
     </el-dialog>
-    <el-dialog
-      :title="$t('admin.wfInst.reject')"
-      :visible.sync="rejectDialog"
-      width="50%"
-    >
+    <el-dialog :title="$t('admin.wfInst.reject')" :visible.sync="rejectDialog" width="50%">
       <div class="input_box">
         <div class="title">
           <!-- 驳回理由： -->
@@ -269,27 +230,18 @@
         </div>
         <div class="flex1">
           <div class="input">
-            <el-input v-model="taskBackData.comment" :placeholder="$t('admin.wfInst.rejectReason')" class="input" />
+            <el-input
+              v-model="taskBackData.comment"
+              :placeholder="$t('admin.wfInst.rejectReason')"
+              class="input"
+            />
           </div>
         </div>
       </div>
-      <el-table
-        :data="activityList"
-        highlight-current-row
-        @current-change="rejectCurrentChange"
-      >
-        <el-table-column
-          type="index"
-          width="50"
-        />
-        <el-table-column
-          property="id"
-          :label="$t('admin.wfInst.nodeId')"
-        />
-        <el-table-column
-          property="name"
-          :label="$t('admin.wfInst.nodeName')"
-        />
+      <el-table :data="activityList" highlight-current-row @current-change="rejectCurrentChange">
+        <el-table-column type="index" width="50" />
+        <el-table-column property="id" :label="$t('admin.wfInst.nodeId')" />
+        <el-table-column property="name" :label="$t('admin.wfInst.nodeName')" />
       </el-table>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="toTaskBack">{{ $t('admin.wfInst.reject') }}</el-button>
@@ -297,7 +249,12 @@
       </span>
     </el-dialog>
 
-    <el-dialog id="processDialog" :title="$t('admin.wfInst.processDetail') + processInstId" :visible.sync="dialogTableVisible" width="80%">
+    <el-dialog
+      id="processDialog"
+      :title="$t('admin.wfInst.processDetail') + processInstId"
+      :visible.sync="dialogTableVisible"
+      width="80%"
+    >
       <process-detail :key="processInstId" :process-inst-id="processInstId" />
     </el-dialog>
 
@@ -319,11 +276,20 @@
   </div>
 </template>
 <script>
-import TissueTree from '@/components/TissueTree.vue'
-import { search } from '@/mixins/search-params'
-import { formValidator } from '@/mixins/form-validator.js'
-import { getInstList, getTaskList, getVarsList, getActivityList, taskBack, taskFinish, taskChange, saveVariables } from '@/api/admin/workflow-api.js'
-import ProcessDetail from '@/components/ProcessDetail'
+import TissueTree from "@/components/TissueTree.vue";
+import { search } from "@/mixins/search-params";
+import { formValidator } from "@/mixins/form-validator.js";
+import {
+  getInstList,
+  getTaskList,
+  getVarsList,
+  getActivityList,
+  taskBack,
+  taskFinish,
+  taskChange,
+  saveVariables
+} from "@/api/admin/workflow-api.js";
+import ProcessDetail from "@/components/ProcessDetail";
 export default {
   components: {
     ProcessDetail,
@@ -332,15 +298,15 @@ export default {
   filters: {
     dateTimeFormat(val) {
       // yyyy-MM-dd HH:mm:ss 转为 yyyy-MM-dd
-      return val ? val.substring(0, 10) : val
+      return val ? val.substring(0, 10) : val;
     }
   },
   mixins: [search, formValidator],
   data() {
     return {
       isLoading: true,
-      activeNames: ['1'],
-      processInstId: '',
+      activeNames: ["1"],
+      processInstId: "",
       dialogTableVisible: false,
       tableData: [],
       searchParam: {
@@ -349,12 +315,12 @@ export default {
         pageSize: 10,
         totalRecord: null,
         params: {
-          instId: '',
-          def: ''
+          instId: "",
+          def: ""
         }
       },
       aditDialog: false,
-      activeName: 'first',
+      activeName: "first",
       detailData: [],
       instId: String,
       isEnd: Boolean,
@@ -365,217 +331,250 @@ export default {
       rejectCurrentRow: null,
       activityList: [],
       taskBackData: {
-        taskId: '',
-        backId: '',
-        comment: ''
+        taskId: "",
+        backId: "",
+        comment: ""
       },
       orgChoseDialog: false,
       defaultProps: {
-        children: 'children',
-        label: 'text'
+        children: "children",
+        label: "text"
       },
       orgChoseData: [],
       taskChangeParam: {
-        taskId: '',
-        changeTo: ''
+        taskId: "",
+        changeTo: ""
       },
-      treeType: 'personnel',
+      treeType: "personnel",
       selectUserDialog: false,
-      selectData: ''
-    }
+      selectData: ""
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     async fetchData() {
-      const res = await getInstList(this.searchParam)
+      const res = await getInstList(this.searchParam);
       if (res && res.success) {
-        const { results, pageNo, totalRecord } = res.datas.result
-        this.tableData = results
-        this.searchParam.pageNo = pageNo
-        this.searchParam.totalRecord = totalRecord
+        const { results, pageNo, totalRecord } = res.datas.result;
+        this.tableData = results;
+        this.searchParam.pageNo = pageNo;
+        this.searchParam.totalRecord = totalRecord;
       }
-      this.tableDolayout(this.$refs['table'])
-      this.isLoading = false
+      this.tableDolayout(this.$refs["table"]);
+      this.isLoading = false;
     },
     editDetail(data, index) {
       getTaskList(data.id).then(res => {
         if (res && res.success) {
-          this.detailData = res.datas.result
+          this.detailData = res.datas.result;
         }
         getVarsList(data.id).then(res => {
           if (res && res.success) {
-            this.instId = data.id
-            this.isEnd = res.datas.isEnd
-            this.varList = res.datas.varList
-            this.hisVarList = res.datas.hisVarList
-            this.length = res.datas.varList.length
-            this.aditDialog = true
+            this.instId = data.id;
+            this.isEnd = res.datas.isEnd;
+            this.varList = res.datas.varList;
+            this.hisVarList = res.datas.hisVarList;
+            this.length = res.datas.varList.length;
+            this.aditDialog = true;
           }
-        })
-      })
+        });
+      });
     },
     resetTable(params) {
       for (var i in params) {
-        params[i] = ''
+        params[i] = "";
       }
     },
     taskComplete(data, index) {
-      this.$confirm(this.$t('admin.wfInst.finishTask'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        taskFinish(data.id).then(res => {
-          if (res && res.success) {
-            this.$message({
-              type: 'success',
-              message: this.$t('comm.success')
-            })
-            this.aditDialog = false
-          }
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("admin.wfInst.finishTask"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          taskFinish(data.id).then(res => {
+            if (res && res.success) {
+              this.$message({
+                type: "success",
+                iconClass: "iconfont icongantanhao_icon",
+                customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                message: this.$t("comm.success")
+              });
+              this.aditDialog = false;
+            }
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     taskReject(data, index) {
-      this.resetTable(this.taskBackData)
+      this.resetTable(this.taskBackData);
       getActivityList(data.id).then(res => {
-        this.activityList = res.datas.activityList
-        this.taskBackData.taskId = data.id
-        this.rejectDialog = true
-      })
+        this.activityList = res.datas.activityList;
+        this.taskBackData.taskId = data.id;
+        this.rejectDialog = true;
+      });
     },
     toTaskBack() {
       if (this.rejectCurrentRow != null) {
-        this.taskBackData.backId = this.rejectCurrentRow.id
+        this.taskBackData.backId = this.rejectCurrentRow.id;
       }
       taskBack(this.taskBackData).then(res => {
         if (res && res.success) {
           this.$message({
-            type: 'success',
-            message: this.$t('comm.msg26')
-          })
-          this.rejectDialog = false
-          this.aditDialog = false
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg26")
+          });
+          this.rejectDialog = false;
+          this.aditDialog = false;
           // this.editDetail({ id: this.instId }, '')
         }
-      })
+      });
     },
     addVariable() {
       const newVariable = {
-        key: '',
-        value: ''
-      }
-      this.varList = [...this.varList, newVariable]
+        key: "",
+        value: ""
+      };
+      this.varList = [...this.varList, newVariable];
     },
     deleteVarRow(data, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.varList.splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: this.$t('comm.msg2')
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.varList.splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg2")
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     selectNode(data) {
-      this.selectData = data
+      this.selectData = data;
     },
     addNode() {
-      const data = this.selectData
-      if (data.id === '_1') {
+      const data = this.selectData;
+      if (data.id === "_1") {
         this.$message({
-          type: 'error',
-          message: this.$t('comm.msg4')
-        })
-        return false
+          type: "error",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg4")
+        });
+        return false;
       }
-      if (this.treeType === 'personnel') {
+      if (this.treeType === "personnel") {
         // 只要人员，排除部门
-        if (data.type !== 'user') {
+        if (data.type !== "user") {
           this.$message({
-            type: 'error',
-            message: this.$t('comm.msg4')
-          })
-          return false
+            type: "error",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg4")
+          });
+          return false;
         }
       }
-      this.taskChangeParam.changeTo = data.id
+      this.taskChangeParam.changeTo = data.id;
       taskChange(this.taskChangeParam).then(res => {
         if (res && res.success) {
           this.$message({
-            type: 'success',
-            message: this.$t('comm.msg27')
-          })
-          this.orgChoseDialog = false
-          this.aditDialog = false
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg27")
+          });
+          this.orgChoseDialog = false;
+          this.aditDialog = false;
         }
-      })
-      this.selectUserDialog = false
+      });
+      this.selectUserDialog = false;
     },
     changeDeliver(data, index) {
-      this.resetTable(this.taskChangeParam)
-      this.taskChangeParam.taskId = data.id
-      this.selectUserDialog = true
+      this.resetTable(this.taskChangeParam);
+      this.taskChangeParam.taskId = data.id;
+      this.selectUserDialog = true;
     },
     handleNodeClick(data) {
-      if (data.type === 'user') {
-        this.taskChangeParam.changeTo = data.id
+      if (data.type === "user") {
+        this.taskChangeParam.changeTo = data.id;
         taskChange(this.taskChangeParam).then(res => {
           if (res && res.success) {
             this.$message({
-              type: 'success',
-              message: this.$t('comm.msg27')
-            })
-            this.orgChoseDialog = false
-            this.aditDialog = false
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg27")
+            });
+            this.orgChoseDialog = false;
+            this.aditDialog = false;
           }
-        })
+        });
       }
     },
     addVars() {
-      console.log(this.instId)
-      console.log(this.varList)
-      saveVariables({ instId: this.instId, variables: this.varList }).then(res => {
-        if (res && res.success) {
-          this.$message({
-            type: 'success',
-            message: this.$t('comm.success')
-          })
+      console.log(this.instId);
+      console.log(this.varList);
+      saveVariables({ instId: this.instId, variables: this.varList }).then(
+        res => {
+          if (res && res.success) {
+            this.$message({
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.success")
+            });
+          }
         }
-      })
+      );
     },
     handleProcessInstClick: function(processInstId) {
-      this.processInstId = processInstId
-      this.dialogTableVisible = true
+      this.processInstId = processInstId;
+      this.dialogTableVisible = true;
     },
     rejectCurrentChange(val) {
-      this.rejectCurrentRow = val
+      this.rejectCurrentRow = val;
     },
     handleBusinessKeyClick: function(id, processDefinitionId) {
-      if (processDefinitionId.indexOf('Quotation') > -1) {
-        this.$router.push({ path: '/wfdemo/approve', query: {
-          id: id,
-          backto: 'admin'
-        }})
+      if (processDefinitionId.indexOf("Quotation") > -1) {
+        this.$router.push({
+          path: "/wfdemo/approve",
+          query: {
+            id: id,
+            backto: "admin"
+          }
+        });
       }
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .definition {
