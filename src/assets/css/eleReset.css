@@ -1344,11 +1344,11 @@ width: 300px;
 }
 
 .el-tree-node {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 .el-tree-node  .el-tree-node__content{
   width: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
   outline: none;
 }
 .el-tree.is-dragging .el-tree-node__content{
@@ -1363,15 +1363,15 @@ cursor: move !important;
 .align-right input{
   text-align: end !important;
 }
-.custom-tree-node {
+/* .custom-tree-node {
   overflow: auto;
-}
-.custom-tree-node ::-webkit-scrollbar {
+} */
+/* .custom-tree-node ::-webkit-scrollbar {
   display: none !important;
 }
 .custom-tree-node ::-ms-scrollbar {
   display: none !important;
-}
+}*/
 
 
 .el-message-box {

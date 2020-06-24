@@ -874,7 +874,7 @@
 		  padding-left: 19px !important;
 	  }
 	   .approval-box{
-			padding: 14px !important;
+			padding: 0px 14px 0 14px !important;
 			/* margin-bottom:35px !important; */
 		}
 		.approval-box p{
@@ -887,7 +887,7 @@
        min-height: 80px !important;
     }
     .approval-box .flex1{
-      padding: 0 0 15px 0 !important;
+      padding: 0 !important;
     }
     .con-flex .content-top-breadcrumb{
       padding-bottom: 15px !important
@@ -931,11 +931,11 @@
     /* 总经理 */
     .apporve-table-box{
       /* height: calc(100vh - 195px) !important; */
-       height: 130px !important;
+       /* height: 130px !important; */
     }
     .approve-light   .apporve-table-box{
       /* height: calc(100vh - 195px) !important; */
-       height: 130px !important;
+       height: calc(100% - 94px) !important;
     }
     .manager-main .content-top-state .content-top-form{
       padding-bottom: 0 !important;

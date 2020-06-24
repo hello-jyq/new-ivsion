@@ -46,12 +46,14 @@
     <div class="header">
       <div class="path">
         <el-breadcrumb separator-class="el-icon-arrow-right">
-          <el-breadcrumb-item :to="{ path: '/' }" @click.native="handleHomeClick">
+          <el-breadcrumb-item :to="{ path: '/' }">
             <span class="circle-btn home-icon btn-light-color">
-              <i v-if="theme === 'Light'" class="iconfont icontianchongxing-" />
+              <i v-if="theme === 'Light'" class="iconfont icontianchongxing-"/>
               <i v-else class="iconfont iconshouye" />
-            </span>
-            {{ $t('comm.home') }}
+            </span> {{ $t('comm.home') }}
+          </el-breadcrumb-item>
+          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to="{path:''+item.resUrl+''}">
+            {{ item.resName!=''?item.resName:'' }}
           </el-breadcrumb-item>
           <el-breadcrumb-item
             v-for="item in breadcrumbItems"
@@ -320,29 +322,46 @@ export default {
     $route(newValue, oldValue) {
       // console.log('newValue', newValue)
       // console.log('oldValue', oldValue)
-      // if (newValue.meta.index) {
-      //   const seqNo = newValue.meta.seqNo.split(':')
-      //   // this.breadcrumbItems = []
-      //   console.log('newValuemeta', newValue.meta)
-      //   this.breadcrumbItems.push(newValue.meta)
-      //   const id = seqNo.shift()
-      //   if (!id || id === 'null') {
-      //     return
-      //   }
-      //   // const menu = newValue.meta.seqNo.filter(menu => menu.index === id)
-      //   // this.breadcrumbItems.push(menu[0])
-      //   // this.$nextTick(()=>{
-      //   // })
-      //   console.log(' this.breadcrumbItems', this.breadcrumbItems)
-      // }
+      // console.log(444, this.breadcrumbItems)
+      if (newValue) {
+        let routeNew = { 'resName': newValue.name, 'resUrl': newValue.path }
+        let routeOld = { 'resName': oldValue.name, 'resUrl': oldValue.path }
+        if (newValue.path === '/') {
+          this.breadcrumbItems = ''
+          // console.log(1111)
+        } else {
+          this.breadcrumbItems.push(routeNew)
+          let aaa = Array.from(this.breadcrumbItems)
+          var arr = [];
+          for (var i = 0, len = aaa.length; i < len; i++) {
+            arr[i] = aaa[i];
+          }
+          arr.splice(1, 1)
+          this.breadcrumbItems = arr
+          console.log(9999, arr)
+          // if (this.breadcrumbItems.length >= 2 && localbreadcrumbItems.length === 3) {
+          //   let newbreadcrumbItems = this.breadcrumbItems.slice(0, 2)
+          //   // newbreadcrumbItems.push(routeNew)
+          //   this.breadcrumbItems = newbreadcrumbItems
+          //   console.log(22222, this.breadcrumbItems)
+          // } else {
+          //   this.breadcrumbItems.push(routeNew)
+          //   // console.log(333, newbreadcrumbItems)
+          // }
+        }
+
+
+
+
+      }
     }
   },
   created() {},
   mounted() {
-    console.log("this.$route.router", this.$route);
-    this.theme = localStorage.getItem("theme") || "Light";
-    const menuIndex = window.sessionStorage.getItem("activeMenu");
-    document.getElementById("app").setAttribute("data-theme", this.theme);
+    // console.log('this.$route.router', this.$route)
+    this.theme = localStorage.getItem('theme') || 'Light'
+    const menuIndex = window.sessionStorage.getItem('activeMenu')
+    document.getElementById('app').setAttribute('data-theme', this.theme)
 
     if (menuIndex) {
       this.activeIndex = menuIndex;
@@ -375,25 +394,26 @@ export default {
       this.isCollapse = false;
     },
     handleopen() {
-      console.log("a");
-      this.isCollapse = false;
+      // console.log('a')
+      this.isCollapse = false
     },
     handleselect(menuIndex) {
-      console.log(9999999, menuIndex);
-      saveActiveMenu(menuIndex);
-      this.activeIndex = menuIndex;
-      this.breadcrumbItems = [];
-      const seqNo = menuIndex.split(":");
-      this.getSelectedMenus(this.menuList, seqNo);
+      // console.log(9999999, menuIndex)
+      saveActiveMenu(menuIndex)
+      this.activeIndex = menuIndex
+      this.breadcrumbItems = []
+      const seqNo = menuIndex.split(':')
+      this.getSelectedMenus(this.menuList, seqNo)
     },
     getSelectedMenus(menuList, seqNo) {
       const id = seqNo.shift();
       if (!id || id === "null") {
         return;
       }
-      const menu = menuList.filter(menu => menu.id === id);
-      this.breadcrumbItems.push(menu[0]);
-      this.getSelectedMenus(menu[0].children, seqNo);
+      const menu = menuList.filter(menu => menu.id === id)
+      this.breadcrumbItems.push(menu[0])
+      this.getSelectedMenus(menu[0].children, seqNo)
+      // console.log(588, menu)
     },
     handleHomeClick() {
       this.breadcrumbItems = [];

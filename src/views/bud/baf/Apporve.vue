@@ -23,8 +23,11 @@
         <span slot="reference" class="tree-help"><i class="iconfont iconbangzhu" /></span>
       </el-popover>
       <el-scrollbar>
-        <!-- 总经理 -->
-        <el-tree
+    
+       <div class="auto-tree">
+          <el-scrollbar>
+         
+          <el-tree
           ref="tree"
           :data="data"
           node-key="id"
@@ -41,9 +44,9 @@
               </div>
             </div>
           </template>
-           <div>111111111</div>
         </el-tree>
-       
+         </el-scrollbar>
+         </div>
       </el-scrollbar>
     </div>
     <div :class="theme=='Light'?'content  market-light approve-light':'content'">
@@ -329,7 +332,7 @@
             </div>
           </div>
 
-          <div class="table-bg-box approval-box">
+          <div >
             <!-- 审批信息 -->
             <TaskApprove :task-id="'1'" :process-inst-id="'1'" />
           </div>
@@ -588,8 +591,11 @@ export default {
     overflow: hidden;
     display: inline;
     outline: none;
+    border-bottom-right-radius: 16px !important;
+    border-bottom-left-radius: 16px !important;
     .apporve-table-box {
-      height: 250px;
+      height: calc(100% - 120px);
+      flex: 1;
     }
   }
   .approval-box {
@@ -781,7 +787,11 @@ export default {
   color: #fff;
 }
 
-.el-table__body-wrapper {
-  height: calc(100% - 46px) !important;
+// .el-table__body-wrapper {
+//   height: calc(100% - 46px) !important;
+// }
+.con-flex .manager-main {
+  display: flex;
+  flex-direction: column;
 }
 </style>
