@@ -1,14 +1,24 @@
 <template>
-  <div v-if="isLoading" :class="theme=='Light'?'no-search-content-box advice-apply-edit adaE-light':'no-search-content-box advice-apply-edit'">
+  <div
+    v-if="isLoading"
+    :class="theme=='Light'?'no-search-content-box advice-apply-edit adaE-light':'no-search-content-box advice-apply-edit'"
+  >
     <!-- <p class="advice-edit-title">
       {{ title }}
-    </p> -->
-    <div class="table-bg-box marigin-bottom ">
+    </p>-->
+    <div class="table-bg-box marigin-bottom">
       <div class="advice-edit-table-title">
         <span>科目信息</span>
         <span v-if="flag !== '1'" class="advice-edit-title-num">业务编号：{{ item.identiferNum }}</span>
       </div>
-      <el-form ref="itemInfo" :model="item" :rules="rules" label-width="110px" label-position="left" class="content-top-form form-big-lable">
+      <el-form
+        ref="itemInfo"
+        :model="item"
+        :rules="rules"
+        label-width="110px"
+        label-position="left"
+        class="content-top-form form-big-lable"
+      >
         <el-row type="flex" justify="space-between">
           <el-col :span="10">
             <el-form-item label="科目名称" prop="itemName" class="big-input">
@@ -29,32 +39,35 @@
           <el-col :span="10">
             <el-form-item label="科目类型" prop="itemType" class="big-input">
               <el-radio-group v-model="item.itemType" :disabled.sync="itemTypeEnable">
-                <el-radio label="01">
-                  科目组
-                </el-radio>
-                <el-radio label="02">
-                  科目
-                </el-radio>
+                <el-radio label="01">科目组</el-radio>
+                <el-radio label="02">科目</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
           <el-col :span="10">
             <el-form-item label="状态" prop="status" class="big-input">
               <el-radio-group v-model="item.status" :disabled.sync="statusEnable">
-                <el-radio label="01">
-                  启用
-                </el-radio>
-                <el-radio label="02">
-                  禁用
-                </el-radio>
+                <el-radio label="01">启用</el-radio>
+                <el-radio label="02">禁用</el-radio>
               </el-radio-group>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row v-if="item.itemType !== '01'" type="flex" justify="space-between">
           <el-col :span="10">
-            <el-form-item :label="$t('basedata.parentItemName')" prop="parentItemId" class="big-input">
-              <el-select v-model="item.parentItemId" name="parentItemName" style="width:100%" placeholder="请选择" :popper-class="theme=='Light' ? 'blueSelect' : ''" clearable>
+            <el-form-item
+              :label="$t('basedata.parentItemName')"
+              prop="parentItemId"
+              class="big-input"
+            >
+              <el-select
+                v-model="item.parentItemId"
+                name="parentItemName"
+                style="width:100%"
+                placeholder="请选择"
+                :popper-class="theme=='Light' ? 'blueSelect' : ''"
+                clearable
+              >
                 <el-option
                   v-for="itemGroup in itemGroups"
                   :key="itemGroup.id"
@@ -66,7 +79,14 @@
           </el-col>
         </el-row>
       </el-form>
-      <el-form ref="itemInfo" :model="item" :rules="rules" label-width="110px" label-position="left" class="content-top- form-big-lable">
+      <el-form
+        ref="itemInfo"
+        :model="item"
+        :rules="rules"
+        label-width="110px"
+        label-position="left"
+        class="content-top- form-big-lable"
+      >
         <el-form-item label="备 注" prop="remark" class="big-input">
           <el-input v-model="item.remark" type="textarea" class="textarea-height" />
         </el-form-item>
@@ -76,7 +96,14 @@
       <div class="advice-edit-table-title">
         <span>其他信息</span>
       </div>
-      <el-form ref="itemInfo" :model="item" :rules="rules" label-width="110px" label-position="left" class="content-top-form form-big-lable">
+      <el-form
+        ref="itemInfo"
+        :model="item"
+        :rules="rules"
+        label-width="110px"
+        label-position="left"
+        class="content-top-form form-big-lable"
+      >
         <el-row type="flex" justify="space-between">
           <el-col :span="10">
             <el-form-item label="创建时间" prop="createTime" class="big-input">
@@ -113,71 +140,76 @@
     </div>
     <ul class="operation-box dialog-btn-box">
       <li class="operation-item" @click="handleSave">
-        <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconbaocun" /></span>
+        <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+          <i class="iconfont iconbaocun" />
+        </span>
         <span class="operation-text">保&nbsp;&nbsp;存</span>
       </li>
       <li class="operation-item" @click="onCancel()">
-        <span class="operation-circle circle-middle-btn btn-light-color bluebg"><i class="iconfont iconquxiao" /></span>
+        <span class="operation-circle circle-middle-btn btn-light-color bluebg">
+          <i class="iconfont iconquxiao" />
+        </span>
         <span class="operation-text">返&nbsp;&nbsp;回</span>
       </li>
     </ul>
   </div>
 </template>
 <script>
-
-import { newItem, getItemInfo, editItem, getItemGroups } from '@/api/bud/itm/itm-api'
+import {
+  newItem,
+  getItemInfo,
+  editItem,
+  getItemGroups
+} from "@/api/bud/itm/itm-api";
 export default {
-  components: {
-  },
+  components: {},
   data() {
     return {
-      theme: localStorage.getItem('theme') !== 'Dark' ? 'Light' : '',
+      theme: localStorage.getItem("theme") !== "Dark" ? "Light" : "",
       isLoading: false,
       title: null,
       isShow: false,
-      itemId: '',
-      flag: '',
-      operationType: '',
+      itemId: "",
+      flag: "",
+      operationType: "",
       itemTypeEnable: false,
       statusEnable: false,
       item: {},
       form: {},
-      itemGroups: [{
-        itemId: '',
-        itemName: ''
-      }],
+      itemGroups: [
+        {
+          itemId: "",
+          itemName: ""
+        }
+      ],
       rules: {
         itemName: [
-          { required: true, message: '请输入科目名称', trigger: 'blur' },
-          { min: 1, max: 100, message: '请输入100个字符以内', trigger: 'blur' }
+          { required: true, message: "请输入科目名称", trigger: "blur" },
+          { min: 1, max: 100, message: "请输入100个字符以内", trigger: "blur" }
         ],
         itemNum: [
-          { min: 1, max: 36, message: '请输入36个字符以内', trigger: 'blur' }
+          { min: 1, max: 36, message: "请输入36个字符以内", trigger: "blur" }
         ],
-        itemType: [
-          { required: true }
-        ],
-        status: [
-          { required: true }
-        ],
+        itemType: [{ required: true }],
+        status: [{ required: true }],
         remark: [
-          { min: 1, max: 255, message: '请输入255个字符以内', trigger: 'blur' }
+          { min: 1, max: 255, message: "请输入255个字符以内", trigger: "blur" }
         ]
       }
-    }
+    };
   },
   created() {
-    this.itemId = this.$route.params.itemId
-    this.flag = this.$route.params.flag
-    console.log(this.itemId)
-    console.log(this.flag)
+    this.itemId = this.$route.params.itemId;
+    this.flag = this.$route.params.flag;
+    console.log(this.itemId);
+    console.log(this.flag);
     // 科目新建
-    if (this.flag === '1') {
-      console.log('dsf')
-      this.operationType = 'create'
-      this.statusEnable = true
+    if (this.flag === "1") {
+      console.log("dsf");
+      this.operationType = "create";
+      this.statusEnable = true;
 
-      console.log(this.statusEnable)
+      console.log(this.statusEnable);
 
       // this.dialogType = 'create'
       // this.titleType = '新建'item
@@ -186,21 +218,21 @@ export default {
       // this.statusEnable = true
       // this.typeEnabale = false
       this.item = {
-        itemName: '',
-        itemNum: '',
-        itemType: '01',
-        status: '01',
-        parentItemId: '',
-        remark: ''
-      }
+        itemName: "",
+        itemNum: "",
+        itemType: "01",
+        status: "01",
+        parentItemId: "",
+        remark: ""
+      };
     } else {
-      this.operationType = 'edit'
-      this.itemTypeEnable = true
-      console.log(this.itemTypeEnable)
-      this.getItemInfo()
+      this.operationType = "edit";
+      this.itemTypeEnable = true;
+      console.log(this.itemTypeEnable);
+      this.getItemInfo();
       // this.item = {}
     }
-    this.fetchData()
+    this.fetchData();
   },
   // mounted() {
   //   this.isLoading = true
@@ -208,56 +240,59 @@ export default {
   methods: {
     async fetchData() {
       // 获取所有科目组
-      const itemGroupsRes = await getItemGroups()
-      const itemGroupsResults = itemGroupsRes.datas.itemGroups
-      this.itemGroups = itemGroupsResults
-      this.isLoading = true
+      const itemGroupsRes = await getItemGroups();
+      const itemGroupsResults = itemGroupsRes.datas.itemGroups;
+      this.itemGroups = itemGroupsResults;
+      this.isLoading = true;
     },
     async getItemInfo() {
-      const itemId = this.itemId
-      const itemInfoRes = await getItemInfo(itemId)
-      this.item = itemInfoRes.datas.itemSelectResult
+      const itemId = this.itemId;
+      const itemInfoRes = await getItemInfo(itemId);
+      this.item = itemInfoRes.datas.itemSelectResult;
       // this.isLoading = false
     },
     async handleSave() {
-      this.$refs['itemInfo'].validate(async valid => {
+      this.$refs["itemInfo"].validate(async valid => {
         if (valid) {
-          if (this.operationType === 'create') {
-            const res = await newItem(this.item)
+          if (this.operationType === "create") {
+            const res = await newItem(this.item);
             if (res) {
               if (res.success) {
-                this.showDialog = false
+                this.showDialog = false;
                 this.$message({
-                  type: 'success',
-                  message: '新建成功!'
-                })
-                this.$router.push({ path: '/itm/list' })
+                  type: "success",
+                  iconClass: "iconfont icongantanhao_icon",
+                  customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                  message: "新建成功!"
+                });
+                this.$router.push({ path: "/itm/list" });
               }
             }
-          } else if (this.operationType === 'edit') {
-            const res = await editItem(this.item)
+          } else if (this.operationType === "edit") {
+            const res = await editItem(this.item);
             if (res) {
               if (res.success) {
-                this.showDialog = false
+                this.showDialog = false;
                 this.$message({
-                  type: 'success',
-                  message: '编辑成功!'
-                })
-                this.$router.push({ path: '/itm/list' })
+                  type: "success",
+                  iconClass: "iconfont icongantanhao_icon",
+                  customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                  message: "编辑成功!"
+                });
+                this.$router.push({ path: "/itm/list" });
               }
             }
           }
           // this.onCancel()
           // this.onConfirm()
         }
-      })
+      });
     },
     onCancel() {
-      this.$router.push({ path: '/itm/list' })
+      this.$router.push({ path: "/itm/list" });
     }
-
   }
-}
+};
 </script>
 <style lang="scss">
 .advice-apply-edit {

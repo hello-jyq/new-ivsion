@@ -6,17 +6,25 @@
           <span slot="title" class="collapse-title">{{ $t('comm.queryCriteria') }}</span>
           <div class="mode input_box">
             <div class="flex3">
-              <div class="title">
-                {{ $t('admin.wfProxy.agentType') }}
-              </div>
-              <el-input v-model="searchParam.params.agentFrom" class="input" :placeholder="$t('admin.wfProxy.agentType')" clearable />
+              <div class="title">{{ $t('admin.wfProxy.agentType') }}</div>
+              <el-input
+                v-model="searchParam.params.agentFrom"
+                class="input"
+                :placeholder="$t('admin.wfProxy.agentType')"
+                clearable
+              />
             </div>
             <div class="flex3">
               <div class="title">
                 <!-- 代理人： -->
                 {{ $t('admin.wfProxy.agentToName') }}
               </div>
-              <el-input v-model="searchParam.params.agentTo" class="input" :placeholder="$t('admin.wfProxy.agentToName')" clearable />
+              <el-input
+                v-model="searchParam.params.agentTo"
+                class="input"
+                :placeholder="$t('admin.wfProxy.agentToName')"
+                clearable
+              />
             </div>
           </div>
         </el-collapse-item>
@@ -54,26 +62,24 @@
         height="579"
         @selection-change="handleSelectionChange"
       >
-        <el-table-column
-          type="selection"
-          width="55"
-        />
-        <el-table-column
-          align="center"
-          :label="$t('comm.operation')"
-          min-width="120"
-          width="120"
-        >
+        <el-table-column type="selection" width="55" />
+        <el-table-column align="center" :label="$t('comm.operation')" min-width="120" width="120">
           <template slot-scope="scope">
-            <el-button size="mini" icon="el-icon-edit" type="primary" @click="editDetail(scope.row, scope.$index)" />
-            <el-button size="mini" icon="el-icon-delete" type="danger" @click="remove(scope.row, scope.$index)" />
+            <el-button
+              size="mini"
+              icon="el-icon-edit"
+              type="primary"
+              @click="editDetail(scope.row, scope.$index)"
+            />
+            <el-button
+              size="mini"
+              icon="el-icon-delete"
+              type="danger"
+              @click="remove(scope.row, scope.$index)"
+            />
           </template>
         </el-table-column>
-        <el-table-column
-          prop="id"
-          :label="$t('admin.wfProxy.proxyId')"
-          width="100"
-        />
+        <el-table-column prop="id" :label="$t('admin.wfProxy.proxyId')" width="100" />
         <el-table-column prop="agentType" :label="$t('admin.wfProxy.agentFromName')" width="100">
           <template slot-scope="scope">
             <dict-write dict-type-id="AgentType" :value="scope.row.agentType" />
@@ -89,16 +95,8 @@
           :label="$t('admin.wfProxy.agentToName')"
           min-width="100"
         />
-        <el-table-column
-          prop="startTime"
-          :label="$t('admin.wfProxy.startTime')"
-          min-width="160"
-        />
-        <el-table-column
-          prop="endTime"
-          :label="$t('admin.wfProxy.endTime')"
-          min-width="160"
-        />
+        <el-table-column prop="startTime" :label="$t('admin.wfProxy.startTime')" min-width="160" />
+        <el-table-column prop="endTime" :label="$t('admin.wfProxy.endTime')" min-width="160" />
         <el-table-column
           prop="agentReason"
           :label="$t('admin.wfProxy.agentReason')"
@@ -139,8 +137,18 @@
               {{ $t('admin.wfProxy.agentFromName') }}
             </div>
             <div class="input">
-              <dict-select v-model="dialogObj.agentType" class="input" dict-type-id="AgentType" @change="(value) => {validator('agentType', value)}" />
-              <span ref="agentType" data-roles="required" :data-value="dialogObj.agentType" class="message" />
+              <dict-select
+                v-model="dialogObj.agentType"
+                class="input"
+                dict-type-id="AgentType"
+                @change="(value) => {validator('agentType', value)}"
+              />
+              <span
+                ref="agentType"
+                data-roles="required"
+                :data-value="dialogObj.agentType"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex2">
@@ -149,10 +157,24 @@
               {{ $t('admin.wfProxy.agentType') }}
             </div>
             <div class="input">
-              <el-input v-model="assignee.name" class="input" :placeholder="$t('admin.wfProxy.agentType')" @blur="validator('agentFrom')">
-                <i slot="suffix" class="iconfont icon-zuzhijiagou" @click.stop="openSelect('assignee')" />
+              <el-input
+                v-model="assignee.name"
+                class="input"
+                :placeholder="$t('admin.wfProxy.agentType')"
+                @blur="validator('agentFrom')"
+              >
+                <i
+                  slot="suffix"
+                  class="iconfont icon-zuzhijiagou"
+                  @click.stop="openSelect('assignee')"
+                />
               </el-input>
-              <span ref="agentFrom" data-roles="required" :data-value="assignee.name" class="message" />
+              <span
+                ref="agentFrom"
+                data-roles="required"
+                :data-value="assignee.name"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex2">
@@ -161,8 +183,17 @@
               {{ $t('admin.wfProxy.agentToName') }}
             </div>
             <div class="input">
-              <el-input v-model="agent.name" class="input" :placeholder="$t('admin.wfProxy.agentToName')" @blur="validator('agentTo')">
-                <i slot="suffix" class="iconfont icon-zuzhijiagou" @click.stop="openSelect('agent')" />
+              <el-input
+                v-model="agent.name"
+                class="input"
+                :placeholder="$t('admin.wfProxy.agentToName')"
+                @blur="validator('agentTo')"
+              >
+                <i
+                  slot="suffix"
+                  class="iconfont icon-zuzhijiagou"
+                  @click.stop="openSelect('agent')"
+                />
               </el-input>
               <span ref="agentTo" data-roles="required" :data-value="agent.name" class="message" />
             </div>
@@ -181,7 +212,12 @@
                 :placeholder="$t('admin.wfProxy.startTime')"
                 @blur="validator('startTime')"
               />
-              <span ref="startTime" data-roles="required" :data-value="dialogObj.startTime" class="message" />
+              <span
+                ref="startTime"
+                data-roles="required"
+                :data-value="dialogObj.startTime"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex2">
@@ -198,7 +234,12 @@
                 :placeholder="$t('admin.wfProxy.endTime')"
                 @blur="validator('endTime')"
               />
-              <span ref="endTime" data-roles="required" :data-value="dialogObj.endTime" class="message" />
+              <span
+                ref="endTime"
+                data-roles="required"
+                :data-value="dialogObj.endTime"
+                class="message"
+              />
             </div>
           </div>
           <div class="flex2">
@@ -218,18 +259,14 @@
         <div v-show="dialogObj.agentType == 'PART'">
           <h5>
             {{ $t('admin.wfProxy.processDefinitionSelect') }}
-            : <div class="add_row iconfont icon-jia" @click.stop="handleAddTableRows">
+            :
+            <div class="add_row iconfont icon-jia" @click.stop="handleAddTableRows">
               <!-- 增加流程 -->
               {{ $t('admin.wfProxy.addProcess') }}
             </div>
           </h5>
           <div class="table">
-            <el-table
-              :data="processTable"
-              border
-              height="200"
-              style="width: 100%"
-            >
+            <el-table :data="processTable" border height="200" style="width: 100%">
               <el-table-column>
                 <template slot-scope="scope">
                   <el-button type="primary" size="mini" @click="processChose(scope.$index)">
@@ -247,10 +284,15 @@
                 <template slot-scope="scope">
                   <el-input v-model="scope.row.agentId" disabled="disabled" />
                 </template>
-              </el-table-column> -->
+              </el-table-column>-->
               <el-table-column :label="$t('comm.operation')">
                 <template slot-scope="scope">
-                  <el-button size="mini" icon="el-icon-delete" type="danger" @click="handleDeleteRow(scope.row, scope.$index)" />
+                  <el-button
+                    size="mini"
+                    icon="el-icon-delete"
+                    type="danger"
+                    @click="handleDeleteRow(scope.row, scope.$index)"
+                  />
                 </template>
               </el-table-column>
             </el-table>
@@ -289,33 +331,28 @@
         style="width: 100%"
         @current-change="processChoseChange"
       >
-        <el-table-column
-          type="index"
-          width="50"
-        />
-        <el-table-column
-          property="key"
-          :label="$t('admin.wfProxy.processDefinitionKey')"
-        />
-        <el-table-column
-          property="name"
-          :label="$t('admin.wfProxy.processDefinitionName')"
-        />
-        <el-table-column
-          property="description"
-          :label="$t('admin.wfProxy.desc')"
-        />
+        <el-table-column type="index" width="50" />
+        <el-table-column property="key" :label="$t('admin.wfProxy.processDefinitionKey')" />
+        <el-table-column property="name" :label="$t('admin.wfProxy.processDefinitionName')" />
+        <el-table-column property="description" :label="$t('admin.wfProxy.desc')" />
       </el-table>
     </el-dialog>
   </div>
 </template>
 <script>
-import { formValidator } from '@/mixins/form-validator.js'
-import TissueTree from '@/components/TissueTree.vue'
-import { search } from '@/mixins/search-params'
-import DictSelect from '@/components/DictSelect'
-import DictWrite from '@/components/DictWrite'
-import { getProxyList, getFlowDef, getDefByAgentId, proxyAdd, proxySave, proxyDelete } from '@/api/admin/workflow-api.js'
+import { formValidator } from "@/mixins/form-validator.js";
+import TissueTree from "@/components/TissueTree.vue";
+import { search } from "@/mixins/search-params";
+import DictSelect from "@/components/DictSelect";
+import DictWrite from "@/components/DictWrite";
+import {
+  getProxyList,
+  getFlowDef,
+  getDefByAgentId,
+  proxyAdd,
+  proxySave,
+  proxyDelete
+} from "@/api/admin/workflow-api.js";
 export default {
   components: {
     TissueTree,
@@ -326,8 +363,8 @@ export default {
   data() {
     return {
       isLoading: true,
-      activeNames: ['1'],
-      dialogType: 'create',
+      activeNames: ["1"],
+      dialogType: "create",
       tableData: [],
       searchParam: {
         paging: true,
@@ -335,246 +372,280 @@ export default {
         pageSize: 10,
         totalRecord: null,
         params: {
-          agentFrom: '',
-          agentTo: ''
+          agentFrom: "",
+          agentTo: ""
         }
       },
       assignee: {
-        name: '',
-        id: ''
+        name: "",
+        id: ""
       },
       agent: {
-        name: '',
-        id: ''
+        name: "",
+        id: ""
       },
       currentPage: 1,
       showDialog: false,
       dialogObj: {},
       selectUserDialog: false,
-      activeInput: '',
-      treeType: 'personnel',
-      selectData: '',
+      activeInput: "",
+      treeType: "personnel",
+      selectData: "",
       processChoseDialog: false,
       processChoseData: [],
       processTable: [],
       processCurrentRow: null,
       index: Number,
       multipleSelection: []
-    }
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     fetchData: async function() {
-      const res = await getProxyList(this.searchParam)
+      const res = await getProxyList(this.searchParam);
       if (res && res.success) {
-        const { results, pageNo, totalRecord } = res.datas.searchResult
-        this.tableData = results
-        this.searchParam.pageNo = pageNo
-        this.searchParam.totalRecord = totalRecord
+        const { results, pageNo, totalRecord } = res.datas.searchResult;
+        this.tableData = results;
+        this.searchParam.pageNo = pageNo;
+        this.searchParam.totalRecord = totalRecord;
       }
-      this.tableDolayout(this.$refs['table'])
-      this.isLoading = false
+      this.tableDolayout(this.$refs["table"]);
+      this.isLoading = false;
     },
     resetTable(params) {
       for (var i in params) {
-        params[i] = ''
+        params[i] = "";
       }
     },
     create() {
-      this.clearErrorMessage()
-      this.resetTable(this.dialogObj)
-      this.resetTable(this.assignee)
-      this.resetTable(this.agent)
-      this.dialogType = 'create'
-      this.processTable = []
-      this.showDialog = true
+      this.clearErrorMessage();
+      this.resetTable(this.dialogObj);
+      this.resetTable(this.assignee);
+      this.resetTable(this.agent);
+      this.dialogType = "create";
+      this.processTable = [];
+      this.showDialog = true;
     },
     editDetail(data, index) {
-      this.clearErrorMessage()
-      console.log(data)
+      this.clearErrorMessage();
+      console.log(data);
       getDefByAgentId(data.id).then(res => {
-        this.processTable = res.datas.result
-        this.dialogObj = { ...data }
-        this.assignee.id = data.agentFrom
-        this.assignee.name = data.agentFromName
-        this.agent.id = data.agentTo
-        this.agent.name = data.agentToName
-        this.dialogType = 'edit'
-        this.showDialog = true
-      })
+        this.processTable = res.datas.result;
+        this.dialogObj = { ...data };
+        this.assignee.id = data.agentFrom;
+        this.assignee.name = data.agentFromName;
+        this.agent.id = data.agentTo;
+        this.agent.name = data.agentToName;
+        this.dialogType = "edit";
+        this.showDialog = true;
+      });
     },
     handleSave() {
       if (!this.validatorAll()) {
-        return false
+        return false;
       }
-      this.dialogObj.agentFrom = this.assignee.id
-      this.dialogObj.agentTo = this.agent.id
-      this.dialogObj.actAgentItemList = this.processTable
-      console.log(this.dialogObj)
-      if (this.dialogType === 'create') {
+      this.dialogObj.agentFrom = this.assignee.id;
+      this.dialogObj.agentTo = this.agent.id;
+      this.dialogObj.actAgentItemList = this.processTable;
+      console.log(this.dialogObj);
+      if (this.dialogType === "create") {
         proxyAdd(this.dialogObj).then(res => {
           if (res && res.success) {
             this.$message({
-              type: 'success',
-              message: this.$t('comm.success')
-            })
-            this.showDialog = false
-            this.fetchData()
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.success")
+            });
+            this.showDialog = false;
+            this.fetchData();
           }
-        })
+        });
       }
-      if (this.dialogType === 'edit') {
+      if (this.dialogType === "edit") {
         proxySave(this.dialogObj).then(res => {
           if (res && res.success) {
             this.$message({
-              type: 'success',
-              message: this.$t('comm.success')
-            })
-            this.showDialog = false
-            this.fetchData()
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.success")
+            });
+            this.showDialog = false;
+            this.fetchData();
           }
-        })
+        });
       }
     },
     remove(data, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        proxyDelete([{ id: data.id }]).then(res => {
-          if (res && res.success) {
-            this.$message({
-              type: 'success',
-              message: this.$t('comm.msg2')
-            })
-            this.fetchData()
-          }
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          proxyDelete([{ id: data.id }]).then(res => {
+            if (res && res.success) {
+              this.$message({
+                type: "success",
+                iconClass: "iconfont icongantanhao_icon",
+                customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                message: this.$t("comm.msg2")
+              });
+              this.fetchData();
+            }
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     batchDelete() {
       if (this.multipleSelection.length > 0) {
-        this.$confirm(this.$t('comm.tip2'), this.$t('comm.tips'), {
-          confirmButtonText: this.$t('comm.certain'),
-          cancelButtonText: this.$t('comm.cancel'),
-          type: 'warning'
-        }).then(() => {
-          proxyDelete(this.multipleSelection).then(res => {
-            if (res && res.success) {
-              this.$message({
-                type: 'success',
-                message: this.$t('comm.msg2')
-              })
-              this.fetchData()
-            }
-          })
-        }).catch(() => {
-          this.$message({
-            type: 'info',
-            message: this.$t('comm.msg1')
-          })
+        this.$confirm(this.$t("comm.tip2"), this.$t("comm.tips"), {
+          confirmButtonText: this.$t("comm.certain"),
+          cancelButtonText: this.$t("comm.cancel"),
+          type: "warning",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
         })
+          .then(() => {
+            proxyDelete(this.multipleSelection).then(res => {
+              if (res && res.success) {
+                this.$message({
+                  type: "success",
+                  iconClass: "iconfont icongantanhao_icon",
+                  customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                  message: this.$t("comm.msg2")
+                });
+                this.fetchData();
+              }
+            });
+          })
+          .catch(() => {
+            this.$message({
+              type: "info",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg1")
+            });
+          });
       } else {
         this.$message({
-          type: 'info',
-          message: this.$t('comm.msg3')
-        })
+          type: "info",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg3")
+        });
       }
     },
     openSelect(activeInput) {
-      this.activeInput = activeInput
-      this.selectUserDialog = true
+      this.activeInput = activeInput;
+      this.selectUserDialog = true;
     },
     selectNode(data) {
-      this.selectData = data
+      this.selectData = data;
     },
     addNode() {
-      const data = this.selectData
-      if (data.id === '_1') {
+      const data = this.selectData;
+      if (data.id === "_1") {
         this.$message({
-          type: 'error',
-          message: this.$t('comm.msg4')
-        })
-        return false
+          type: "error",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg4")
+        });
+        return false;
       }
-      if (this.treeType === 'personnel') {
+      if (this.treeType === "personnel") {
         // 只要人员，排除部门
-        if (data.type !== 'user') {
+        if (data.type !== "user") {
           this.$message({
-            type: 'error',
-            message: this.$t('comm.msg4')
-          })
-          return false
+            type: "error",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg4")
+          });
+          return false;
         }
       }
-      const id = data.id
-      const name = data.text || data.name
-      this[this.activeInput].name = name
-      this[this.activeInput].id = id
-      this.selectUserDialog = false
+      const id = data.id;
+      const name = data.text || data.name;
+      this[this.activeInput].name = name;
+      this[this.activeInput].id = id;
+      this.selectUserDialog = false;
     },
     handleAddTableRows() {
       const newRow = {
-        procDefKey: '',
-        agentId: ''
-      }
-      this.processTable = [...this.processTable, newRow]
+        procDefKey: "",
+        agentId: ""
+      };
+      this.processTable = [...this.processTable, newRow];
     },
     handleDeleteRow(data, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.processTable.splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: this.$t('comm.msg2')
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.processTable.splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg2")
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     processChose(index) {
       getFlowDef().then(res => {
-        this.index = index
-        this.processChoseData = res.datas.result
-        this.processChoseDialog = true
-      })
+        this.index = index;
+        this.processChoseData = res.datas.result;
+        this.processChoseDialog = true;
+      });
     },
     processChoseChange(val) {
       if (val != null) {
-        let flag = true
+        let flag = true;
         this.processTable.forEach(data => {
           if (data.procDefKey === val.key) {
-            flag = false
-            return false
+            flag = false;
+            return false;
           }
-        })
+        });
         if (flag) {
-          this.processTable[this.index].procDefKey = val.key
-          this.processTable[this.index].agentId = this.dialogObj.id
+          this.processTable[this.index].procDefKey = val.key;
+          this.processTable[this.index].agentId = this.dialogObj.id;
         }
-        this.processChoseDialog = false
+        this.processChoseDialog = false;
       }
       // this.processCurrentRow = val
     },
     handleSelectionChange(val) {
-      this.multipleSelection = val
+      this.multipleSelection = val;
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
 .agent {

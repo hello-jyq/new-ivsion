@@ -1372,3 +1372,155 @@ cursor: move !important;
 .custom-tree-node ::-ms-scrollbar {
   display: none !important;
 }
+
+
+.el-message-box {
+  width: 580px;
+  height: 188px;
+  border: none;
+  background:rgba(238,242,246,1) !important;
+  border-radius: 16px;
+}
+.el-message-box__content {
+  padding: 30px;
+  line-height: 18px;
+  color: #333333;
+}
+.el-message-box__btns {
+  padding: 0 15px;
+}
+.el-message-box__header{
+  background: linear-gradient(153deg, #475ba0 0%, #2fa5bb 100%);
+  border-radius: 16px 16px 0px 0px;
+}
+.el-message-box .el-message-box__title span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #ffffff;
+}
+.el-message.el-message--info{
+  background:rgba(238,242,246,1);
+  border-radius:16px;
+}
+.el-message-box__btns button {
+  width:130px;
+  height:48px;
+  padding: 5px;
+  margin: 0;
+  background:rgba(255,255,255,1);
+  box-shadow:0px 1px 4px 1px rgba(28,29,84,0.15);
+  border-radius:24px;
+  color: #333333 !important;
+  font-size: 14px;
+  border: none;
+  text-align: left;
+}
+.el-message-box__btns button:focus,
+.el-message-box__btns button:hover {
+  background: #ffffff;
+}
+.el-message-box__btns button  span{
+  display: inline-block;
+  width: 38px;
+  height: 38px;    
+  line-height: 38px;
+  text-align: center;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #475ba0 0%, #2fa5bb 100%) !important;
+}
+
+.el-message-box__btns button:nth-child(1) span::before {
+  content: "\e627";
+  padding-left: 12px;
+  padding-right: 30px;
+  font-family:"iconfont";  
+  font-size: 14px;
+  color: #ffffff;
+}
+.el-message-box__btns button:nth-child(2) {
+  margin-left: 40px;
+}
+.el-message-box__btns button:nth-child(2) span::before {
+  content: "\e669";
+  padding-left: 12px;
+  padding-right: 30px;
+  font-family:"iconfont";  
+  font-size: 14px;
+  color: #ffffff;
+}
+.el-message-box__headerbtn:focus .el-message-box__close, 
+.el-message-box__headerbtn:hover .el-message-box__close,
+.el-message-box__headerbtn .el-message-box__close,
+.el-message-box__headerbtn .el-message-box__close:hover{
+  color: #ffffff;
+}
+.icongantanhao_icon{
+  display: inline-block;
+  width: 20px;
+  height: 18px;
+  line-height: 18px;
+  padding-right: 30px;
+  font-size: 20px!important;
+}
+.icongantanhao_icon:before{
+  width: 20px;
+  height: 18px;
+}
+.el-message-box__status{
+  font-size: 20px!important;
+}
+.el-message-box__status+.el-message-box__message{
+  padding-left: 30px;
+}
+.el-message{
+  width: 450px;
+  height: 80px;
+  justify-content: center;
+  background-color:#EEF2F6;
+  box-shadow:0px 2px 10px 0px rgba(0,0,0,0.5);
+}
+
+/*  dark */
+
+.dark-message-box {
+  background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%) !important;
+  border:2px solid rgba(68,71,78,1);
+}
+.dark-message-box .el-message-box__content {
+  color: #ffffff;
+}
+.dark-message-box .el-message-box__header{
+  background: transparent;
+}
+.dark-message-box .el-message-box__btns button {
+    background: linear-gradient(180deg, #2F343A 0%, #1E2225 100%);
+    -webkit-box-shadow: -1px -1px 13px 0 rgba(139, 139, 139, 0.3), 0px 4px 10px 4px #14161A;
+    box-shadow: -1px -1px 13px 0 rgba(139, 139, 139, 0.3), 0px 4px 10px 4px #14161A;
+    border: 1px solid rgba(29, 34, 38, 0.5);
+    color: #ffffff !important;
+}
+.dark-message-box .el-message-box__btns button:focus,
+.dark-message-box .el-message-box__btns button:hover {
+  background: linear-gradient(180deg, #2F343A 0%, #1E2225 100%);
+}
+.dark-message-box .el-message-box__btns button span{
+  background:linear-gradient(160deg,rgba(0,154,151,1) 0%,rgba(0,255,248,1) 100%) !important;
+  box-shadow:-1px -1px 10px 2px rgba(255,255,255,0.2),0px 2px 10px 4px rgba(20,22,26,1);
+  border:1px solid rgba(0,203,198,1);
+}
+.dark-el-message.el-message--info{
+  background:rgba(238,242,246,1);
+}
+.dark-el-message{
+  background:linear-gradient(180deg,rgba(52,57,63,1) 0%,rgba(22,23,27,1) 100%) !important;
+  box-shadow:0px 2px 20px 4px rgba(0,0,0,1);
+  border:2px solid rgba(68,71,78,1);
+  color: #ffffff;
+}
+
+.dark-message-box .el-message-box__headerbtn:focus .el-message-box__close, 
+.dark-message-box .el-message-box__headerbtn:hover .el-message-box__close,
+.dark-message-box .el-message-box__headerbtn .el-message-box__close,
+.dark-message-box .el-message-box__headerbtn .el-message-box__close:hover{
+  color: #dddddd;
+}

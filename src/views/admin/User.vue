@@ -10,14 +10,24 @@
                 <!-- 用户名: -->
                 {{ $t('admin.user.userName') }}
               </div>
-              <el-input v-model="searchParam.params.userName" class="input" :placeholder="$t('admin.user.userName')" clearable />
+              <el-input
+                v-model="searchParam.params.userName"
+                class="input"
+                :placeholder="$t('admin.user.userName')"
+                clearable
+              />
             </div>
             <div class="flex3">
               <div class="title">
                 <!-- 姓名: -->
                 {{ $t('admin.user.nickName') }}
               </div>
-              <el-input v-model="searchParam.params.nickName" class="input" :placeholder="$t('admin.user.nickName')" clearable />
+              <el-input
+                v-model="searchParam.params.nickName"
+                class="input"
+                :placeholder="$t('admin.user.nickName')"
+                clearable
+              />
             </div>
           </div>
         </el-collapse-item>
@@ -50,45 +60,23 @@
         style="width: 100%"
         height="579"
       >
-        <el-table-column
-          type="selection"
-          width="55"
-        />
-        <el-table-column
-          :label="$t('comm.operation')"
-          min-width="70"
-          width="70"
-        >
+        <el-table-column type="selection" width="55" />
+        <el-table-column :label="$t('comm.operation')" min-width="70" width="70">
           <template slot-scope="scope">
             <!--<el-button size="mini" icon="el-icon-delete" type="danger" @click="handleDelete(scope.row, scope.$index)" />-->
-            <el-button size="mini" icon="el-icon-edit" type="primary" @click="handleEdit(scope.row, scope.$index)" />
+            <el-button
+              size="mini"
+              icon="el-icon-edit"
+              type="primary"
+              @click="handleEdit(scope.row, scope.$index)"
+            />
           </template>
         </el-table-column>
-        <el-table-column
-          label="ID"
-          min-width="150"
-          prop="id"
-        />
-        <el-table-column
-          prop="userName"
-          :label="$t('admin.user.userName')"
-          min-width="140"
-        />
-        <el-table-column
-          prop="nickName"
-          :label="$t('admin.user.nickName')"
-          min-width="80"
-        />
-        <el-table-column
-          prop="mobile"
-          :label="$t('admin.user.mobile')"
-          min-width="120"
-        />
-        <el-table-column
-          prop="email"
-          :label="$t('admin.user.email')"
-          min-width="120"
-        />
+        <el-table-column label="ID" min-width="150" prop="id" />
+        <el-table-column prop="userName" :label="$t('admin.user.userName')" min-width="140" />
+        <el-table-column prop="nickName" :label="$t('admin.user.nickName')" min-width="80" />
+        <el-table-column prop="mobile" :label="$t('admin.user.mobile')" min-width="120" />
+        <el-table-column prop="email" :label="$t('admin.user.email')" min-width="120" />
         <el-table-column
           prop="deleteFlag"
           :label="$t('admin.user.deleteFlag')"
@@ -135,7 +123,12 @@
                   :placeholder="$t('admin.user.nickName')"
                   @blur="validator('userNickName')"
                 />
-                <span ref="userNickName" data-roles="required" :data-value="dialogObj.nickName" class="message" />
+                <span
+                  ref="userNickName"
+                  data-roles="required"
+                  :data-value="dialogObj.nickName"
+                  class="message"
+                />
               </div>
             </div>
             <div class="flex2">
@@ -149,7 +142,12 @@
                   class="input"
                   :placeholder="$t('admin.user.sysName')"
                 />
-                <span ref="userName" data-roles="required" :data-value="dialogObj.userName" class="message" />
+                <span
+                  ref="userName"
+                  data-roles="required"
+                  :data-value="dialogObj.userName"
+                  class="message"
+                />
               </div>
             </div>
             <div class="flex2">
@@ -215,7 +213,12 @@
               </div>
               <div class="input">
                 <dict-select v-model="dialogObj.authMode" dict-type-id="AuthMode" />
-                <span ref="userAuthMod" data-roles="required" :data-value="dialogObj.authMode" class="message" />
+                <span
+                  ref="userAuthMod"
+                  data-roles="required"
+                  :data-value="dialogObj.authMode"
+                  class="message"
+                />
               </div>
             </div>
             <div class="flex2">
@@ -261,7 +264,12 @@
               <div class="input">
                 <div class="input must">
                   <dict-select v-model="dialogObj.status" dict-type-id="UserStatus" />
-                  <span ref="userstatus" data-roles="required" :data-value="dialogObj.status" class="message" />
+                  <span
+                    ref="userstatus"
+                    data-roles="required"
+                    :data-value="dialogObj.status"
+                    class="message"
+                  />
                 </div>
               </div>
             </div>
@@ -280,11 +288,7 @@
                 {{ $t('admin.user.invalidDate') }}
               </div>
               <div class="input">
-                <el-input
-                  v-model="dialogObj.invalidDate"
-                  class="input"
-                  placeholder="yyyy-MM-dd"
-                />
+                <el-input v-model="dialogObj.invalidDate" class="input" placeholder="yyyy-MM-dd" />
               </div>
             </div>
           </div>
@@ -298,15 +302,19 @@
               </div>
             </h4>
             <div class="table">
-              <el-table
-                :data="orgList"
-                border
-                height="200"
-                style="width: 100%"
-              >
-                <el-table-column :label="$t('comm.operation')" width="70" :style="{textAlign: 'center'}">
+              <el-table :data="orgList" border height="200" style="width: 100%">
+                <el-table-column
+                  :label="$t('comm.operation')"
+                  width="70"
+                  :style="{textAlign: 'center'}"
+                >
                   <template slot-scope="scope">
-                    <el-button size="mini" icon="el-icon-delete" type="danger" @click="HandleOrgDelete(scope.row, scope.$index)" />
+                    <el-button
+                      size="mini"
+                      icon="el-icon-delete"
+                      type="danger"
+                      @click="HandleOrgDelete(scope.row, scope.$index)"
+                    />
                   </template>
                 </el-table-column>
                 <el-table-column :label="$t('admin.user.organization')" align="center">
@@ -342,15 +350,19 @@
               </div>
             </h4>
             <div class="table">
-              <el-table
-                :data="roleList"
-                border
-                height="200"
-                style="width: 100%"
-              >
-                <el-table-column :label="$t('comm.operation')" width="70" :style="{textAlign: 'center'}">
+              <el-table :data="roleList" border height="200" style="width: 100%">
+                <el-table-column
+                  :label="$t('comm.operation')"
+                  width="70"
+                  :style="{textAlign: 'center'}"
+                >
                   <template slot-scope="scope">
-                    <el-button size="mini" icon="el-icon-delete" type="danger" @click="roleHandleDelete(scope.row, scope.$index)" />
+                    <el-button
+                      size="mini"
+                      icon="el-icon-delete"
+                      type="danger"
+                      @click="roleHandleDelete(scope.row, scope.$index)"
+                    />
                   </template>
                 </el-table-column>
                 <el-table-column :label="$t('admin.user.roleId')" prop="roleId" />
@@ -389,7 +401,7 @@
                 @node-click="handleNodeClick"
               />
             </div>
-          </div> -->
+        </div>-->
         <div class="box">
           <tissue-tree tree-type="department" @select="selectP" />
         </div>
@@ -439,22 +451,10 @@
                 style="width: 100%"
                 @select="handleSelect"
               >
-                <el-table-column
-                  type="selection"
-                  width="55"
-                />
-                <el-table-column
-                  prop="id"
-                  :label="$t('admin.user.roleId')"
-                />
-                <el-table-column
-                  prop="roleName"
-                  :label="$t('admin.user.roleName')"
-                />
-                <el-table-column
-                  prop="roleDesc"
-                  :label="$t('admin.user.desc')"
-                />
+                <el-table-column type="selection" width="55" />
+                <el-table-column prop="id" :label="$t('admin.user.roleId')" />
+                <el-table-column prop="roleName" :label="$t('admin.user.roleName')" />
+                <el-table-column prop="roleDesc" :label="$t('admin.user.desc')" />
               </el-table>
             </div>
           </div>
@@ -468,14 +468,14 @@
   </div>
 </template>
 <script>
-import { search } from '@/mixins/search-params'
-import { getUserList } from '@/api/admin/user-api.js'
-import { userSave, orgUserEdit } from '@/api/admin/org-api.js'
-import { getAllRole } from '@/api/admin/role-api.js'
-import { formValidator } from '@/mixins/form-validator.js'
-import DictSelect from '@/components/DictSelect'
-import DictWrite from '@/components/DictWrite'
-import TissueTree from '@/components/TissueTree.vue'
+import { search } from "@/mixins/search-params";
+import { getUserList } from "@/api/admin/user-api.js";
+import { userSave, orgUserEdit } from "@/api/admin/org-api.js";
+import { getAllRole } from "@/api/admin/role-api.js";
+import { formValidator } from "@/mixins/form-validator.js";
+import DictSelect from "@/components/DictSelect";
+import DictWrite from "@/components/DictWrite";
+import TissueTree from "@/components/TissueTree.vue";
 export default {
   components: {
     DictSelect,
@@ -486,16 +486,16 @@ export default {
   data() {
     return {
       isLoading: true,
-      activeNames: ['1'],
-      dialogType: 'create',
+      activeNames: ["1"],
+      dialogType: "create",
       showDialog: false,
       orgChoseDilog: false,
       userList: [],
       roleChoseDilog: false,
       roleChoseData: [],
       allRoleList: [],
-      searchId: '',
-      searchName: '',
+      searchId: "",
+      searchName: "",
       // 分页插件数据
       searchParam: {
         paging: true,
@@ -503,192 +503,204 @@ export default {
         pageSize: 10, // 每页条数
         totalRecord: null, // 总条数
         params: {
-          userName: '',
-          nickName: ''
+          userName: "",
+          nickName: ""
         }
       },
       dialogObj: {
-        nickName: '',
-        userName: '',
-        password: '',
-        rePassword: '',
-        corpUserId: '',
-        mobile: '',
-        authMode: '',
-        language: '',
-        ldapUserId: '',
-        email: '',
-        deleteFlag: '',
-        isLocked: '',
-        invalidDate: ''
+        nickName: "",
+        userName: "",
+        password: "",
+        rePassword: "",
+        corpUserId: "",
+        mobile: "",
+        authMode: "",
+        language: "",
+        ldapUserId: "",
+        email: "",
+        deleteFlag: "",
+        isLocked: "",
+        invalidDate: ""
       },
       orgList: [],
       roleList: [],
       orgChoseData: [],
-      orgChoseIndex: '',
+      orgChoseIndex: "",
       defaultProps: {
-        children: 'children',
-        label: 'name'
+        children: "children",
+        label: "name"
       },
       searchRoleList: [],
       multipleSelection: []
-    }
+    };
   },
   created() {
-    this.fetchData()
+    this.fetchData();
   },
   methods: {
     selectP(data) {
-      this.selectData = data
+      this.selectData = data;
     },
     async fetchData() {
-      const res = await getUserList(this.searchParam)
+      const res = await getUserList(this.searchParam);
       if (res && res.success) {
-        const { results, pageNo, totalRecord } = res.datas.searchResult
-        this.userList = results
-        this.searchParam.pageNo = pageNo
-        this.searchParam.totalRecord = totalRecord
+        const { results, pageNo, totalRecord } = res.datas.searchResult;
+        this.userList = results;
+        this.searchParam.pageNo = pageNo;
+        this.searchParam.totalRecord = totalRecord;
       }
-      this.tableDolayout(this.$refs['table'])
-      this.isLoading = false
+      this.tableDolayout(this.$refs["table"]);
+      this.isLoading = false;
     },
     resetTable(params) {
       for (var i in params) {
-        params[i] = ''
+        params[i] = "";
       }
     },
     handleCreate() {
-      this.clearErrorMessage('user')
-      this.dialogObj = {}
-      this.orgList = []
-      this.roleList = []
-      this.dialogType = 'create'
-      this.showDialog = true
+      this.clearErrorMessage("user");
+      this.dialogObj = {};
+      this.orgList = [];
+      this.roleList = [];
+      this.dialogType = "create";
+      this.showDialog = true;
     },
     handleEdit(data, index) {
-      this.clearErrorMessage('user')
-      this.resetTable(this.dialogObj)
-      this.orgList = []
-      this.roleList = []
-      this.dialogType = 'edit'
+      this.clearErrorMessage("user");
+      this.resetTable(this.dialogObj);
+      this.orgList = [];
+      this.roleList = [];
+      this.dialogType = "edit";
       orgUserEdit(data.id).then(res => {
-        const user = res.datas.user
-        const userOrgs = res.datas.userOrgs
-        const userRoles = res.datas.userRoles
-        this.dialogObj.id = user.id
-        this.dialogObj.nickName = user.nickName
-        this.dialogObj.userName = user.userName
-        this.dialogObj.corpUserId = user.corpUserId
-        this.dialogObj.mobile = user.mobile
-        this.dialogObj.authMode = user.authMode
-        this.dialogObj.language = user.language
-        this.dialogObj.ldapUserId = user.ldapUserId
-        this.dialogObj.email = user.email
-        this.dialogObj.deleteFlag = user.deleteFlag + ''
-        this.dialogObj.isLocked = user.isLocked + ''
-        this.dialogObj.invalidDate = user.invalidDate
+        const user = res.datas.user;
+        const userOrgs = res.datas.userOrgs;
+        const userRoles = res.datas.userRoles;
+        this.dialogObj.id = user.id;
+        this.dialogObj.nickName = user.nickName;
+        this.dialogObj.userName = user.userName;
+        this.dialogObj.corpUserId = user.corpUserId;
+        this.dialogObj.mobile = user.mobile;
+        this.dialogObj.authMode = user.authMode;
+        this.dialogObj.language = user.language;
+        this.dialogObj.ldapUserId = user.ldapUserId;
+        this.dialogObj.email = user.email;
+        this.dialogObj.deleteFlag = user.deleteFlag + "";
+        this.dialogObj.isLocked = user.isLocked + "";
+        this.dialogObj.invalidDate = user.invalidDate;
         userOrgs.forEach(data => {
           this.orgList.push({
             orgId: data.org_id,
             orgName: data.org_name,
             positionCode: data.position_code,
-            isMain: data.is_main + ''
-          })
-        })
+            isMain: data.is_main + ""
+          });
+        });
         userRoles.forEach(data => {
           this.roleList.push({
             roleId: data.role_id,
             roleName: data.role_name
-          })
-        })
-        this.showDialog = true
-      })
+          });
+        });
+        this.showDialog = true;
+      });
     },
     checkPassword() {
       if (this.dialogObj.password === this.dialogObj.rePassword) {
-        this.clearErrorMessage('userRePassword')
-        return true
+        this.clearErrorMessage("userRePassword");
+        return true;
       } else {
-        this.setValidatorMessage('userRePassword', this.$t('comm.msg6'))
-        return false
+        this.setValidatorMessage("userRePassword", this.$t("comm.msg6"));
+        return false;
       }
     },
     handleSave() {
-      if (!this.validatorAll('user') | !this.checkPassword()) {
-        return false
+      if (!this.validatorAll("user") | !this.checkPassword()) {
+        return false;
       }
-      const item = this.orgList
+      const item = this.orgList;
       if (!item || item.length === 0) {
-        const roleItem = this.roleList
+        const roleItem = this.roleList;
         if (!roleItem || roleItem.length === 0) {
           this.$message({
-            type: 'error',
-            message: this.$t('comm.msg7')
-          })
+            type: "error",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg7")
+          });
         } else {
-          this.dialogObj.userOrgs = this.orgList
-          this.dialogObj.userRoles = this.roleList
+          this.dialogObj.userOrgs = this.orgList;
+          this.dialogObj.userRoles = this.roleList;
           userSave(this.dialogObj).then(res => {
             if (res && res.success) {
-              this.showDialog = false
-              this.search()
+              this.showDialog = false;
+              this.search();
             }
-          })
+          });
         }
       } else {
-        let checkFlag = true
-        let mainPostionCnt = 0
+        let checkFlag = true;
+        let mainPostionCnt = 0;
         for (var i = 0; i < item.length; i++) {
           if (!item[i].orgId || !item[i].orgName) {
             this.$message({
-              type: 'error',
-              message: this.$t('comm.msg8')
-            })
-            checkFlag = false
-            break
+              type: "error",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg8")
+            });
+            checkFlag = false;
+            break;
           }
           if (!item[i].positionCode) {
             this.$message({
-              type: 'error',
-              message: this.$t('comm.msg9')
-            })
-            checkFlag = false
-            break
+              type: "error",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg9")
+            });
+            checkFlag = false;
+            break;
           }
           if (!item[i].isMain) {
             this.$message({
-              type: 'error',
-              message: this.$t('comm.msg25')
-            })
-            checkFlag = false
-            break
+              type: "error",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg25")
+            });
+            checkFlag = false;
+            break;
           }
-          if (item[i].isMain === '1') {
-            mainPostionCnt++
+          if (item[i].isMain === "1") {
+            mainPostionCnt++;
           }
         }
         if (checkFlag) {
           if (mainPostionCnt !== 1) {
             this.$message({
-              type: 'error',
-              message: this.$t('comm.msg10')
-            })
+              type: "error",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+              message: this.$t("comm.msg10")
+            });
           } else {
-            const roleItem = this.roleList
+            const roleItem = this.roleList;
             if (!roleItem || roleItem.length === 0) {
               this.$message({
-                type: 'error',
-                message: this.$t('comm.msg7')
-              })
+                type: "error",
+                iconClass: "iconfont icongantanhao_icon",
+                customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+                message: this.$t("comm.msg7")
+              });
             } else {
-              this.dialogObj.userOrgs = this.orgList
-              this.dialogObj.userRoles = this.roleList
+              this.dialogObj.userOrgs = this.orgList;
+              this.dialogObj.userRoles = this.roleList;
               userSave(this.dialogObj).then(res => {
                 if (res && res.success) {
-                  this.showDialog = false
-                  this.search()
+                  this.showDialog = false;
+                  this.search();
                 }
-              })
+              });
             }
           }
         }
@@ -696,214 +708,249 @@ export default {
     },
     addOrgRows() {
       const newRow = {
-        orgId: '',
-        orgName: '',
-        positionCode: '',
-        isMain: ''
-      }
-      this.orgList = [...this.orgList, newRow]
+        orgId: "",
+        orgName: "",
+        positionCode: "",
+        isMain: ""
+      };
+      this.orgList = [...this.orgList, newRow];
     },
     HandleOrgDelete(row, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.orgList.splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: this.$t('comm.msg2')
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.orgList.splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg2")
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     orgChose(index) {
-      this.orgChoseIndex = index
-      this.orgChoseDilog = true
+      this.orgChoseIndex = index;
+      this.orgChoseDilog = true;
     },
     handleNodeClick(data) {
-      console.log(data)
-      if (data.id === '_1') {
+      console.log(data);
+      if (data.id === "_1") {
         this.$message({
-          type: 'error',
-          message: this.$t('comm.msg22')
-        })
-        return false
+          type: "error",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg22")
+        });
+        return false;
       }
-      const repeat = this.orgList.filter(item => item.orgId === data.id)
+      const repeat = this.orgList.filter(item => item.orgId === data.id);
       if (repeat.length > 0) {
         this.$message({
-          type: 'error',
-          message: this.$t('comm.msg23')
-        })
-        return false
+          type: "error",
+          iconClass: "iconfont icongantanhao_icon",
+          customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+          message: this.$t("comm.msg23")
+        });
+        return false;
       }
-      this.orgList[this.orgChoseIndex].orgId = data.id
-      this.orgList[this.orgChoseIndex].orgName = data.name
-      this.orgChoseDilog = false
+      this.orgList[this.orgChoseIndex].orgId = data.id;
+      this.orgList[this.orgChoseIndex].orgName = data.name;
+      this.orgChoseDilog = false;
     },
     async roleChose() {
       if (this.allRoleList.length === 0) {
-        const res = await getAllRole()
-        this.allRoleList = res.datas.allRole
+        const res = await getAllRole();
+        this.allRoleList = res.datas.allRole;
       }
-      this.allRoleList.forEach((item) => { item.checkFlag = false })
-      this.searchId = ''
-      this.searchName = ''
-      this.roleChoseData = [...this.allRoleList]
+      this.allRoleList.forEach(item => {
+        item.checkFlag = false;
+      });
+      this.searchId = "";
+      this.searchName = "";
+      this.roleChoseData = [...this.allRoleList];
       this.$nextTick(function() {
         this.roleList.forEach(obj => {
-          const roles = this.roleChoseData.filter(item => item.id === obj.roleId)
+          const roles = this.roleChoseData.filter(
+            item => item.id === obj.roleId
+          );
           if (roles.length > 0) {
-            this.$refs.roleChoseMultipleTable.toggleRowSelection(roles[0], true)
-            roles[0].checkFlag = true
+            this.$refs.roleChoseMultipleTable.toggleRowSelection(
+              roles[0],
+              true
+            );
+            roles[0].checkFlag = true;
           }
-        })
-      })
-      this.roleChoseDilog = true
+        });
+      });
+      this.roleChoseDilog = true;
     },
     roleHandlePageChange(currentPage) {
-      this.roleSearchParam.pageNo = currentPage
-      this.roleChose()
+      this.roleSearchParam.pageNo = currentPage;
+      this.roleChose();
     },
     roleHandleSizeChange(val) {
-      this.roleSearchParam.pageSize = val
-      this.roleSearchParam.pageNo = 1
-      this.roleChose()
+      this.roleSearchParam.pageSize = val;
+      this.roleSearchParam.pageNo = 1;
+      this.roleChose();
     },
     rolesSelect() {
-      const role = []
+      const role = [];
       this.allRoleList.forEach(obj => {
         if (obj.checkFlag) {
-          role.push({ roleId: obj.id, roleName: obj.roleName })
+          role.push({ roleId: obj.id, roleName: obj.roleName });
         }
-      })
-      this.roleList = role
-      this.roleChoseDilog = false
+      });
+      this.roleList = role;
+      this.roleChoseDilog = false;
     },
     roleHandleDelete(data, index) {
-      this.$confirm(this.$t('comm.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(() => {
-        this.roleList.splice(index, 1)
-        this.$message({
-          type: 'success',
-          message: this.$t('comm.msg2')
-        })
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      this.$confirm(this.$t("comm.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(() => {
+          this.roleList.splice(index, 1);
+          this.$message({
+            type: "success",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg2")
+          });
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass: localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     selectRole() {
       this.roleChoseData = this.allRoleList.filter(item => {
         // 筛选条件都为空
         if (!this.searchId && !this.searchName) {
-          return true
+          return true;
         } else {
-          let flag = true
-          if (this.searchId && item.id.toLowerCase().indexOf(this.searchId.toLowerCase()) < 0) {
-            flag = false
+          let flag = true;
+          if (
+            this.searchId &&
+            item.id.toLowerCase().indexOf(this.searchId.toLowerCase()) < 0
+          ) {
+            flag = false;
           }
-          if (this.searchName && item.roleName.toLowerCase().indexOf(this.searchName.toLowerCase()) < 0) {
-            flag = false
+          if (
+            this.searchName &&
+            item.roleName.toLowerCase().indexOf(this.searchName.toLowerCase()) <
+              0
+          ) {
+            flag = false;
           }
-          return flag
+          return flag;
         }
-      })
+      });
       this.$nextTick(function() {
         this.roleChoseData.forEach(obj => {
           if (obj.checkFlag) {
-            this.$refs.roleChoseMultipleTable.toggleRowSelection(obj, true)
+            this.$refs.roleChoseMultipleTable.toggleRowSelection(obj, true);
           }
-        })
-      })
+        });
+      });
     },
     handleSelect(selection, row) {
-      const roles = selection.filter(item => item.id === row.id)
+      const roles = selection.filter(item => item.id === row.id);
       if (roles.length > 0) {
-        row.checkFlag = true
+        row.checkFlag = true;
       } else {
-        row.checkFlag = false
+        row.checkFlag = false;
       }
     }
   }
-}
+};
 </script>
 <style lang="scss" scoped>
-  .personnel {
-    .info {
+.personnel {
+  .info {
+    display: flex;
+    flex-wrap: wrap;
+    & > div {
+      width: 50%;
       display: flex;
-      flex-wrap: wrap;
-      &>div {
-        width: 50%;
-        display: flex;
-        box-sizing: border-box;
-        padding: 10px 0;
-        padding-right: 50px;
-        align-items: center;
-        .title {
-          width: 120px;
-          font-size: 14px;
-          font-weight: 700;
-        }
-        .input {
-          flex: 1;
-        }
-      }
-    }
-    h4 {
-      height: 30px;
-      line-height: 30px;
-      font-size: 16px;
-      border-bottom: 1px dashed #ccc;
-      color: rgb(50, 50, 50);
-      margin-bottom: 10px;
-      padding: 10px 0;
-      position: relative;
-      // color: #000;
-      .add_row {
-        position: absolute;
-        right: 0;
-        bottom: 10px;
-        border-radius: 6px;
-        // border: 1px solid #ccc;
-        cursor: pointer;
-        font-size: 12px;
-        width: 100px;
-        height: 30px;
-        line-height: 30px;
-        text-align: center;
-        background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
-        color: #fff;
-        &:hover {
-          background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
-        }
-      }
-    }
-    .affiliation,.role {
-      width: 80%;
-    }
-    .btn {
-      width: 80%;
       box-sizing: border-box;
-      padding-left: 30px;
-      margin-top: 10px;
+      padding: 10px 0;
+      padding-right: 50px;
+      align-items: center;
+      .title {
+        width: 120px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+      .input {
+        flex: 1;
+      }
     }
   }
-      .orgChoseDilog {
-      .box {
-        height: 300px;
-        overflow: auto;
-        background-color: #fff;
+  h4 {
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    border-bottom: 1px dashed #ccc;
+    color: rgb(50, 50, 50);
+    margin-bottom: 10px;
+    padding: 10px 0;
+    position: relative;
+    // color: #000;
+    .add_row {
+      position: absolute;
+      right: 0;
+      bottom: 10px;
+      border-radius: 6px;
+      // border: 1px solid #ccc;
+      cursor: pointer;
+      font-size: 12px;
+      width: 100px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background-image: linear-gradient(rgb(52, 165, 248), rgb(8, 142, 240));
+      color: #fff;
+      &:hover {
+        background-image: linear-gradient(rgb(42, 155, 238), rgb(8, 142, 240));
       }
     }
+  }
+  .affiliation,
+  .role {
+    width: 80%;
+  }
+  .btn {
+    width: 80%;
+    box-sizing: border-box;
+    padding-left: 30px;
+    margin-top: 10px;
+  }
+}
+.orgChoseDilog {
+  .box {
+    height: 300px;
+    overflow: auto;
+    background-color: #fff;
+  }
+}
 </style>

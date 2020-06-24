@@ -2,10 +2,12 @@
   <div class="home">
     <aside :class="isCollapse ? 'collapse' : ''">
       <div class="collapse" :class="isCollapse ? 'iscollapse' : '' ">
-        <span class="circle-btn btn-default-color" @click="changeCollapse"><i class="iconfont" :class="isCollapse ? 'iconyousuojin' : 'iconzuosuojin' " /></span>
+        <span class="circle-btn btn-default-color" @click="changeCollapse">
+          <i class="iconfont" :class="isCollapse ? 'iconyousuojin' : 'iconzuosuojin' " />
+        </span>
       </div>
       <div class="logo" @click="$router.push('/');handleHomeClick()">
-        <img :src="isCollapse ? logo2 : logo">
+        <img :src="isCollapse ? logo2 : logo" />
       </div>
 
       <el-scrollbar class="menu-scrollLeft">
@@ -16,14 +18,26 @@
             :default-openeds="openeds"
             @open="handleopen"
             @select="handleselect"
-            :default-active="reURL" 
+            :default-active="reURL"
           >
             <!-- 导航菜单树组件，动态加载菜单 -->
             <div v-if="theme==='Light'">
-              <Menu-Tree-Blue v-for="item in menuList" :key="item.id" :menu="item" :collapse="isCollapse" @show="handOpen" />
+              <Menu-Tree-Blue
+                v-for="item in menuList"
+                :key="item.id"
+                :menu="item"
+                :collapse="isCollapse"
+                @show="handOpen"
+              />
             </div>
             <div v-else>
-              <Menu-Tree v-for="item in menuList" :key="item.id" :menu="item" :collapse="isCollapse" @show="handOpen" />
+              <Menu-Tree
+                v-for="item in menuList"
+                :key="item.id"
+                :menu="item"
+                :collapse="isCollapse"
+                @show="handOpen"
+              />
             </div>
           </el-menu>
         </div>
@@ -36,11 +50,14 @@
             <span class="circle-btn home-icon btn-light-color">
               <i v-if="theme === 'Light'" class="iconfont icontianchongxing-" />
               <i v-else class="iconfont iconshouye" />
-            </span> {{ $t('comm.home') }}
+            </span>
+            {{ $t('comm.home') }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to='{path:+item}'>
-            {{ item.resName }}
-          </el-breadcrumb-item>
+          <el-breadcrumb-item
+            v-for="item in breadcrumbItems"
+            :key="item.id"
+            :to="{path:+item}"
+          >{{ item.resName }}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <div class="userInfo">
@@ -55,7 +72,11 @@
               <i class="iconfont iconai-arrow-down" />
             </span>
           </span>
-          <el-dropdown-menu slot="dropdown" class="userDropDwon" :class="theme=='Light'? 'blueDwon':' '">
+          <el-dropdown-menu
+            slot="dropdown"
+            class="userDropDwon"
+            :class="theme=='Light'? 'blueDwon':' '"
+          >
             <el-dropdown-item @click.native="handleChangePasswordOpenClick">
               <i class="iconfont iconxiugaimima" />
               <span>{{ $t('comm.changePassword') }}</span>
@@ -75,17 +96,24 @@
       <div class="language-info">
         <el-dropdown trigger="click" placement="bottom">
           <span class="el-dropdown-link circle-btn btn-light-color language-icon">
-            <span class="language-text"> {{ language }}</span>
+            <span class="language-text">{{ language }}</span>
           </span>
-          <el-dropdown-menu slot="dropdown" class="languageDropDwon" :class="theme=='Light'? 'blueDwon':' '">
+          <el-dropdown-menu
+            slot="dropdown"
+            class="languageDropDwon"
+            :class="theme=='Light'? 'blueDwon':' '"
+          >
             <el-dropdown-item @click.native="onchangeLanguage('Cn')">
-              <img src="@/assets/images/language/cn.png"><span>中文</span>
+              <img src="@/assets/images/language/cn.png" />
+              <span>中文</span>
             </el-dropdown-item>
             <el-dropdown-item @click.native="onchangeLanguage('En')">
-              <img src="@/assets/images/language/en.png"><span>English</span>
+              <img src="@/assets/images/language/en.png" />
+              <span>English</span>
             </el-dropdown-item>
             <el-dropdown-item @click.native="onchangeLanguage('Jp')">
-              <img src="@/assets/images/language/jp.png"><span>にほんご</span>
+              <img src="@/assets/images/language/jp.png" />
+              <span>にほんご</span>
             </el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -95,13 +123,13 @@
           <span class="el-dropdown-link circle-btn btn-light-color theme-icon">
             <i class="iconfont iconyanse" />
           </span>
-          <el-dropdown-menu slot="dropdown" class="themeDropDwon" :class="theme=='Light'? 'blueDwon':' '">
-            <el-dropdown-item @click.native="onchangeTheme('Light')">
-              白底
-            </el-dropdown-item>
-            <el-dropdown-item @click.native="onchangeTheme('Dark')">
-              黑底
-            </el-dropdown-item>
+          <el-dropdown-menu
+            slot="dropdown"
+            class="themeDropDwon"
+            :class="theme=='Light'? 'blueDwon':' '"
+          >
+            <el-dropdown-item @click.native="onchangeTheme('Light')">白底</el-dropdown-item>
+            <el-dropdown-item @click.native="onchangeTheme('Dark')">黑底</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       </div>
@@ -114,9 +142,7 @@
       </transition>
     </div>
     <el-backtop target=".scroll-left .el-scrollbar__wrap" :bottom="140" :right="30">
-      <div
-        class="circle-big-btn btn-light-color"
-      >
+      <div class="circle-big-btn btn-light-color">
         <i class="iconfont iconicon3" />
       </div>
     </el-backtop>
@@ -133,8 +159,20 @@
             {{ $t('comm.nowPassword') }}
           </div>
           <div class="input">
-            <el-input v-model="oldPassword" :placeholder="$t('comm.nowPassword')" class="input" type="password" show-password @blur="validator('oldPassword')" />
-            <span ref="oldPassword" data-roles="required" :data-value="oldPassword" class="message" />
+            <el-input
+              v-model="oldPassword"
+              :placeholder="$t('comm.nowPassword')"
+              class="input"
+              type="password"
+              show-password
+              @blur="validator('oldPassword')"
+            />
+            <span
+              ref="oldPassword"
+              data-roles="required"
+              :data-value="oldPassword"
+              class="message"
+            />
           </div>
         </div>
         <div class="flex1">
@@ -143,8 +181,21 @@
             {{ $t('comm.newPassword') }}
           </div>
           <div class="input">
-            <el-input v-model="newPassword" :placeholder="$t('comm.newPassword')" class="input" type="password" maxlength="20" show-password @blur="validator('newPassword')" />
-            <span ref="newPassword" data-roles="required,password" :data-value="newPassword" class="message" />
+            <el-input
+              v-model="newPassword"
+              :placeholder="$t('comm.newPassword')"
+              class="input"
+              type="password"
+              maxlength="20"
+              show-password
+              @blur="validator('newPassword')"
+            />
+            <span
+              ref="newPassword"
+              data-roles="required,password"
+              :data-value="newPassword"
+              class="message"
+            />
           </div>
         </div>
         <div class="flex1">
@@ -153,14 +204,31 @@
             {{ $t('comm.cPassword') }}
           </div>
           <div class="input">
-            <el-input v-model="reNewPassword" :placeholder="$t('comm.cPassword')" class="input" type="password" maxlength="20" show-password @blur="validator('reNewPassword')" />
-            <span ref="reNewPassword" data-roles="required,password" :data-value="reNewPassword" class="message" />
+            <el-input
+              v-model="reNewPassword"
+              :placeholder="$t('comm.cPassword')"
+              class="input"
+              type="password"
+              maxlength="20"
+              show-password
+              @blur="validator('reNewPassword')"
+            />
+            <span
+              ref="reNewPassword"
+              data-roles="required,password"
+              :data-value="reNewPassword"
+              class="message"
+            />
           </div>
         </div>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="resetDialog = false">{{ $t('comm.cancel') }}</el-button>
-        <el-button type="primary" :disabled="!validatorState" @click="handleChangePasswordOkClick">{{ $t('comm.certain') }}</el-button>
+        <el-button
+          type="primary"
+          :disabled="!validatorState"
+          @click="handleChangePasswordOkClick"
+        >{{ $t('comm.certain') }}</el-button>
       </span>
     </el-dialog>
 
@@ -191,25 +259,29 @@
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="resetOrg = false">{{ $t('comm.cancel') }}</el-button>
-        <el-button type="primary" :disabled="!validatorState" @click="handleChangeOrgOkClick">{{ $t('comm.certain') }}</el-button>
+        <el-button
+          type="primary"
+          :disabled="!validatorState"
+          @click="handleChangeOrgOkClick"
+        >{{ $t('comm.certain') }}</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapActions, mapMutations } from 'vuex'
-import { saveActiveMenu } from '@/utils/storage'
-import MenuTree from '@/components/MenuTree'
-import MenuTreeBlue from '@/components/MenuTreeBlue'
+import { mapGetters, mapActions, mapMutations } from "vuex";
+import { saveActiveMenu } from "@/utils/storage";
+import MenuTree from "@/components/MenuTree";
+import MenuTreeBlue from "@/components/MenuTreeBlue";
 // import { lang } from '@/mixins/lang'
-import { formValidator } from '@/mixins/form-validator.js'
-import { changePassword, changeOrg } from '@/api/login'
+import { formValidator } from "@/mixins/form-validator.js";
+import { changePassword, changeOrg } from "@/api/login";
 // import { resetRouter } from '@/router/index'
 
 export default {
-  name: 'Home',
-  inject: ['reload'],
+  name: "Home",
+  inject: ["reload"],
   components: {
     MenuTree,
     MenuTreeBlue
@@ -217,32 +289,29 @@ export default {
   mixins: [formValidator],
   data() {
     return {
-      theme: 'Light',
-      logo: require('@/assets/images/logo.png'),
-      logo2: require('@/assets/images/logo2.png'),
-      language: 'Cn',
+      theme: localStorage.getItem("theme") !== "Dark" ? "Light" : "",
+      logo: require("@/assets/images/logo.png"),
+      logo2: require("@/assets/images/logo2.png"),
+      language: "Cn",
       openeds: [],
       resetDialog: false,
       // 菜单折起状态
       isCollapse: false,
       breadcrumbItems: [],
       // 默认选中菜单
-      activeIndex: '',
-      oldPassword: '',
-      newPassword: '',
-      reNewPassword: '',
+      activeIndex: "",
+      oldPassword: "",
+      newPassword: "",
+      reNewPassword: "",
       // 组织切换用的变量
       resetOrg: false,
-      selectOrgId: '',
-      reURL: ''
-    }
+      selectOrgId: "",
+      reURL: "",
+      isShow: false
+    };
   },
   computed: {
-    ...mapGetters([
-      'userInfo',
-      'userOrgList',
-      'menuList'
-    ]),
+    ...mapGetters(["userInfo", "userOrgList", "menuList"])
     // defaultActive() {
     //         return '/' + this.$route.path.split('/').reverse()[0];
     //     }
@@ -263,190 +332,216 @@ export default {
       //   // const menu = newValue.meta.seqNo.filter(menu => menu.index === id)
       //   // this.breadcrumbItems.push(menu[0])
       //   // this.$nextTick(()=>{
-
       //   // })
       //   console.log(' this.breadcrumbItems', this.breadcrumbItems)
       // }
     }
   },
-  created() {
-  },
+  created() {},
   mounted() {
-    console.log('this.$route.router', this.$route)
-    this.theme = localStorage.getItem('theme') || 'Light'
-    const menuIndex = window.sessionStorage.getItem('activeMenu')
-    document.getElementById('app').setAttribute('data-theme', this.theme)
+    console.log("this.$route.router", this.$route);
+    this.theme = localStorage.getItem("theme") || "Light";
+    const menuIndex = window.sessionStorage.getItem("activeMenu");
+    document.getElementById("app").setAttribute("data-theme", this.theme);
 
     if (menuIndex) {
-      this.activeIndex = menuIndex
-      this.breadcrumbItems = []
-      const seqNo = menuIndex.split(':')
-      this.getSelectedMenus(this.menuList, seqNo)
-      this.reURL = menuIndex
+      this.activeIndex = menuIndex;
+      this.breadcrumbItems = [];
+      const seqNo = menuIndex.split(":");
+      this.getSelectedMenus(this.menuList, seqNo);
+      this.reURL = menuIndex;
     }
   },
   methods: {
     // 切换主题
     onchangeTheme(item) {
-      document.getElementById('app').setAttribute('data-theme', item)
-      localStorage.setItem('theme', item)
-      this.reload()
+      document.getElementById("app").setAttribute("data-theme", item);
+      localStorage.setItem("theme", item);
+      this.reload();
     },
     onchangeLanguage(item) {
-      this.language = item
+      this.language = item;
     },
     // 改变菜单状态
     changeCollapse() {
-      this.isCollapse = !this.isCollapse
-      this.openeds = []
+      this.isCollapse = !this.isCollapse;
+      this.openeds = [];
       // this.activeIndex = null
       // this.$nextTick(() => {
       //   this.setCollapse(this.isCollapse)
       // })
     },
     handOpen() {
-      this.isCollapse = false
+      this.isCollapse = false;
     },
     handleopen() {
-      console.log('a')
-      this.isCollapse = false
+      console.log("a");
+      this.isCollapse = false;
     },
     handleselect(menuIndex) {
-      console.log(9999999, menuIndex)
-      saveActiveMenu(menuIndex)
-      this.activeIndex = menuIndex
-      this.breadcrumbItems = []
-      const seqNo = menuIndex.split(':')
-      this.getSelectedMenus(this.menuList, seqNo)
+      console.log(9999999, menuIndex);
+      saveActiveMenu(menuIndex);
+      this.activeIndex = menuIndex;
+      this.breadcrumbItems = [];
+      const seqNo = menuIndex.split(":");
+      this.getSelectedMenus(this.menuList, seqNo);
     },
     getSelectedMenus(menuList, seqNo) {
-      const id = seqNo.shift()
-      if (!id || id === 'null') {
-        return
+      const id = seqNo.shift();
+      if (!id || id === "null") {
+        return;
       }
-      const menu = menuList.filter(menu => menu.id === id)
-      this.breadcrumbItems.push(menu[0])
-      this.getSelectedMenus(menu[0].children, seqNo)
+      const menu = menuList.filter(menu => menu.id === id);
+      this.breadcrumbItems.push(menu[0]);
+      this.getSelectedMenus(menu[0].children, seqNo);
     },
     handleHomeClick() {
-      this.breadcrumbItems = []
+      this.breadcrumbItems = [];
     },
     handleChangeOrgOpenClick() {
-      this.$nextTick(function () {
-        this.clearErrorMessage()
-      })
+      this.$nextTick(function() {
+        this.clearErrorMessage();
+      });
 
       if (this.userOrgList !== undefined && this.userOrgList.length) {
-        this.selectOrgId = this.userOrgList[0].id
+        this.selectOrgId = this.userOrgList[0].id;
       }
-      this.resetOrg = true
+      this.resetOrg = true;
     },
     handleChangeOrgOkClick() {
       // 取得选择的组织名称
-      let changeOrgInfo = {}
-      changeOrgInfo = this.userOrgList.find((item) => { // 这里的chargingWorkNameList就是上面遍历的数据源
-        return item.id === this.selectOrgId
+      let changeOrgInfo = {};
+      changeOrgInfo = this.userOrgList.find(item => {
+        // 这里的chargingWorkNameList就是上面遍历的数据源
+        return item.id === this.selectOrgId;
         // 筛选出匹配数据，是对应数据的整个对象
-      })
+      });
       // console.debug(changeOrgInfo.fullName)
-      var msg = this.$t('home.msg6', { para0: changeOrgInfo.fullName })
-      this.$confirm(msg, this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(async () => {
-        this.resetOrg = false
-        const param = { newOrgId: this.selectOrgId }
-        const res = await changeOrg(param)
-        // console.log('change success')
-        // console.log(res)
-        if (res.success) {
-          // console.log('change res')
-          // 转移到home画面
-          this.$router.push('/')
-          this.loginInfoAction()
-          this.refreshDictAndClearStore()
-          this.breadcrumbItems = []
-        }
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('comm.msg1')
-        })
+      var msg = this.$t("home.msg6", { para0: changeOrgInfo.fullName });
+      this.$confirm(msg, this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(async () => {
+          this.resetOrg = false;
+          const param = { newOrgId: this.selectOrgId };
+          const res = await changeOrg(param);
+          // console.log('change success')
+          // console.log(res)
+          if (res.success) {
+            // console.log('change res')
+            // 转移到home画面
+            this.$router.push("/");
+            this.loginInfoAction();
+            this.refreshDictAndClearStore();
+            this.breadcrumbItems = [];
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass:
+              localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("comm.msg1")
+          });
+        });
     },
     handleChangePasswordOpenClick() {
-      this.oldPassword = ''
-      this.newPassword = ''
-      this.reNewPassword = ''
-      this.$nextTick(function () {
-        this.clearErrorMessage()
-      })
-      this.resetDialog = true
+      this.oldPassword = "";
+      this.newPassword = "";
+      this.reNewPassword = "";
+      this.$nextTick(function() {
+        this.clearErrorMessage();
+      });
+      this.resetDialog = true;
     },
     async handleChangePasswordOkClick() {
       if (!this.validatorAll()) {
-        return false
+        return false;
       }
       if (this.newPassword !== this.reNewPassword) {
-        this.setValidatorMessage('reNewPassword', this.$t('home.msg1'))
-        this.validatorState = false
-        return
+        this.setValidatorMessage("reNewPassword", this.$t("home.msg1"));
+        this.validatorState = false;
+        return;
       }
       if (this.newPassword === this.oldPassword) {
-        this.setValidatorMessage('newPassword', this.$t('home.msg2'))
-        this.validatorState = false
-        return
+        this.setValidatorMessage("newPassword", this.$t("home.msg2"));
+        this.validatorState = false;
+        return;
       }
       if (this.newPassword === this.userInfo.userName) {
-        this.setValidatorMessage('newPassword', this.$t('home.msg3'))
-        this.validatorState = false
-        return
+        this.setValidatorMessage("newPassword", this.$t("home.msg3"));
+        this.validatorState = false;
+        return;
       }
-      const param = { oldPassword: this.oldPassword, newPassword: this.newPassword }
-      const res = await changePassword(param)
+      const param = {
+        oldPassword: this.oldPassword,
+        newPassword: this.newPassword
+      };
+      const res = await changePassword(param);
       if (res.success) {
-        this.resetDialog = false
+        this.resetDialog = false;
       }
     },
-    // 退出登录
     logout() {
-      this.$confirm(this.$t('home.tip1'), this.$t('comm.tips'), {
-        confirmButtonText: this.$t('comm.certain'),
-        cancelButtonText: this.$t('comm.cancel'),
-        type: 'warning'
-      }).then(async () => {
-        const res = await this.logoutAction()
-        if (res && res.success) {
-          window.sessionStorage.clear()
-          this.$router.push('/login')
-          this.$message({
-            type: 'success',
-            message: this.$t('home.msg4')
-          })
-        } else {
-          this.$message({
-            type: 'error',
-            message: res.message
-          })
-        }
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: this.$t('home.msg5')
-        })
+      console.log();
+      this.$confirm(this.$t("home.tip1"), this.$t("comm.tips"), {
+        confirmButtonText: this.$t("comm.certain"),
+        cancelButtonText: this.$t("comm.cancel"),
+        type: "warning",
+        iconClass: "iconfont icongantanhao_icon",
+        customClass: localStorage.getItem("theme") == "Dark" ? "dark-message-box" : " "
       })
+        .then(async () => {
+          const res = await this.logoutAction();
+          if (res && res.success) {
+            window.sessionStorage.clear();
+            this.$router.push("/login");
+            this.$message({
+              type: "success",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass:
+                localStorage.getItem("theme") == "Dark"
+                  ? "dark-el-message"
+                  : " ",
+              message: this.$t("home.msg4")
+            });
+          } else {
+            this.$message({
+              type: "error",
+              iconClass: "iconfont icongantanhao_icon",
+              customClass:
+                localStorage.getItem("theme") == "Dark"
+                  ? "dark-el-message"
+                  : " ",
+              message: res.message
+            });
+          }
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            iconClass: "iconfont icongantanhao_icon",
+            customClass:
+              localStorage.getItem("theme") == "Dark" ? "dark-el-message" : " ",
+            message: this.$t("home.msg5")
+          });
+        });
     },
     ...mapMutations({
-      setCollapse: 'CHANGE_COLLAPSE'
+      setCollapse: "CHANGE_COLLAPSE"
     }),
     ...mapActions([
-      'logoutAction',
-      'loginInfoAction',
-      'refreshDictAndClearStore'
+      "logoutAction",
+      "loginInfoAction",
+      "refreshDictAndClearStore"
     ])
   }
-}
+};
 </script>
 <style lang="scss">
 html,
