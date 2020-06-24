@@ -264,13 +264,14 @@ export default {
       id: '',
       options: [],
       tableHeight: null,
-      scrollColr: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
+      // scrollColr: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
+      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
       selectData: '',
       orgAddOrEdit: '',
       itemEditVisible: false
     }
   },
-  created: function() {
+  created: function () {
     this.fetchData()
     console.log(this.theme)
   },
@@ -283,8 +284,8 @@ export default {
     // }
     var erd = elementResizeDetectorMaker()
     var that = this
-    erd.listenTo(that.$refs.apply, function(element) {
-      that.$nextTick(function() {
+    erd.listenTo(that.$refs.apply, function (element) {
+      that.$nextTick(function () {
         this.getScrollBar()
         this.getDragBar()
         this.changeTableHeight()
@@ -292,8 +293,8 @@ export default {
       })
     })
 
-    erd.listenTo(document.getElementsByClassName('dialog-drag')[0], function(element) {
-      that.$nextTick(function() {
+    erd.listenTo(document.getElementsByClassName('dialog-drag')[0], function (element) {
+      that.$nextTick(function () {
         this.getScrollBar()
         this.getDragBar()
         $('.el-table__body-wrapper').getNiceScroll().resize()
@@ -428,7 +429,7 @@ export default {
       this.multipleSelection = val
     },
     handleCreate() {
-      this.$router.push({ path: '/itm/add', params: { itemId: '-1', flag: '1' }})
+      this.$router.push({ path: '/itm/add', params: { itemId: '-1', flag: '1' } })
     },
     async handleEdit(val) {
       // 所选项目大于1个时，不可编辑
@@ -445,7 +446,7 @@ export default {
           selectItemId = obj.id
         })
       }
-      this.$router.push({ path: '/itm/edit', query: { itemId: selectItemId, flag: '2' }})
+      this.$router.push({ path: '/itm/edit', query: { itemId: selectItemId, flag: '2' } })
       // this.$router.push({ name: 'itmEdit', params: { itemId: selectItemId, flag: '2' }})
       // this.dialogKey++
       // this.dialogType = 'edit'
@@ -474,7 +475,7 @@ export default {
       // this.item = itemInfoRes.datas.itemSelectResult
       // this.dialogSearchVisible = true
       // this.$router.push({ path: '/itm/edit', query: { itemId: val, flag: '2' }})
-      this.$router.push({ name: 'itmEdit', params: { itemId: val, flag: '2' }})
+      this.$router.push({ name: 'itmEdit', params: { itemId: val, flag: '2' } })
     },
     async handleSave() {
       if (!this.validatorAll()) {
@@ -512,26 +513,26 @@ export default {
 </script>
 <style lang="scss" scoped>
 .abow_dialog {
-    display: flex;
-    justify-content: center;
-    align-items: Center;
+  display: flex;
+  justify-content: center;
+  align-items: Center;
+  overflow: hidden;
+  .el-dialog {
+    margin: 0 auto !important;
+    height: 90%;
     overflow: hidden;
-    .el-dialog {
-        margin: 0 auto !important;
-        height: 90%;
-        overflow: hidden;
-        .el-dialog__body {
-            position: absolute;
-            left: 0;
-            top: 54px;
-            bottom: 0;
-            right: 0;
-            padding: 0;
-            z-index: 1;
-            overflow: hidden;
-            overflow-y: auto;
-        }
+    .el-dialog__body {
+      position: absolute;
+      left: 0;
+      top: 54px;
+      bottom: 0;
+      right: 0;
+      padding: 0;
+      z-index: 1;
+      overflow: hidden;
+      overflow-y: auto;
     }
+  }
 }
 </style>
 
