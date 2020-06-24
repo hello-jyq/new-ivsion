@@ -2359,6 +2359,24 @@ font-size: 12px !important;
     #app[data-theme='Light'] .home .header .theme-info{
       line-height: 74px ;
     }
+    .slide-items-div-content{
+      cursor: pointer;
+    }
+    .slide-items-icon{
+      position: absolute;
+      top: -6px;
+    }
+    .slide-items-content{
+      position: absolute;
+      top: -25px;
+      left: 88px;
+    }
 }
 
+@media (max-width: 1919px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+    .slide-items-content{
+      top: -18px;
+      left: 62px;
+    } 
+}
  
