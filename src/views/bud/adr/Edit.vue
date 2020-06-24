@@ -153,7 +153,7 @@ import { getAdrDetail } from '@/api/bud/adr/adr-api.js'
 import $ from 'jquery'
 import 'jquery.nicescroll'
 // import department from './department'
-import child from './child'
+// import child from './child'
 export default {
   data() {
     return {
@@ -262,7 +262,7 @@ export default {
     },
     // 点击节点
     selectNode(target) {
-      console.log('target', child)
+      // console.log('target', child)
       if (target.children === null) {
         this.tableData.splice(0, this.tableData.length - 6)
       } else {

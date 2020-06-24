@@ -55,11 +55,9 @@
           <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to="{path:''+item.resUrl+''}">
             {{ item.resName!=''?item.resName:'' }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item
-            v-for="item in breadcrumbItems"
-            :key="item.id"
-            :to="{path:+item}"
-          >{{ item.resName }}</el-breadcrumb-item>
+           <el-breadcrumb-item>
+             {{routeNew.resName}}
+          </el-breadcrumb-item>
         </el-breadcrumb>
       </div>
       <div class="userInfo">
@@ -309,7 +307,8 @@ export default {
       resetOrg: false,
       selectOrgId: "",
       reURL: "",
-      isShow: false
+      isShow: false,
+      routeNew: ""
     };
   },
   computed: {
@@ -326,19 +325,21 @@ export default {
       if (newValue) {
         let routeNew = { 'resName': newValue.name, 'resUrl': newValue.path }
         let routeOld = { 'resName': oldValue.name, 'resUrl': oldValue.path }
+        this.routeNew = routeNew
         if (newValue.path === '/') {
           this.breadcrumbItems = ''
           // console.log(1111)
         } else {
-          this.breadcrumbItems.push(routeNew)
-          let aaa = Array.from(this.breadcrumbItems)
-          var arr = [];
-          for (var i = 0, len = aaa.length; i < len; i++) {
-            arr[i] = aaa[i];
-          }
-          arr.splice(1, 1)
-          this.breadcrumbItems = arr
-          console.log(9999, arr)
+          // this.breadcrumbItems.push(routeNew)
+          // let aaa = Array.from(this.breadcrumbItems)
+          // var arr = [];
+          // for (var i = 0, len = aaa.length; i < len; i++) {
+          //   arr[i] = aaa[i];
+          // }
+          // arr.splice(1, 1)
+          // this.breadcrumbItems = arr
+          // console.log(9999, arr)
+
           // if (this.breadcrumbItems.length >= 2 && localbreadcrumbItems.length === 3) {
           //   let newbreadcrumbItems = this.breadcrumbItems.slice(0, 2)
           //   // newbreadcrumbItems.push(routeNew)
@@ -356,7 +357,7 @@ export default {
       }
     }
   },
-  created() {},
+  created() { },
   mounted() {
     // console.log('this.$route.router', this.$route)
     this.theme = localStorage.getItem('theme') || 'Light'
@@ -419,7 +420,7 @@ export default {
       this.breadcrumbItems = [];
     },
     handleChangeOrgOpenClick() {
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage();
       });
 
@@ -474,7 +475,7 @@ export default {
       this.oldPassword = "";
       this.newPassword = "";
       this.reNewPassword = "";
-      this.$nextTick(function() {
+      this.$nextTick(function () {
         this.clearErrorMessage();
       });
       this.resetDialog = true;
