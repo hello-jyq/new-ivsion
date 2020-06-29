@@ -249,6 +249,10 @@ export default {
       this.tableData.map((item, index) => {
         item.id = index
       })
+      this.$nextTick(function() {
+        this.getScrollBar()
+        this.$refs.table.doLayout()
+      })
     },
     // 折叠面板每次只能展开一行
     expandSelect(row, expandedRows) {
