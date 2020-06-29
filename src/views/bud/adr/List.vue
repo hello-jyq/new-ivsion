@@ -1,25 +1,27 @@
 <template>
   <div :class="theme=='Light'?'apply advice-page apply-light':'apply advice-page'">
     <div class="search-left-box tree-org-user">
-      <el-scrollbar>
-        <el-tree
-          ref="tree"
-          :data="data"
-          node-key="id"
-          :highlight-current="false"
-          :default-expanded-keys="expandedKeys"
-          :expand-on-click-node="true"
-          @node-click="selectNode"
-        >
-          <template slot-scope="scope">
-            <div class="custom-tree-node">
-              <div class="tree_item">
-                {{ scope.data.name }}
+      <div class="tree-box-wrap">
+        <!-- <div> -->
+          <el-tree
+            ref="tree"
+            :data="data"
+            node-key="id"
+            :highlight-current="false"
+            :default-expanded-keys="expandedKeys"
+            :expand-on-click-node="true"
+            @node-click="selectNode"
+          >
+            <template slot-scope="scope">
+              <div class="custom-tree-node">
+                <div class="tree_item">
+                  {{ scope.data.name }}
+                </div>
               </div>
-            </div>
-          </template>
-        </el-tree>
-      </el-scrollbar>
+            </template>
+          </el-tree>
+        <!-- </div> -->
+      </div>
     </div>
     <div class="advice-content advice-index-content content">
       <ul class="advice-title-box">
@@ -166,6 +168,20 @@ export default {
     this.AdrList()
   },
   methods: {
+    getScrollTree() {
+      $('.tree-box-wrap').niceScroll({
+        cursorcolor: localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63',
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 99,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: true // 在加载事件时自动重置iframe大小
+      })
+    },
     async searchTree() {
       const res = await getAllOrgTree()
       if (res && res.success) {
@@ -178,6 +194,13 @@ export default {
 
             this.expandedKeys.push(items.id)
             this.activeName = items.name
+          })
+          this.$nextTick(function(){
+            let _this=this;
+            setTimeout(function(){
+              _this.getScrollTree();
+              $('.tree-box-wrap').getNiceScroll().resize()
+            },500)
           })
         }
       }
@@ -253,6 +276,11 @@ export default {
     selectNode(target) {
       console.log('target', target)
       this.activeName = target.name
+      let _this=this;
+      setTimeout(function(){
+        _this.getScrollTree();
+        $('.tree-box-wrap').getNiceScroll().resize()
+      },500)
     },
     // 禀议详情
     onDetail(id, name) {

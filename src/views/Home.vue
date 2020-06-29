@@ -52,12 +52,14 @@
               <i v-else class="iconfont iconshouye" />
             </span> {{ $t('comm.home') }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item v-for="item in breadcrumbItems" :key="item.id" :to="{path:''+item.resUrl+''}">
-            {{ item.resName!=''?item.resName:'' }}
-          </el-breadcrumb-item>
-           <el-breadcrumb-item>
-             {{routeNew.resName}}
-          </el-breadcrumb-item>
+          <template v-for="item in breadcrumbItems">
+            <el-breadcrumb-item :key="item.id" v-if="item.resUrl" :to="{path:'/'+item.resUrl}">
+              {{ item.resName!=''?item.resName:'' }} 
+            </el-breadcrumb-item>
+            <el-breadcrumb-item :key="item.id" v-else>
+              {{ item.resName!=''?item.resName:'' }}
+            </el-breadcrumb-item>
+          </template>
         </el-breadcrumb>
       </div>
       <div class="userInfo">
@@ -319,15 +321,15 @@ export default {
   },
   watch: {
     $route(newValue, oldValue) {
-      // console.log('newValue', newValue)
-      // console.log('oldValue', oldValue)
+      console.log('newValue', newValue)
+      console.log('oldValue', oldValue)
       // console.log(444, this.breadcrumbItems)
       if (newValue) {
         let routeNew = { 'resName': newValue.name, 'resUrl': newValue.path }
         let routeOld = { 'resName': oldValue.name, 'resUrl': oldValue.path }
         this.routeNew = routeNew
         if (newValue.path === '/') {
-          this.breadcrumbItems = ''
+          this.breadcrumbItems = []
           // console.log(1111)
         } else {
           // this.breadcrumbItems.push(routeNew)

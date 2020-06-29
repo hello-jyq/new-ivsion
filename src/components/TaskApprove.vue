@@ -86,7 +86,7 @@
               <span class="operation-text">{{ $t('bud.quo.return') }}</span>
             </li>
           </ul>
-    <el-dialog id="processDialog" :title="$t('component.taskApprove.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" width="80%">
+    <el-dialog id="processDialog" :title="$t('component.taskApprove.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" width="80%" top="0"  class="content-dialog-box  search-light">
       <process-detail :key="processInstId" :process-inst-id="processInstId" />
     </el-dialog>
   </div>
