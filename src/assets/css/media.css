@@ -1594,7 +1594,7 @@
     }
     .apply-light .search-check-light .dialog-drag .footer-box,
     .apply-light .search-light .dialog-drag .footer-box{
-      padding: 14px !important;
+      padding: 14px 14px 8px!important;
       margin: 0 14px 14px 14px !important;
     }
     .apply-light .search-light .dialog-drag .dialog-search-box{
@@ -1602,7 +1602,7 @@
     }
     .apply-light .search-light .dialog-drag .footer-box{
       min-height: 156px !important;
-      margin-bottom: 40px !important;
+      margin-bottom: 51px !important;
     }
     .apply-light .search-light .dialog-drag .drag-table-height{
       min-height: 250px !important;
@@ -1638,13 +1638,16 @@
       font-size: 12px!important;
     }
     .apply-light .content-dialog-box .el-dialog__body{
-      padding: 15px 50px 0 42px!important;
+      padding: 15px 20px 0 20px!important;
     }
     .apply-light .content-dialog-box .dialog-table-box{
       padding: 14px!important;
     }
     .apply-light .content-dialog-box .dialog-drag .el-dialog__body .dialog-btn-box{
       padding:0 14px 10px 14px!important;   
+    }
+    .apply-light .content-dialog-box .dialog-drag .el-dialog__body .middle-box .dialog-btn-box{
+      padding:0 0 10px 14px!important;
     }
     .apply-light .content-dialog-box .dialog-drag .el-dialog__body .dialog-table-box .handsontable th{
       height: 32px!important;
