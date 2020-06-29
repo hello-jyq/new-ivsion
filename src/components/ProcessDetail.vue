@@ -34,6 +34,7 @@
           <el-tooltip
             v-for="(item, index) in activityInfos"
             :key="index"
+            :disabled="!item.currentConfirm"
             effect="light"
             placement="bottom"
             popper-class="tips"
