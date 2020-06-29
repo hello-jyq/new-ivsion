@@ -261,7 +261,10 @@ export default {
         that.expands = []
         if (row) {
           that.expands.push(row.id)
-          this.getScrollBar()
+          this.$nextTick(function() {
+            this.getScrollBar()
+            this.$refs.table.doLayout()
+         })
         }
       } else {
         that.expands = []
