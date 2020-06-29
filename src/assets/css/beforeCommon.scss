@@ -252,7 +252,8 @@ body .el-table colgroup.gutter{
 }
 #processDialog{
   .el-dialog{
-    padding: 20px;
+    // padding: 20px;
+    margin-bottom: 0;
   }
   .el-dialog__title{
     color: #303133;

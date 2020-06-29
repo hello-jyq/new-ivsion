@@ -22,7 +22,29 @@
         </ul>
         <span slot="reference" class="tree-help"><i class="iconfont iconbangzhu" /></span>
       </el-popover>
-      <el-scrollbar>
+      <div class="tree-box-wrap">
+         <!-- <div> -->
+           <el-tree
+            ref="tree"
+            :data="data"
+            node-key="id"
+            :highlight-current="false"
+            :default-expanded-keys="expandedKeys"
+            :expand-on-click-node="true"
+            @node-click="selectNode"
+            @node-contextmenu="operation"
+          >
+            <template slot-scope="scope">
+              <div class="custom-tree-node">
+                <div class="tree_item">
+                  {{ scope.data.name }}
+                </div>
+              </div>
+            </template>
+          </el-tree>
+         <!-- </div> -->
+      </div>
+      <!-- <el-scrollbar>
     
        <div class="auto-tree">
           <el-scrollbar>
@@ -47,7 +69,7 @@
         </el-tree>
          </el-scrollbar>
          </div>
-      </el-scrollbar>
+      </el-scrollbar> -->
     </div>
     <div :class="theme=='Light'?'content  market-light approve-light':'content'">
       <el-scrollbar>
@@ -404,7 +426,10 @@ export default {
 
       this.getScrollBar()
       $('.el-table__body-wrapper').getNiceScroll().resize()
+       
+      
     })
+    
   },
   methods: {
     headerDragend() {
@@ -421,6 +446,21 @@ export default {
     // scroll() {
     //   $('.el-table__body').getNiceScroll().resize()
     // },
+    getScrollTree() {
+      $('.tree-box-wrap').niceScroll({
+        cursorcolor: localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63',
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 99,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: true // 在加载事件时自动重置iframe大小
+      })
+
+    },
     getScrollBar() {
       $('.el-table__body-wrapper').niceScroll({
         cursorcolor: localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63',
@@ -531,6 +571,12 @@ export default {
             // 获取被选中的节点
             const node = this.$refs.tree.getCurrentNode()
             this.listTabs.push(node)
+           
+            let _this=this;
+            setTimeout(function(){
+              _this.getScrollTree();
+              $('.tree-box-wrap').getNiceScroll().resize()
+            },500)
           })
         }
       }
@@ -545,6 +591,11 @@ export default {
       this.hideOperation(this.activeOperation || '')
       // 去重
       this.listTabs = [...new Set(this.listTabs)]
+      let _this=this;
+      setTimeout(function(){
+        _this.getScrollTree();
+        $('.tree-box-wrap').getNiceScroll().resize()
+      },500)
     },
     // 点击右键时触发
     operation(event, data, node, target) {
