@@ -86,8 +86,18 @@
               <span class="operation-text">{{ $t('bud.quo.return') }}</span>
             </li>
           </ul>
-    <el-dialog id="processDialog" :title="$t('component.taskApprove.detailedProcess') + processInstId" :visible.sync="dialogTableVisible" width="80%" top="0"  class="content-dialog-box  search-light">
-      <process-detail :key="processInstId" :process-inst-id="processInstId" />
+    <el-dialog 
+    id="processDialog" 
+    :title="$t('component.taskApprove.detailedProcess') + processInstId" 
+    :visible.sync="dialogTableVisible" 
+    width="950px" 
+    height="auto"
+    top="0"  
+    class="content-dialog-box  search-light"
+    ref="dragBox"
+    custom-class="dialog-drag"
+      >
+      <el-scrollbar><process-detail :key="processInstId" :process-inst-id="processInstId" /></el-scrollbar>
     </el-dialog>
   </div>
 </template>
@@ -95,6 +105,8 @@
 <script>
 import ProcessDetail from "@/components/ProcessDetail";
 import { agreeTask, rejectTask, getBackActivity } from "@/api/base";
+import $ from 'jquery'
+import 'jquery.nicescroll'
 
 export default {
   name: "TaskApprove",
@@ -125,6 +137,29 @@ export default {
   },
   created: function() {
     this.fetchData();
+  },
+  mounted() {
+    // 拖拽
+    $(".dialog-drag").draggable({
+      cursor: "move",
+      handle: ".el-dialog__header",
+      refreshPositions: true,
+      containment: "parent",
+      stop() {
+        $(".el-table__body-wrapper")
+          .getNiceScroll()
+          .resize();
+        $(".el-dialog__body")
+          .getNiceScroll()
+          .resize();
+      }
+    });
+    // 缩放
+    $("#processDialog .dialog-drag").resizable({
+      aspectRatio: false,
+      minHeight: 150,
+      containment: "#processDialog"
+    });
   },
   methods: {
     fetchData: async function() {
