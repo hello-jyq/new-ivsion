@@ -444,11 +444,11 @@ export default {
 
     getScrollBar() {
       $('.wtHolder').niceScroll({
-        cursorcolor: localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63',
+        cursorcolor: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
         cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: '8px', // 滚动条的宽度，单位：便素
-        cursorborder: `1px solid ${localStorage.getItem('theme') === 'Light' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
+        cursorborder: `1px solid ${localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
         autohidemode: true, // 隐藏滚动条的方式, 可用的值:
         zindex: 0,
         railpadding: {
@@ -469,6 +469,18 @@ export default {
   }
 }
 </script>
+<style scoped>
+@media (min-width: 1920px) { 
+  /deep/ .wtHolder{
+    height: 182px !important
+  }
+}
+@media (max-width: 1919px) { 
+  /deep/ .wtHolder{
+    height: 135px !important
+  }
+}
+</style>
 <style lang="scss">
 .baf {
   width: 1400px;
