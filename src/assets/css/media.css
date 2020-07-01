@@ -1366,7 +1366,9 @@
         width: 6px!important;
         height: 7px!important;
     }
-  
+    .content-dialog-box .market-drag .el-dialog__body{
+        padding: 5px 8px !important;
+    }
 
     /* 禀议通过 */
   .content-dialog-box .advice-adopt-dialog{
