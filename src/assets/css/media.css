@@ -792,8 +792,8 @@
         font-size: 14px !important;
       }  */
       .tree-org-user .el-tree-node__expand-icon{
-        width: 10px !important;
-        height: 9px !important;
+        width: 14px !important;
+        height: 13px !important;
         margin-right: 4px !important;
       }
       .tree-org-user .statusIcon{
@@ -1363,8 +1363,8 @@
       margin-right: -8px!important;
     }
     .apply-light .search-left-box .el-tree-node__expand-icon{
-        width: 6px!important;
-        height: 7px!important;
+        width: 8px!important;
+        height: 9px!important;
     }
     .content-dialog-box .market-drag .el-dialog__body{
         padding: 5px 8px !important;
