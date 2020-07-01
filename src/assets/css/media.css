@@ -2374,6 +2374,23 @@ font-size: 12px !important;
       top: -25px;
       left: 88px;
     }
+
+
+    .el-tree__empty-block{
+      width: 200px;
+    }
+    .tree-org-user .el-tree{
+      display: inline-block;
+    }
+    .el-tree-node__content{
+      display: inline-block;
+    }
+    .el-tree-node__expand-icon{
+      display: inline-block;
+    }
+    .custom-tree-node{
+      display: inline-block;
+    }
 }
 
 @media (max-width: 1919px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -2381,5 +2398,8 @@ font-size: 12px !important;
       top: -18px;
       left: 62px;
     } 
+    .el-tree__empty-block{
+      width: 170px;
+    }
 }
  

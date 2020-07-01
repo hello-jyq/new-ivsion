@@ -23,7 +23,7 @@
         <span slot="reference" class="tree-help"><i class="iconfont iconbangzhu" /></span>
       </el-popover>
       <div class="tree-box-wrap">
-         <!-- <div> -->
+        
            <el-tree
             ref="tree"
             :data="data"
@@ -42,7 +42,7 @@
               </div>
             </template>
           </el-tree>
-         <!-- </div> -->
+        
       </div>
       <!-- <el-scrollbar>
     
@@ -453,7 +453,7 @@ export default {
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: '8px', // 滚动条的宽度，单位：便素
         cursorborder: `1px solid ${localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
-        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
         zindex: 99,
         railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
         boxzoom: false,
