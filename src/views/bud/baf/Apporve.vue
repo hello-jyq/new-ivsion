@@ -30,9 +30,11 @@
             node-key="id"
             :highlight-current="false"
             :default-expanded-keys="expandedKeys"
-            :expand-on-click-node="true"
+            :expand-on-click-node="false"
             @node-click="selectNode"
             @node-contextmenu="operation"
+            @node-collapse="nodeChange"
+            @node-expand="nodeChange"
           >
             <template slot-scope="scope">
               <div class="custom-tree-node">
@@ -581,6 +583,13 @@ export default {
         }
       }
     },
+    nodeChange(){
+      let _this=this;
+      setTimeout(function(){
+        _this.getScrollTree();
+        $('.tree-box-wrap').getNiceScroll().resize()
+      },500)
+    },
     // 点击叶子节点
     selectNode(target) {
       console.log('target', target)
@@ -591,11 +600,6 @@ export default {
       this.hideOperation(this.activeOperation || '')
       // 去重
       this.listTabs = [...new Set(this.listTabs)]
-      let _this=this;
-      setTimeout(function(){
-        _this.getScrollTree();
-        $('.tree-box-wrap').getNiceScroll().resize()
-      },500)
     },
     // 点击右键时触发
     operation(event, data, node, target) {
