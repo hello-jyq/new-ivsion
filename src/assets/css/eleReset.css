@@ -288,12 +288,15 @@ aside:not(.collapse) .is-opened .menu-icon {
   display: inline-block;
   height: 34px;
   line-height: 34px;
-  cursor: pointer;
+  cursor:default ;
 }
 .el-breadcrumb__inner.is-link{
   font-weight: normal;
+  cursor: pointer !important;
 }
-
+.el-breadcrumb__item:not(:first-child) .el-breadcrumb__inner.is-link{
+  color: #18BAF4 !important;
+}
 
 /* 卡片 */
 .el-card__header{
