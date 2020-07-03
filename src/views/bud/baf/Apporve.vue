@@ -425,13 +425,9 @@ export default {
     const dom = content.getElementsByClassName(' el-scrollbar__wrap')[0]
     dom.addEventListener('scroll', this.scroll)
     this.$nextTick(function () {
-
       this.getScrollBar()
       $('.el-table__body-wrapper').getNiceScroll().resize()
-       
-      
     })
-    
   },
   methods: {
     headerDragend() {
@@ -450,26 +446,25 @@ export default {
     // },
     getScrollTree() {
       $('.tree-box-wrap').niceScroll({
-        cursorcolor: localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63',
+        cursorcolor: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
         cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: '8px', // 滚动条的宽度，单位：便素
-        cursorborder: `1px solid ${localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
-        autohidemode: false, // 隐藏滚动条的方式, 可用的值:
+        cursorborder: `1px solid ${localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
+        autohidemode: 'leave', // 隐藏滚动条的方式, 可用的值:
         zindex: 99,
         railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
         boxzoom: false,
         iframeautoresize: true // 在加载事件时自动重置iframe大小
       })
-  console.log(localStorage.getItem('theme') != 'Dark')
     },
     getScrollBar() {
       $('.el-table__body-wrapper').niceScroll({
-        cursorcolor: localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63',
+        cursorcolor: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63',
         cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
         cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
         cursorwidth: '8px', // 滚动条的宽度，单位：便素
-        cursorborder: `1px solid ${localStorage.getItem('theme') != 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
+        cursorborder: `1px solid ${localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63'}`, // CSS方式定义滚动条边框
         autohidemode: true, // 隐藏滚动条的方式, 可用的值:
         zindex: 99,
         railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
@@ -565,7 +560,7 @@ export default {
         this.data = res.datas.orgs
         // 默认展开
         if (this.data) {
-          this.$nextTick(function () {
+          this.$nextTick(function() {
             this.expandedKeys = []
             this.expandedKeys.push('1510')
             this.$refs.tree.setCurrentKey('1511')
@@ -573,10 +568,9 @@ export default {
             // 获取被选中的节点
             const node = this.$refs.tree.getCurrentNode()
             this.listTabs.push(node)
-           
             let _this=this;
             setTimeout(function(){
-              _this.getScrollTree();
+              _this.getScrollTree()
               $('.tree-box-wrap').getNiceScroll().resize()
             },500)
           })
