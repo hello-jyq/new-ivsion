@@ -461,7 +461,7 @@ export default {
         boxzoom: false,
         iframeautoresize: true // 在加载事件时自动重置iframe大小
       })
-
+  console.log(localStorage.getItem('theme') != 'Dark')
     },
     getScrollBar() {
       $('.el-table__body-wrapper').niceScroll({
