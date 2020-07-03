@@ -792,8 +792,8 @@
         font-size: 14px !important;
       }  */
       .tree-org-user .el-tree-node__expand-icon{
-        width: 10px !important;
-        height: 9px !important;
+        width: 14px !important;
+        height: 13px !important;
         margin-right: 4px !important;
       }
       .tree-org-user .statusIcon{
@@ -1363,10 +1363,12 @@
       margin-right: -8px!important;
     }
     .apply-light .search-left-box .el-tree-node__expand-icon{
-        width: 6px!important;
-        height: 7px!important;
+        width: 8px!important;
+        height: 9px!important;
     }
-  
+    .content-dialog-box .market-drag .el-dialog__body{
+        padding: 5px 8px !important;
+    }
 
     /* 禀议通过 */
   .content-dialog-box .advice-adopt-dialog{
@@ -2374,6 +2376,23 @@ font-size: 12px !important;
       top: -25px;
       left: 88px;
     }
+
+
+    .el-tree__empty-block{
+      width: 265px;
+    }
+    .tree-org-user .el-tree{
+      display: inline-block;
+    }
+    .el-tree-node__content{
+      display: inline-block;
+    }
+    .el-tree-node__expand-icon{
+      display: inline-block;
+    }
+    .custom-tree-node{
+      display: inline-block;
+    }
 }
 
 @media (max-width: 1919px) and (-ms-high-contrast: none), (-ms-high-contrast: active) {
@@ -2381,5 +2400,8 @@ font-size: 12px !important;
       top: -18px;
       left: 62px;
     } 
+    .el-tree__empty-block{
+      width: 170px;
+    }
 }
  
