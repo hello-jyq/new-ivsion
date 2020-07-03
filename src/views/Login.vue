@@ -362,7 +362,7 @@ export default {
     }
     .logo {
       width: 260px;
-      height: 107px;
+      height: 104px;
       margin: 0 auto 66px auto;
       img {
         width: 100%;
