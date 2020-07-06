@@ -594,6 +594,7 @@ export default {
       this.hideOperation(this.activeOperation || '')
       // 去重
       this.listTabs = [...new Set(this.listTabs)]
+      this.nodeChange()
     },
     // 点击右键时触发
     operation(event, data, node, target) {

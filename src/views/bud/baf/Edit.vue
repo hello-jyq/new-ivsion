@@ -48,7 +48,7 @@
                   <!-- 此处修改了他人锁定展示方式-->
                   <!-- 他人锁定 -->
                   <template v-if="scope.data.lockDiv === '2'">
-                    <el-popover placement="right" :visible-arrow="false" trigger="hover" :popper-class="theme=='Light'?'tree-lock-info bluePopover':'tree-lock-info'">
+                    <el-popover placement="bottom-start" :visible-arrow="false" trigger="hover" :popper-class="theme=='Light'?'tree-lock-info bluePopover':'tree-lock-info'">
                       <p>当前锁定人：{{ scope.data.lockUser }}</p>
                       <p>锁定时间：{{ scope.data.lockTime }}</p>
                       <span slot="reference">{{ scope.data.name }}<span class="statusIcon otherIcon"><i class="iconfont iconicon_suo-" /></span></span>
