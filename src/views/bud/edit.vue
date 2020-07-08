@@ -387,13 +387,14 @@
           </li>
         </ul>
     </div>
-    
+    <UploadNew :isShow="true"></UploadNew>
  </div>   
 </template>
 <script>
 import Swiper from 'swiper/dist/js/swiper.js'
 import Handsontable from 'handsontable'
 import { HotTable } from '@handsontable/vue'
+import UploadNew from '@/components/UploadNew.vue'
 export default {
   name: 'comEdit',
   data() {
@@ -665,7 +666,8 @@ export default {
     }
   },
   components: {
-    HotTable
+    HotTable,
+    UploadNew
   },
   mounted() {
     var mySwiper = new Swiper('.swiper-container', {

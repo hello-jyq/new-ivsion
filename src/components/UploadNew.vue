@@ -30,17 +30,25 @@
                 <div class="detail-time-right">{{uploadInfo.endDate}} 上传结束</div>
             </div>
             <div class="detail-info">
-                <ul class="filelist">
+              <ul class="filelist">
+                  <div class="scroll-info-list">
                     <li class="info-err">
-                        交际费1：数字类型不正确，请输入数字。（当前值：a）
+                      交际费1：数字类型不正确，请输入数字。（当前值：a）
                     </li>
                     <li class="info-err">
                         交际费2：数字类型不正确，请输入数字。（当前值：b）
                     </li>
-                     <li>
-                        修改后，请重新上传
+                    <li class="info-err">
+                        交际费2：数字类型不正确，请输入数字。（当前值：b）
                     </li>
-                </ul>
+                    <li class="info-err">
+                        交际费2：数字类型不正确，请输入数字。（当前值：b）
+                    </li>
+                  </div>
+                    <li>
+                      修改后，请重新上传
+                  </li>
+              </ul>
             </div>              
       </div>
     </el-dialog>
@@ -48,6 +56,7 @@
 </template>
 <script>
 import $ from 'jquery'
+import 'jquery.nicescroll'
 export default {
   data() {
     return {
@@ -65,7 +74,8 @@ export default {
       {
         startDate: "2020-03-23 19：15：33",
         endDate: "2020-03-23 19：15：33"
-      }
+      },
+      scrollColr: localStorage.getItem('theme') !== 'Dark' ? '#D8E0E8' : '#5A5E63'
 
     }
   },
@@ -77,6 +87,9 @@ export default {
   },
   mounted() {
     this.draggable()
+    this.$nextTick(function(){
+      this.getScrollBar()
+    })
   },
   methods: {
     handleClose(done) {
@@ -95,6 +108,20 @@ export default {
     handleSuccess() {
       this.uploadInfo.endDate = new Date().getFullYear() + "-" + (new Date().getMonth() + 1) + "-" + new Date().getDate() + " " + new Date().getHours() + ": " + new Date().getMinutes() + ": " + new Date().getSeconds();
     },
+    getScrollBar() {
+      $('.scroll-info-list').niceScroll({
+        cursorcolor: this.scrollColr,
+        cursoropacitymin: 0, // 当滚动条是隐藏状态时改变透明度, 值范围 1 到 0
+        cursoropacitymax: 1, // 当滚动条是显示状态时改变透明度, 值范围 1 到 0
+        cursorwidth: '8px', // 滚动条的宽度，单位：便素
+        cursorborder: `1px solid ${this.scrollColr}`, // CSS方式定义滚动条边框
+        autohidemode: true, // 隐藏滚动条的方式, 可用的值:
+        zindex: 0,
+        railpadding: { top: 0, right: 0, left: 0, bottom: 0 },
+        boxzoom: false,
+        iframeautoresize: false // 在加载事件时自动重置iframe大小
+      })
+    },
     draggable() {
       $('.dialog-drag').draggable({
         cursor: 'move',
@@ -102,8 +129,9 @@ export default {
         refreshPositions: true,
         containment: 'parent',
         stop() {
-          $('.el-table__body-wrapper').getNiceScroll().resize()
-          $('.el-dialog__body').getNiceScroll().resize()
+          $('.el-table__body-wrapper').getNiceScroll().resize();
+          $('.el-dialog__body').getNiceScroll().resize();
+          $('.scroll-info-list').getNiceScroll().resize();
         }
       })
     },
@@ -124,7 +152,7 @@ export default {
   }
 
   .el-dialog__body {
-    padding: 30px 20px 20px 20px;
+    // padding: 30px 20px 20px 20px;
     overflow: hidden;
     .el-upload {
       border: 1px solid #cccccc;
@@ -142,6 +170,9 @@ export default {
     }
     .el-upload-list {
       float: left;
+      width: calc(100% - 130px);
+      margin-top: 10px;
+      margin-bottom: 20px;
       .el-upload-list__item {
         width: auto;
       }
@@ -249,6 +280,10 @@ export default {
         }
       }
     }
+  }
+  .scroll-info-list{
+    max-height: 75px;
+    overflow: auto;
   }
 }
 </style>

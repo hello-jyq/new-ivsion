@@ -969,7 +969,7 @@
                     "id": "path-tpl-detail",
                     "isLeaf": 0,
                     "parentId": null,
-                    "resFile": "/views/bud/tpl/Detail.vue",
+                    "resFile": "/views/bud/tpl/Edit.vue",
                     "resKey": null,
                     "resLevel": null,
                     "resName": "预算模板-详细画面",

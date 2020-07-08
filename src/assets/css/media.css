@@ -2088,7 +2088,7 @@ font-size: 12px !important;
     padding: 14px !important;
   }
   .upload-dialog .dialog-drag .el-dialog__body{
-    padding: 21px 14px 14px 14px !important;
+    /* padding: 21px 14px 14px 14px !important; */
   }
   .upload-dialog .dialog-drag .el-icon-close{
     font-size: 18px !important;
@@ -2142,6 +2142,9 @@ font-size: 12px !important;
     height: 14px !important;
     line-height: 14px !important;
     font-size: 12px !important;
+  }
+  .upload-dialog .dialog-drag .scroll-info-list{
+    max-height: 38px !important;
   }
   .table-cell-rightClick {
     font-size: 12px !important;

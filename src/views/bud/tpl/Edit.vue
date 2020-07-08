@@ -274,6 +274,7 @@
                 <template slot-scope="scope">
                   <span
                     class="advice-deleted-btn"
+                    :class="{'advice--disabled-deleted-btn' : !isEditSecond}"
                     @click="isEditSecond ? deleteTopItem(scope.$index):null"
                   >
                     <i class="iconfont iconshanchu1" />
@@ -635,6 +636,7 @@ export default {
     // 查询第二部分模板科目顶层列表
     async loadTplItemTopList() {
       const res = await getTplItemTopList({ templateId: this.templateId });
+      console.log("res",res)
       if (res && res.success) {
         this.tplItemTopList = res.datas.results;
         this.$nextTick(() => {
@@ -1297,4 +1299,5 @@ export default {
     }
   }
 }
+
 </style>

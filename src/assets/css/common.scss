@@ -1441,6 +1441,9 @@ aside.collapse+.header+.main .content-dialog-box{
 .advice-deleted-btn {
   cursor: pointer;
 }
+.advice--disabled-deleted-btn{
+  cursor: no-drop;
+}
 // 禀议申请
 .advice-apply{
   .advice-title-box{
