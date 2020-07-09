@@ -39,10 +39,13 @@
                         交际费2：数字类型不正确，请输入数字。（当前值：b）
                     </li>
                     <li class="info-err">
-                        交际费2：数字类型不正确，请输入数字。（当前值：b）
+                        交际费3：数字类型不正确，请输入数字。（当前值：b）
                     </li>
                     <li class="info-err">
-                        交际费2：数字类型不正确，请输入数字。（当前值：b）
+                        交际费4：数字类型不正确，请输入数字。（当前值：b）
+                    </li>
+                    <li class="info-err">
+                        交际费5：数字类型不正确，请输入数字。（当前值：b）
                     </li>
                   </div>
                     <li>
@@ -143,7 +146,7 @@ export default {
 .upload-dialog .dialog-drag {
   width: 800px;
   min-width: 800px;
-  height: 570px;
+  height: 620px;
   max-height: 800px;
   .el-icon-close {
     font-size: 22px;
@@ -212,7 +215,7 @@ export default {
 
     .upload-bg-box {
       width: 100%;
-      height: 198px;
+      height: 248px;
       border: 1px solid #cccccc;
       margin-top: 75px;
       box-sizing: border-box;
@@ -282,7 +285,7 @@ export default {
     }
   }
   .scroll-info-list{
-    max-height: 75px;
+    max-height: 125px;
     overflow: auto;
   }
 }

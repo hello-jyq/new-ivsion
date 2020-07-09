@@ -365,10 +365,16 @@ export default {
   mounted() {
     this.searchTree()
     this.getBafDetail()
-    const content = document.getElementsByClassName('content')[0]
-    console.log('content', content)
+    const content= document.getElementsByClassName('content')[0];
+    let that = this;
+    $("#app").on("click",function(){
+      if (that.activeOperation) {
+       that.$refs[that.activeOperation].style.display = 'none'
+      }
+    })
   },
   methods: {
+
     headerDragend() {
       this.$refs.table.doLayout()
     },
@@ -416,7 +422,6 @@ export default {
       columnIndex
     }) {
       if (columnIndex === 0) {
-        console.log('row.isChangeEnable', row.isChangeEnable === '1')
         if (row.isChangeEnable === '1') {
           return 'table-cell-hover'
         } else {

@@ -2082,7 +2082,7 @@ font-size: 12px !important;
   .upload-dialog .dialog-drag{
     width: 570px !important;
     min-width: 570px !important;
-    height: 405px !important;
+    height: 455px !important;
   }
   #app[data-theme=Dark] .upload-dialog .dialog-drag{
     padding: 14px !important;
@@ -2118,7 +2118,7 @@ font-size: 12px !important;
   .upload-dialog .dialog-drag .el-dialog__body .upload-bg-box{
     margin-top: 53px !important;
     padding: 14px !important;
-    height: 140px !important;
+    height: 184px !important;
   }
   .upload-dialog .dialog-drag .el-dialog__body .upload-bg-box .detail-header{
     height: 14px !important;
@@ -2144,7 +2144,7 @@ font-size: 12px !important;
     font-size: 12px !important;
   }
   .upload-dialog .dialog-drag .scroll-info-list{
-    max-height: 38px !important;
+    max-height: 95px !important;
   }
   .table-cell-rightClick {
     font-size: 12px !important;
