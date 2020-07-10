@@ -3432,3 +3432,6 @@ aside.collapse+.header+.main .content-dialog-box{
 .apporve-table-box .el-table__fixed, .table-span-style .el-table__fixed {
   border-bottom: #dddddd solid 2px;
 }
+.el-table--border::after, .el-table::before{
+  border-bottom: #dddddd solid 1px;
+}
