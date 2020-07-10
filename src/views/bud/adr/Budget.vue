@@ -96,6 +96,7 @@
               label="部门名称"
               width="110"
               show-overflow-tooltip
+              class-name="fixed-border-bottom"
             />
             <el-table-column
               align="center"
