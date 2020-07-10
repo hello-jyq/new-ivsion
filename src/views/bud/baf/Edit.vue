@@ -367,11 +367,12 @@ export default {
     this.getBafDetail()
     const content= document.getElementsByClassName('content')[0];
     let that = this;
-    $("#app").on("click",function(){
+    document.getElementById("app").onclick = function() {
       if (that.activeOperation) {
-       that.$refs[that.activeOperation].style.display = 'none'
+        that.$refs[that.activeOperation].style.display = 'none'
+        that.activeOperation = ''
       }
-    })
+    }
   },
   methods: {
 
