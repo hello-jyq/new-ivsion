@@ -1,6 +1,20 @@
 <template>
   <p class="page-container">404 page not found</p>
 </template>
+<script>
+export default {
+  data() {
+    return {
+
+    }
+  },
+  created: {},
+  methods: {},
+  mounted() {
+
+  }
+}
+</script>
 <style lang="scss" scoped>
 .page-container {
   font-size: 20px;
